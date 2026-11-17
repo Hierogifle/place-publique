@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowView · Piste 04</title>
+<!-- Concept 04 v2 "Les Crêtes, vues du refuge". Operate mode: the analysed camera image is the hero.
+     Art-direction proof, not application code. Demo numbers are fictional; detection boxes are placed by hand.
+     Terrain: AWS Terrarium tiles. Lifts and pistes: OpenStreetMap contributors (ODbL), extracted 2026-11-17. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" integrity="sha384-MinO0mNliZ3vwppuPOUnGa+iq619pfMhLVUXfC4LHwSCvF9H+6P/KO4Q7qBOYV5V" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" integrity="sha384-6p9AefaqUhEVheRlj1mpAkbngHXy9mbYMrIdcIt4Jlc9lOLIablJq3bBsLOjGwZ7" crossorigin="anonymous">
+<style>
+  /* Tokens. Light = the refuge by day (warm paper); dark = the refuge at night (walnut).
+     The map and the camera image are windows onto the outside and keep their own daylight. */
+  :root {
+    --bg: #f2efe9; --surface: #fbfaf7; --surface-2: #f5f2ec; --ink: #2a2420; --muted: #6b625a; --line: #e3ded5;
+    --data: #1f3140; --data-2: #4b6273; --mist: #c9d3da; --normal: #b9c6cf;
+    --alert: #c8342a; --alert-soft: #f7e4e1; --alert-strong: #a52a21;
+    --radius-card: 12px; --radius-ctl: 8px; --radius-chip: 6px;
+    --shadow: 0 1px 2px rgba(42, 36, 32, .06), 0 8px 24px rgba(42, 36, 32, .06);
+    --ease-out: cubic-bezier(.23, 1, .32, 1);
+    --z-map-ui: 2; --z-sticky: 10; --z-grain: 20;
+    --grain: none;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1512; --surface: #231d18; --surface-2: #2b241e; --ink: #efe8dc; --muted: #b3a796; --line: #3a3029;
+      --data: #e1e9ee; --data-2: #9fb1bd; --mist: #3b4852; --normal: #5a6b78;
+      --alert: #ff6a58; --alert-soft: #3a211d; --alert-strong: #ff6a58;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 400 15px/1.5 "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: var(--z-grain); background-image: var(--grain); background-size: 180px; opacity: .25; mix-blend-mode: multiply; }
+  figure { margin: 0; }
+  img { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--data-2); outline-offset: 2px; }
+  .ph { font-size: 18px; line-height: 1; }
+
+  /* ---------- top bar ---------- */
+  .top { position: sticky; top: 0; z-index: var(--z-sticky); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 12px 24px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .brand { display: flex; align-items: baseline; gap: 12px; min-width: 0; }
+  .brand b { font-weight: 600; letter-spacing: -.01em; }
+  .brand span { color: var(--muted); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-ctl); padding: 3px; }
+  .seg button { border: 0; background: transparent; border-radius: 6px; padding: 6px 14px; font-size: 14px; color: var(--muted); cursor: pointer; transition: background-color .2s var(--ease-out), color .2s var(--ease-out); }
+  .seg button:hover { color: var(--ink); }
+  .seg button:active { transform: scale(.97); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+  .status { justify-self: end; display: flex; gap: 14px; font-size: 14px; color: var(--muted); }
+  .status span { display: inline-flex; align-items: center; gap: 6px; }
+  .status .a { color: var(--alert); }
+  .back { font-size: 13px; color: var(--muted); text-decoration: none; margin-left: 4px; white-space: nowrap; }
+  .back:hover { color: var(--ink); }
+
+  /* ---------- layout ---------- */
+  .grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(340px, 1fr); gap: 20px; padding: 20px 24px 40px; max-width: 1560px; margin: 0 auto; }
+  .col { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow); }
+  .card-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; }
+  .card-h h2 { margin: 0; font-size: 15px; font-weight: 600; }
+  .card-h p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  /* ---------- hero: the analysed image ---------- */
+  .hero-h { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding: 18px 20px 14px; flex-wrap: wrap; }
+  .hero-h h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -.015em; }
+  .hero-h p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+  .hero-tools { display: flex; align-items: center; gap: 10px; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-chip); padding: 5px 9px; }
+  .toggle { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-ctl); padding: 6px 12px; font-size: 13px; cursor: pointer; transition: background-color .2s var(--ease-out); }
+  .toggle:hover { background: var(--surface-2); }
+  .toggle:active { transform: scale(.97); }
+  .shot { position: relative; margin: 0 20px; border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 10; background: var(--mist); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .box { position: absolute; border: 1.5px solid rgba(250, 252, 253, .95); border-radius: 2px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: 0 0 0 1px rgba(20, 30, 40, .35); transition: opacity .2s var(--ease-out); }
+  .shot.noboxes .box { border-color: transparent; box-shadow: none; }
+  .overlay { position: absolute; left: 12px; top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .overlay span { font-size: 12.5px; color: #f7f9fa; background: rgba(18, 28, 37, .62); backdrop-filter: blur(4px); border-radius: var(--radius-chip); padding: 5px 9px; }
+  .shot.nd { display: grid; place-items: center; text-align: center; padding: 24px; color: var(--data-2); background: linear-gradient(180deg, color-mix(in srgb, var(--mist) 70%, var(--surface)), var(--mist)); }
+  .shot.nd .ph { font-size: 40px; display: block; margin: 0 auto 10px; }
+  .facts { display: grid; grid-template-columns: auto auto 1fr; gap: 28px; align-items: end; padding: 18px 20px 20px; }
+  .fact .v { font-size: 52px; font-weight: 300; letter-spacing: -.03em; line-height: 1; color: var(--data); }
+  .fact .v small { font-size: 20px; color: var(--data-2); font-weight: 400; letter-spacing: 0; }
+  .fact .l { font-size: 13px; color: var(--muted); margin-top: 6px; }
+  .fact.alert .v { color: var(--alert); }
+  .fact.normal .v { font-size: 34px; color: var(--data-2); }
+  .voice { margin: 0; font: 500 18px/1.45 "Alegreya", Georgia, serif; color: var(--ink); max-width: 46ch; justify-self: end; text-align: right; text-wrap: pretty; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 500; padding: 3px 9px; border-radius: 999px; background: var(--alert-soft); color: var(--alert-strong); margin-bottom: 8px; }
+
+  /* camera strip */
+  .strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; padding: 0 18px 18px; }
+  .thumb { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 6px; cursor: pointer; transition: border-color .2s var(--ease-out), transform .2s var(--ease-out); }
+  .thumb:hover { border-color: var(--data-2); }
+  .thumb:active { transform: scale(.98); }
+  .thumb[aria-current="true"] { border-color: var(--data); box-shadow: 0 0 0 1px var(--data); }
+  .thumb .im { aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: var(--mist); display: grid; place-items: center; color: var(--data-2); }
+  .thumb .im img { width: 100%; height: 100%; object-fit: cover; filter: blur(1.5px) saturate(.8); }
+  .thumb .row { display: flex; justify-content: space-between; gap: 6px; padding: 7px 4px 2px; font-size: 13px; }
+  .thumb .row b { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .thumb .row span { color: var(--data); }
+  .thumb.alert .row span { color: var(--alert); font-weight: 500; }
+  .thumb.nd .row span { color: var(--muted); }
+
+  /* the day, seen from the side */
+  .chart { position: relative; height: 200px; margin: 0 18px; cursor: crosshair; touch-action: none; }
+  .chart svg { width: 100%; height: 100%; display: block; }
+  .axis { display: flex; justify-content: space-between; padding: 6px 18px 16px; font-size: 12px; color: var(--muted); }
+  .legend { display: flex; gap: 16px; font-size: 12.5px; color: var(--muted); flex-wrap: wrap; }
+  .legend i { display: inline-block; width: 14px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+  .tip { position: absolute; top: 6px; transform: translateX(-50%); white-space: nowrap; pointer-events: none; font-size: 12.5px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-chip); padding: 4px 8px; box-shadow: var(--shadow); }
+
+  /* ---------- right: map + zones ---------- */
+  .mapbox { position: relative; height: 380px; margin: 0 14px 14px; border-radius: 8px; overflow: hidden; background: #dfe6ea; }
+  #map { position: absolute; inset: 0; }
+  .mapbox .fallback { position: absolute; inset: 0; display: none; place-items: center; text-align: center; padding: 30px; color: #4b6273; font-size: 14px; }
+  .mapbox.nomap .fallback { display: grid; }
+  .maplibregl-ctrl-group { box-shadow: none; border: 1px solid rgba(31, 49, 64, .12); }
+  .maplibregl-ctrl-attrib { font-size: 10px; }
+  .zone { position: relative; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; border: 2px solid #1f3140; background: rgba(250, 251, 252, .94); color: #1f3140; font: 500 13px/1 "Inter", sans-serif; transition: transform .2s var(--ease-out); }
+  .zone:hover { transform: scale(1.08); }
+  .zone.sel { box-shadow: 0 0 0 5px rgba(250, 251, 252, .75); }
+  .zone.alert { background: #c8342a; border-color: #c8342a; color: #fbf7f2; }
+  .zone.alert::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid #c8342a; opacity: 0; animation: beacon 3.2s var(--ease-out) infinite; }
+  .zone.nd { border-style: dashed; border-color: #6f8595; color: #4b6273; background: rgba(233, 238, 241, .85); }
+  .zlabel { position: absolute; left: 50%; transform: translateX(-50%); top: 38px; white-space: nowrap; pointer-events: none; font: 500 11px/1 "Inter", sans-serif; color: #1f3140; background: rgba(250, 251, 252, .9); padding: 3px 6px; border-radius: 4px; }
+  .zlabel.up { top: auto; bottom: 38px; }
+  .zlabel.right { top: 50%; left: 40px; transform: translateY(-50%); }
+  .zlabel.left { top: 50%; left: auto; right: 40px; transform: translateY(-50%); }
+  @keyframes beacon { 0% { opacity: .7; transform: scale(.9); } 70%, 100% { opacity: 0; transform: scale(1.45); } }
+
+  .zones { list-style: none; margin: 0; padding: 4px 8px 10px; }
+  .zrow { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 10px 10px; border-radius: 8px; cursor: pointer; border-top: 1px solid var(--line); transition: background-color .2s var(--ease-out); }
+  .zrow:first-child { border-top: 0; }
+  .zrow:hover { background: var(--surface-2); }
+  .zrow[aria-current="true"] { background: var(--surface-2); }
+  .zrow b { font-weight: 500; }
+  .zrow .n { text-align: right; color: var(--data); font-weight: 500; }
+  .zrow .n small { color: var(--data-2); font-weight: 400; }
+  .zrow.alert .n { color: var(--alert); }
+  .zrow.nd .n { color: var(--muted); font-weight: 400; }
+  .zrow p { margin: 0; font-size: 13px; color: var(--muted); grid-column: span 2; }
+  .meter { grid-column: span 2; position: relative; height: 6px; border-radius: 3px; background: var(--surface-2); border: 1px solid var(--line); overflow: hidden; }
+  .meter i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 3px; background: var(--data-2); }
+  .meter u { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); opacity: .55; }
+  .zrow.alert .meter i { background: var(--alert); }
+  .note { margin: 0; padding: 0 18px 16px; font-size: 12.5px; color: var(--muted); }
+
+  /* ---------- the system, under the app ---------- */
+  .system { max-width: 1560px; margin: 0 auto; padding: 8px 24px 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .system .card { padding: 18px 20px; }
+  .system h3 { margin: 0 0 12px; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .system p { margin: 0 0 10px; font-size: 14px; }
+  .sw { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .sw div { border-radius: 8px; height: 56px; padding: 6px 8px; font-size: 11px; line-height: 1.25; display: flex; flex-direction: column; justify-content: flex-end; border: 1px solid var(--line); }
+  .credits { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }
+  .credits a { color: inherit; }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: 1fr; padding: 16px; }
+    .top { position: static; grid-template-columns: 1fr; justify-items: start; padding: 10px 16px; }
+    .status { justify-self: start; flex-wrap: wrap; }
+    .brand { flex-wrap: wrap; row-gap: 2px; }
+    .brand span { white-space: normal; }
+    .facts { grid-template-columns: auto auto; }
+    .voice { grid-column: 1 / -1; justify-self: start; text-align: left; }
+    .strip { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .system { grid-template-columns: 1fr; padding: 8px 16px 48px; }
+  }
+  @media (max-width: 560px) {
+    .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shot { margin: 0 12px; }
+    .fact .v { font-size: 42px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .zone.alert::after { animation: none; }
+    * { transition-duration: 0s !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><b>FlowView</b><span>Les Arcs · samedi 14 février · 10:20 · une mesure toutes les 5 min</span><a class="back" href="stylescapes.html">Pistes 01 à 03</a></div>
+  <div class="seg" role="group" aria-label="Moment de la journée">
+    <button type="button" data-mode="prep" aria-pressed="false">Préparer</button>
+    <button type="button" data-mode="follow" aria-pressed="true">Suivre</button>
+    <button type="button" data-mode="alert" aria-pressed="false">Alerter</button>
+  </div>
+  <div class="status" aria-live="polite"><span class="a"><i class="ph ph-warning" aria-hidden="true"></i>1 site au-dessus de la normale</span><span><i class="ph ph-cloud-fog" aria-hidden="true"></i>1 caméra muette</span></div>
+</header>
+
+<main class="grid">
+  <div class="col">
+    <section class="card" aria-labelledby="z-title">
+      <div class="hero-h">
+        <div><h1 id="z-title">Arcabulle</h1><p id="z-where">Départ du télésiège</p></div>
+        <div class="hero-tools">
+          <span class="chip" id="z-time"><i class="ph ph-clock" aria-hidden="true"></i>Image de 10:20 · prochaine à 10:25</span>
+          <button type="button" class="toggle" id="boxes" aria-pressed="true"><i class="ph ph-eye" aria-hidden="true"></i>Cadres du modèle</button>
+        </div>
+      </div>
+      <div class="shot" id="shot"></div>
+      <div class="facts" id="facts"></div>
+    </section>
+
+    <section class="card" aria-label="Toutes les caméras">
+      <div class="card-h"><h2>Caméras</h2><p>Personnes floutées, images non enregistrées</p></div>
+      <div class="strip" id="strip"></div>
+    </section>
+
+    <section class="card" aria-labelledby="d-title">
+      <div class="card-h">
+        <h2 id="d-title">La journée à Arcabulle</h2>
+        <div class="legend"><span><i style="background:var(--normal)"></i>la normale</span><span><i style="background:var(--data)"></i>aujourd'hui</span><span><i style="background:var(--alert)"></i>au-dessus</span><span><i style="background:var(--mist)"></i>pas de donnée</span></div>
+      </div>
+      <div class="chart" id="chart"><svg id="side" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true"></svg><div class="tip" id="tip" hidden></div></div>
+      <div class="axis"><span>08:00</span><span>11:00</span><span>14:00</span><span>17:00</span></div>
+    </section>
+  </div>
+
+  <div class="col">
+    <section class="card" aria-label="La station en relief">
+      <div class="card-h"><h2>La station</h2><p>Glisser pour tourner · clic sur une zone</p></div>
+      <div class="mapbox" id="mapbox">
+        <div id="map" role="application" aria-label="Le domaine des Arcs en relief"></div>
+        <div class="fallback"><p>Le relief n'a pas pu se charger (connexion ou WebGL).<br>Les zones restent accessibles dans la liste.</p></div>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="l-title">
+      <div class="card-h"><h2 id="l-title">Le carnet de 10:20</h2><p id="l-sub">Occupation à l'instant de la mesure</p></div>
+      <ul class="zones" id="zones"></ul>
+      <p class="note" id="l-note">Le trait vertical marque la normale de l'heure.</p>
+    </section>
+  </div>
+</main>
+
+<section class="system" aria-label="Notes de direction artistique">
+  <div class="card">
+    <h3>Ce qui change par rapport à la v1</h3>
+    <p>L'image analysée passe au premier plan : c'est la preuve que le modèle compte, et ce que le jury doit voir. La carte 3D devient l'outil pour choisir une zone. Le carnet se réduit à une liste triée.</p>
+    <p>Une seule famille pour l'interface (Inter). Alegreya ne sert qu'à la phrase du gardien, jamais à un libellé.</p>
+  </div>
+  <div class="card">
+    <h3>Couleurs</h3>
+    <div class="sw">
+      <div style="background:#fbfaf7;color:#2a2420">Papier<br>#FBFAF7</div>
+      <div style="background:#2a2420;color:#f2efe9">Encre<br>#2A2420</div>
+      <div style="background:#1f3140;color:#e1e9ee">Ardoise<br>#1F3140</div>
+      <div style="background:#c8342a;color:#fbf7f2">Balise<br>#C8342A</div>
+    </div>
+    <p style="margin-top:12px">La balise ne sert qu'à l'alerte. Mode sombre : le refuge le soir (noyer #1A1512), activé par le réglage du système.</p>
+  </div>
+  <div class="card">
+    <h3>Honnêteté du chiffre</h3>
+    <p>Toujours une fourchette (± 7), toujours la normale de l'heure à côté, toujours « pas de donnée » au lieu de zéro. Après 10:20, la journée est marquée « à venir ».</p>
+    <p>Le bouton « Cadres du modèle » masque les cadres, jamais le flou.</p>
+  </div>
+  <p class="credits">Relief : tuiles Terrarium (AWS Open Data). Remontées et pistes : © contributeurs OpenStreetMap, ODbL, extraites le 17/11/2026. Photo : <a href="https://unsplash.com/@joanoger">@joanoger</a> (Unsplash), une seule photo d'illustration pour toutes les zones ; cadres placés à la main, ce n'est pas une sortie du modèle. Icônes : Phosphor. Carte : MapLibre GL JS. Chiffres : données fictives.</p>
+</section>
+
+<script>window.ARCS_OSM = /*__ARCS_OSM__*/null;</script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js" integrity="sha384-SYKAG6cglRMN0RVvhNeBY0r3FYKNOJtznwA0v7B5Vp9tr31xAHsZC0DqkQ/pZDmj" crossorigin="anonymous"></script>
+<script>
+(() => {
+  "use strict";
+
+  try {
+    const c = document.createElement("canvas"); c.width = c.height = 180;
+    const x = c.getContext("2d"), d = x.createImageData(180, 180);
+    for (let i = 0; i < d.data.length; i += 4) { const v = 120 + Math.random() * 110; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 34; }
+    x.putImageData(d, 0, 0);
+    document.documentElement.style.setProperty("--grain", `url(${c.toDataURL()})`);
+  } catch (e) { /* decorative */ }
+
+  // ---------- demo data: fictional counts, real lift positions (OSM) ----------
+  const PHOTO = "https://images.unsplash.com/photo-1519659675643-e5885721661f?w=1200&h=750&fit=crop&q=70";
+  const HOURS = Array.from({ length: 37 }, (_, i) => 8 * 60 + i * 15);
+  const NOW = 9;
+  const fmt = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+  function series(seed, base, peakAt, peakH, width) {
+    let s = seed; const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    return HOURS.map(m => { const t = (m - peakAt) / width; return Math.max(2, Math.round(base + peakH * Math.exp(-t * t) + 5 * Math.sin(m / 37) + (rnd() - .5) * 5)); });
+  }
+  const SITES = [
+    { id: "arcabulle", name: "Arcabulle", where: "Départ du télésiège", lnglat: [6.82412, 45.56446], lift: "Arcabulle", today: series(7, 14, 10 * 60 + 40, 52, 70), normal: series(3, 12, 11 * 60 + 30, 24, 110) },
+    { id: "vagere", name: "Vagère", where: "Départ du télésiège, Arc 1800", lnglat: [6.77941, 45.57337], lift: "Vagère", today: series(5, 10, 10 * 60 + 30, 22, 120), normal: series(9, 10, 10 * 60 + 40, 22, 120) },
+    { id: "manoir", name: "Place Manoir", where: "Place du village, Arc 1950", lnglat: [6.827613, 45.5724433], lift: null, label: "left", offset: [-24, -16], today: series(13, 18, 12 * 60, 30, 140), normal: series(17, 16, 12 * 60, 28, 140) },
+    { id: "arpette", name: "Arpette", where: "Départ du télésiège", lnglat: [6.79598, 45.57467], lift: "Arpette", today: series(23, 6, 11 * 60, 10, 120), normal: series(29, 7, 11 * 60, 10, 120) },
+    { id: "varet", name: "Varet", where: "Départ de la télécabine, Arc 2000", lnglat: [6.82809, 45.56947], lift: "Varet", label: "right", offset: [24, 14], today: series(31, 12, 11 * 60, 26, 110), normal: series(37, 12, 11 * 60, 26, 110), ndFrom: 3 }
+  ];
+  const isND = (s, i) => s.ndFrom !== undefined && i >= s.ndFrom;
+  const hot = (s, i) => s.today[i] > s.normal[i] * 1.4 && s.today[i] - s.normal[i] > 10;
+  const state = s => (isND(s, NOW) ? "nd" : hot(s, NOW) ? "alert" : "ok");
+  const pm = n => Math.max(3, Math.round(n * .12));
+  const order = { alert: 0, nd: 1, ok: 2 };
+
+  // boxes placed by hand on the illustration photo (1200 x 750): cx, cy, w, h
+  const BOXES = [[609,611,14,32],[643,611,14,32],[694,593,14,32],[727,611,14,32],[756,593,14,32],[782,593,14,32],[859,630,16,34],[1144,593,14,30],[1172,598,14,30],
+                 [366,676,26,54],[422,685,26,56],[478,694,26,56],[516,704,28,58],[559,704,28,58],[637,694,28,58],[712,691,28,60],[746,704,32,70],[909,728,26,44]];
+
+  let current = "arcabulle", mode = "follow", showBoxes = true;
+
+  // ---------- hero ----------
+  function renderHero(s) {
+    const st = state(s), n = s.today[NOW], m = s.normal[NOW];
+    document.getElementById("z-title").textContent = s.name;
+    document.getElementById("z-where").textContent = s.where;
+    document.getElementById("d-title").textContent = `La journée à ${s.name}`;
+    const shot = document.getElementById("shot"), facts = document.getElementById("facts"), time = document.getElementById("z-time");
+    if (st === "nd") {
+      time.innerHTML = '<i class="ph ph-clock" aria-hidden="true"></i>Dernière image à 08:40 · nouvel essai à 10:25';
+      shot.className = "shot nd";
+      shot.innerHTML = '<div><i class="ph ph-cloud-fog" aria-hidden="true"></i>La caméra ne répond plus depuis 08:45.<br>Nous réessayons toutes les 5 minutes.</div>';
+      facts.innerHTML = `<div class="fact"><div class="v">?</div><div class="l">pas de donnée</div></div><div class="fact normal"><div class="v">${m}</div><div class="l">d'habitude à cette heure</div></div><p class="voice">Je préfère vous dire que je ne sais pas plutôt que d'écrire zéro.</p>`;
+      return;
+    }
+    time.innerHTML = '<i class="ph ph-clock" aria-hidden="true"></i>Image de 10:20 · prochaine à 10:25';
+    shot.className = "shot" + (showBoxes ? "" : " noboxes");
+    shot.innerHTML = `<img src="${PHOTO}" alt="Vue de la caméra ${s.name}, personnes floutées">` +
+      BOXES.map(([cx, cy, w, h]) => `<span class="box" style="left:${((cx - w / 2) / 12).toFixed(2)}%;top:${((cy - h / 2) / 7.5).toFixed(2)}%;width:${(w / 12).toFixed(2)}%;height:${(h / 7.5).toFixed(2)}%"></span>`).join("") +
+      `<div class="overlay"><span>${BOXES.length} personnes détectées sur l'image</span><span>Illustration : cadres placés à la main</span></div>`;
+    const voice = st === "alert" ? "Ça se remplit plus vite que d'habitude. Je préviendrais l'accueil." : "Rien à signaler, tout suit son cours.";
+    facts.innerHTML = `<div class="fact ${st === "alert" ? "alert" : ""}">${st === "alert" ? '<span class="pill"><i class="ph ph-warning" aria-hidden="true"></i>Au-dessus de la normale</span>' : ""}<div class="v">${n}<small> ± ${pm(n)}</small></div><div class="l">personnes dans la zone</div></div><div class="fact normal"><div class="v">${m}</div><div class="l">d'habitude à cette heure</div></div><p class="voice">${voice}</p>`;
+  }
+  document.getElementById("boxes").addEventListener("click", e => {
+    showBoxes = !showBoxes;
+    e.currentTarget.setAttribute("aria-pressed", String(showBoxes));
+    e.currentTarget.innerHTML = `<i class="ph ${showBoxes ? "ph-eye" : "ph-eye-slash"}" aria-hidden="true"></i>Cadres du modèle`;
+    document.getElementById("shot").classList.toggle("noboxes", !showBoxes);
+  });
+
+  // ---------- strip ----------
+  function renderStrip() {
+    document.getElementById("strip").innerHTML = SITES.map(s => {
+      const st = state(s);
+      const im = st === "nd" ? '<i class="ph ph-cloud-fog" aria-hidden="true" style="font-size:26px"></i>' : `<img src="${PHOTO}" alt="" loading="lazy">`;
+      const val = st === "nd" ? "pas de donnée" : `${s.today[NOW]} ± ${pm(s.today[NOW])}`;
+      return `<button type="button" class="thumb ${st}" data-id="${s.id}" aria-current="${s.id === current}" aria-label="${s.name} : ${val}"><div class="im">${im}</div><div class="row"><b>${s.name}</b><span>${val}</span></div></button>`;
+    }).join("");
+    document.querySelectorAll(".thumb").forEach(b => b.addEventListener("click", () => select(b.dataset.id, true)));
+  }
+
+  // ---------- zones list ----------
+  function renderZones() {
+    const list = SITES.filter(s => mode !== "alert" || state(s) !== "ok").sort((a, b) => order[state(a)] - order[state(b)]);
+    const maxV = Math.max(...SITES.map(s => Math.max(s.today[NOW], s.normal[NOW]))) * 1.15;
+    document.getElementById("zones").innerHTML = list.map(s => {
+      const st = state(s), n = s.today[NOW], m = s.normal[NOW];
+      let num, txt, meter = "";
+      if (mode === "prep") {
+        num = `${s.normal[4]} <small>vers 9 h</small>`;
+        txt = s.id === "arcabulle" ? "Les samedis de vacances, la file monte vite après 9 h 45." : "D'habitude à 9 h. Rien de particulier attendu.";
+      } else if (st === "nd") {
+        num = "pas de donnée"; txt = "Caméra muette depuis 08:45.";
+      } else {
+        num = `${n} <small>± ${pm(n)}</small>`;
+        txt = st === "alert" ? `D'habitude ${m}. La file monte depuis 09:50.` : `D'habitude ${m}.`;
+        meter = `<div class="meter" aria-hidden="true"><i style="width:${(n / maxV) * 100}%"></i><u style="left:${(m / maxV) * 100}%"></u></div>`;
+      }
+      return `<li class="zrow ${mode === "prep" ? "" : st}" data-id="${s.id}" aria-current="${s.id === current}" tabindex="0"><b>${s.name}</b><span class="n">${num}</span>${meter}<p>${txt}</p></li>`;
+    }).join("");
+    document.querySelectorAll(".zrow").forEach(li => {
+      li.addEventListener("click", () => select(li.dataset.id, true));
+      li.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(li.dataset.id, true); } });
+    });
+    document.getElementById("l-title").textContent = mode === "prep" ? "Le point de 08:30" : mode === "alert" ? "Ce qui demande votre attention" : "Le carnet de 10:20";
+    document.getElementById("l-sub").textContent = mode === "prep" ? "La normale des samedis précédents" : "Occupation à l'instant de la mesure";
+    document.getElementById("l-note").textContent = mode === "prep" ? "Une habitude, pas une prédiction." : "Le trait vertical marque la normale de l'heure.";
+  }
+
+  // ---------- side view ----------
+  const svg = document.getElementById("side"), NS = "http://www.w3.org/2000/svg", W = 1000, H = 200;
+  const el = (t, a) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); svg.appendChild(n); return n; };
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  function renderSide(s) {
+    svg.innerHTML = "";
+    const maxV = Math.max(...s.today, ...s.normal) * 1.18;
+    const X = i => (i / (HOURS.length - 1)) * W, Y = v => H - (v / maxV) * (H - 16);
+    const area = (vals, a, b) => { let d = `M${X(a)} ${H} L${X(a)} ${Y(vals[a])} `; for (let i = a + 1; i <= b; i++) { const cx = (X(i - 1) + X(i)) / 2; d += `C${cx} ${Y(vals[i - 1])} ${cx} ${Y(vals[i])} ${X(i)} ${Y(vals[i])} `; } return d + `L${X(b)} ${H} Z`; };
+    el("path", { d: area(s.normal, 0, HOURS.length - 1), fill: css("--normal"), opacity: .75 });
+    const end = s.ndFrom !== undefined ? s.ndFrom - 1 : NOW;
+    if (end >= 1) el("path", { d: area(s.today, 0, end), fill: css("--data") });
+    if (s.ndFrom !== undefined) {
+      const x0 = X(s.ndFrom - .5), x1 = X(NOW + .5);
+      el("rect", { x: x0, y: 0, width: x1 - x0, height: H, fill: css("--mist"), opacity: .9 });
+    }
+    for (let i = 1; i <= end; i++) {
+      if (hot(s, i) && hot(s, i - 1)) { const cx = (X(i - 1) + X(i)) / 2; el("path", { d: `M${X(i - 1)} ${Y(s.today[i - 1])} C${cx} ${Y(s.today[i - 1])} ${cx} ${Y(s.today[i])} ${X(i)} ${Y(s.today[i])}`, fill: "none", stroke: css("--alert"), "stroke-width": 3, "stroke-linecap": "round", "vector-effect": "non-scaling-stroke" }); }
+    }
+    el("line", { x1: X(NOW + .33), x2: X(NOW + .33), y1: 0, y2: H, stroke: css("--ink"), "stroke-width": 1, "stroke-dasharray": "3 4", opacity: .6, "vector-effect": "non-scaling-stroke" });
+    svg._s = s;
+  }
+  const chart = document.getElementById("chart"), tip = document.getElementById("tip");
+  chart.addEventListener("pointermove", ev => {
+    const s = svg._s; if (!s) return;
+    const r = chart.getBoundingClientRect(), i = Math.max(0, Math.min(HOURS.length - 1, Math.round(((ev.clientX - r.left) / r.width) * (HOURS.length - 1))));
+    tip.hidden = false; tip.style.left = `${Math.min(92, Math.max(8, (i / (HOURS.length - 1)) * 100))}%`;
+    tip.textContent = i > NOW ? `${fmt(HOURS[i])} · à venir · d'habitude ${s.normal[i]}` : isND(s, i) ? `${fmt(HOURS[i])} · pas de donnée` : `${fmt(HOURS[i])} · ${s.today[i]} ± ${pm(s.today[i])} · d'habitude ${s.normal[i]}`;
+  });
+  chart.addEventListener("pointerleave", () => { tip.hidden = true; });
+
+  // ---------- map ----------
+  let map = null; const markers = {};
+  const LIGHT = { prep: ["#ece5d9", "#fffaf0"], follow: ["#dfe6ea", "#fbfaf6"], alert: ["#d6dee3", "#f1f4f6"] };
+  function select(id, fly) {
+    current = id; const s = SITES.find(x => x.id === id);
+    renderHero(s); renderStrip(); renderZones(); renderSide(s);
+    Object.entries(markers).forEach(([k, m]) => m.getElement().querySelector(".zone").classList.toggle("sel", k === id));
+    if (map && map.getLayer("lift-sel")) map.setFilter("lift-sel", ["==", ["get", "n"], s.lift || "__none__"]);
+    if (map && fly) map.easeTo({ center: s.lnglat, zoom: 13.6, duration: 900 });
+  }
+  function setMode(m) {
+    mode = m;
+    document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === m)));
+    if (map && map.isStyleLoaded()) { map.setPaintProperty("bg", "background-color", LIGHT[m][0]); map.setPaintProperty("hill", "hillshade-highlight-color", LIGHT[m][1]); }
+    renderZones();
+  }
+  document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => renderSide(SITES.find(x => x.id === current)));
+
+  try {
+    if (!window.maplibregl || !window.ARCS_OSM) throw new Error("map unavailable");
+    const dem = { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 14, attribution: "Relief : Terrarium (AWS Open Data)" };
+    map = new maplibregl.Map({
+      container: "map",
+      style: {
+        version: 8,
+        sources: { dem, hs: { ...dem }, osm: { type: "geojson", data: window.ARCS_OSM, attribution: "© OpenStreetMap (ODbL)" } },
+        layers: [
+          { id: "bg", type: "background", paint: { "background-color": LIGHT.follow[0] } },
+          { id: "hill", type: "hillshade", source: "hs", paint: { "hillshade-shadow-color": "#4f6575", "hillshade-highlight-color": LIGHT.follow[1], "hillshade-accent-color": "#8ea0ad", "hillshade-exaggeration": .75 } },
+          { id: "pistes", type: "line", source: "osm", filter: ["==", ["get", "k"], "piste"], paint: { "line-color": "#fbfaf6", "line-opacity": .55, "line-width": 1 } },
+          { id: "lifts", type: "line", source: "osm", filter: ["==", ["get", "k"], "lift"], paint: { "line-color": "#1f3140", "line-opacity": .7, "line-width": 1.2 } },
+          { id: "lift-sel", type: "line", source: "osm", filter: ["==", ["get", "n"], "Arcabulle"], paint: { "line-color": "#1f3140", "line-width": 3 } }
+        ],
+        terrain: { source: "dem", exaggeration: 1.3 }
+      },
+      center: [6.805, 45.5665], zoom: 12.55, pitch: 58, bearing: -22, maxPitch: 80,
+      attributionControl: { compact: true }
+    });
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
+    if (window.ResizeObserver) new ResizeObserver(() => map.resize()).observe(document.getElementById("map"));
+    SITES.forEach(s => {
+      const st = state(s), wrap = document.createElement("div");
+      wrap.innerHTML = `<button type="button" class="zone ${st}" aria-label="${s.name} : ${st === "nd" ? "pas de donnée" : s.today[NOW] + " personnes"}">${st === "nd" ? "?" : s.today[NOW]}</button><span class="zlabel ${s.label || ""}">${s.name}</span>`;
+      wrap.querySelector(".zone").addEventListener("click", () => select(s.id, true));
+      markers[s.id] = new maplibregl.Marker({ element: wrap, anchor: "center", offset: s.offset || [0, 0] }).setLngLat(s.lnglat).addTo(map);
+    });
+  } catch (e) {
+    document.getElementById("mapbox").classList.add("nomap");
+  }
+
+  select("arcabulle", false);
+})();
+</script>
+</body>
+</html>

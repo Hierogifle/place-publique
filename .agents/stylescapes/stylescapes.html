@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowView · Trois pistes</title>
+<!-- Three creative-direction concepts (stylescapes) for FlowView. Revolution depth: no logo on purpose.
+     Data shown is fictional demo data. Imagery is hotlinked from Unsplash / Wikimedia Commons (see credits). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;700&family=Alegreya+Sans:wght@400;500;700&family=Barlow+Condensed:wght@500;600&family=Inter+Tight:wght@300;400;500&family=Inter:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Shell (neutral, outside the three boards) ---------- */
+  :root {
+    --shell-bg: #e9e7e2;
+    --shell-ink: #23221f;
+    --shell-muted: #6b6860;
+    --shell-line: #cfccc4;
+    --shell-card: #f4f3ef;
+    --grain: none;
+    --ease-out: cubic-bezier(.2, .7, .2, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --shell-bg: #1d1c1a;
+      --shell-ink: #ecebe6;
+      --shell-muted: #a19e95;
+      --shell-line: #3a3935;
+      --shell-card: #262522;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--shell-bg);
+    color: var(--shell-ink);
+    font: 15px/1.5 "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  figure { margin: 0; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+  /* Floating side nav */
+  .nav {
+    position: fixed; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 216px; display: flex; flex-direction: column; gap: 6px;
+    background: var(--shell-card); border: 1px solid var(--shell-line);
+    border-radius: 10px; padding: 10px; z-index: 50;
+    box-shadow: 0 10px 30px rgba(20, 18, 14, .12);
+  }
+  .nav h1 { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--shell-muted); margin: 4px 8px 6px; }
+  .nav button {
+    display: grid; grid-template-columns: 26px 1fr; gap: 2px 8px; text-align: left;
+    background: transparent; border: 1px solid transparent; border-radius: 8px; padding: 9px 8px; cursor: pointer;
+    transition: background-color .2s var(--ease-out), border-color .2s var(--ease-out);
+  }
+  .nav button:hover { background: color-mix(in srgb, var(--shell-ink) 6%, transparent); }
+  .nav button[aria-current="true"] { border-color: var(--shell-line); background: var(--shell-bg); }
+  .nav b { grid-row: span 2; font: 500 13px/1.3 "Inter", sans-serif; color: var(--shell-muted); }
+  .nav span { font-weight: 500; }
+  .nav small { color: var(--shell-muted); font-size: 12px; line-height: 1.35; }
+  .nav .cmp { display: block; text-align: center; margin-top: 4px; border-color: var(--shell-line); font-size: 13px; }
+  .nav .p4 { color: inherit; text-decoration: none; border: 1px solid var(--shell-line); border-radius: 8px; padding: 9px 8px; font-size: 13px; }
+  .nav .p4:hover { background: color-mix(in srgb, var(--shell-ink) 6%, transparent); }
+  .nav .note { font-size: 11px; color: var(--shell-muted); margin: 6px 8px 2px; line-height: 1.4; }
+
+  main { padding-left: 248px; }
+  .board { display: none; position: relative; overflow: hidden; isolation: isolate; }
+  .board.on { display: block; }
+  .board::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 40;
+    background-image: var(--grain); background-size: 180px 180px;
+  }
+
+  @media (max-width: 900px) {
+    .nav { top: auto; bottom: 12px; left: 12px; right: 12px; transform: none; width: auto; flex-direction: row; overflow-x: auto; }
+    .nav h1, .nav .note { display: none; }
+    .nav button { min-width: 150px; }
+    main { padding-left: 0; padding-bottom: 110px; }
+  }
+
+  /* Shared bits used by all boards, styled per board through tokens */
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+  .sw {
+    width: 64px; height: 64px; border-radius: var(--r, 4px); border: 1px solid rgba(0,0,0,.08);
+    display: flex; align-items: flex-end; padding: 6px; font-size: 10.5px; line-height: 1.2; cursor: pointer;
+    transition: transform .2s var(--ease-out);
+  }
+  .sw:hover { transform: translateY(-2px); }
+  .sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--sel, currentColor); }
+  .ramp { display: grid; grid-template-columns: repeat(5, 1fr); height: 46px; margin-top: 10px; border-radius: var(--r, 4px); overflow: hidden; }
+  .ramp div { display: flex; align-items: center; justify-content: center; font-size: 10.5px; }
+  .ramp-label { font-size: 12px; margin-top: 6px; opacity: .75; }
+  .icons { display: flex; gap: 14px; flex-wrap: wrap; }
+  .icons figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; width: 64px; font-size: 11px; text-align: center; }
+  .icons svg { width: 32px; height: 32px; }
+  .credit { font-size: 10.5px; opacity: .7; margin-top: 6px; }
+  .credit a { color: inherit; }
+  .demo-tag { font-size: 11px; opacity: .65; }
+
+  /* =====================================================================
+     01 · LA VIGIE  (light, archival, radial / symmetric instrument table)
+     ===================================================================== */
+  .b-vigie {
+    --bg: #e6e3db; --paper: #f1efe9; --ink: #1d1d1b; --muted: #67645c; --rule: #b8b3a7;
+    --ember: #cf4a1c; --r: 2px;
+    background: var(--bg); color: var(--ink);
+    font-family: "Public Sans", sans-serif;
+  }
+  .b-vigie::after { opacity: .5; mix-blend-mode: multiply; }
+  .v-wrap { max-width: 1320px; margin: 0 auto; padding: 56px 40px 72px; position: relative; }
+  .v-head { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 24px; border-bottom: 1px solid var(--rule); padding-bottom: 18px; }
+  .v-head .eyebrow { color: var(--muted); }
+  .v-head .right { text-align: right; }
+  .v-hero {
+    font: 600 clamp(56px, 8.2vw, 128px)/.86 "Barlow Condensed", sans-serif; letter-spacing: -.01em;
+    text-transform: uppercase; text-align: center; margin: 40px 0 8px; text-wrap: balance;
+  }
+  .v-hero em { font-style: normal; color: var(--ember); }
+  .v-sub { text-align: center; max-width: 54ch; margin: 0 auto; color: var(--muted); font-size: 17px; }
+  /* tick-mark ruler: the board's single motif, reused as divider */
+  .ticks { height: 14px; margin: 26px 0; background:
+    linear-gradient(90deg, var(--ink) 1px, transparent 1px) 0 0 / 10px 6px repeat-x,
+    linear-gradient(90deg, var(--ink) 1px, transparent 1px) 0 0 / 50px 14px repeat-x; opacity: .55; }
+
+  .v-table { display: grid; grid-template-columns: 1fr minmax(420px, 560px) 1fr; gap: 32px; align-items: center; margin-top: 18px; }
+  .v-col { display: flex; flex-direction: column; gap: 22px; }
+  .v-photo { position: relative; background: var(--paper); padding: 10px 10px 12px; border: 1px solid var(--rule); box-shadow: 0 14px 30px rgba(40, 36, 28, .12); }
+  .v-photo img { filter: grayscale(1) contrast(1.18) brightness(1.03); aspect-ratio: 4/3; object-fit: cover; width: 100%; }
+  .v-photo.tilt-l { transform: rotate(-1.4deg); }
+  .v-photo.tilt-r { transform: rotate(1.1deg); }
+  .v-photo figcaption { font-size: 12px; margin-top: 8px; display: flex; justify-content: space-between; gap: 8px; }
+  .v-photo .struct { position: absolute; inset: 10px 10px auto 10px; aspect-ratio: 4/3; pointer-events: none; }
+  .v-before { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .v-before img { aspect-ratio: 1; object-fit: cover; }
+  .v-before img + img { filter: grayscale(1) contrast(1.18); }
+  .v-before p { grid-column: span 2; font-size: 11px; color: var(--muted); margin: 2px 0 0; }
+
+  .ring-wrap { position: relative; aspect-ratio: 1; }
+  .ring { width: 100%; height: 100%; touch-action: none; cursor: grab; }
+  .ring:active { cursor: grabbing; }
+  .ring .sweep { transform-origin: 300px 300px; animation: v-sweep 38s linear infinite; }
+  @keyframes v-sweep { to { transform: rotate(360deg); } }
+  .readout {
+    position: absolute; left: 50%; bottom: -8px; transform: translate(-50%, 100%);
+    width: min(360px, 90%); background: var(--paper); border: 1px solid var(--rule); padding: 12px 16px;
+    font-size: 13px; box-shadow: 0 10px 24px rgba(40, 36, 28, .10);
+  }
+  .readout .big { font: 600 34px/1 "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+  .readout .big small { font-size: 18px; color: var(--muted); font-weight: 500; }
+  .readout .ln { display: flex; justify-content: space-between; gap: 8px; }
+  .readout.alert .big { color: var(--ember); }
+  .hint { text-align: center; font-size: 12px; color: var(--muted); margin-top: 158px; }
+
+  .v-card { background: var(--paper); border: 1px solid var(--rule); padding: 18px; }
+  .v-card h3 { font: 600 13px/1 "Public Sans", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+  .spec-row { display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid color-mix(in srgb, var(--rule) 60%, transparent); }
+  .spec-row:first-of-type { border-top: 0; }
+  .spec-row small { color: var(--muted); font-size: 11px; line-height: 1.3; }
+  .v-display { font: 600 40px/.95 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+  .v-subhead { font: 500 18px/1.25 "Public Sans", sans-serif; }
+  .v-glyphs { font: 500 22px/1.3 "Barlow Condensed", sans-serif; letter-spacing: .02em; word-break: break-all; }
+  .v-body { font-size: 14px; line-height: 1.5; }
+
+  .v-applied { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 28px; margin-top: 150px; align-items: end; }
+  .laptop { position: relative; }
+  .laptop .screen { border: 10px solid #2a2926; border-bottom-width: 14px; border-radius: 10px 10px 0 0; overflow: hidden; aspect-ratio: 16/10; }
+  .laptop .base { height: 14px; background: linear-gradient(#cbc7be, #a9a59b); border-radius: 0 0 14px 14px; margin: 0 -26px; }
+  .phone { width: 220px; margin: 0 auto; border: 9px solid #2a2926; border-radius: 30px; overflow: hidden; aspect-ratio: 9/18.5; position: relative; }
+  .v-dash { height: 100%; background: var(--bg); display: grid; grid-template-columns: 1fr 1.15fr; gap: 0; font-size: 11px; }
+  .v-dash .l { padding: 14px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 10px; }
+  .v-dash .r { padding: 12px; display: flex; align-items: center; justify-content: center; }
+  .v-dash .row { display: grid; grid-template-columns: 34px 1fr auto; gap: 6px; align-items: baseline; padding: 6px 0; border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); }
+  .v-dash .row b { font: 600 16px/1 "Barlow Condensed", sans-serif; font-variant-numeric: tabular-nums; }
+  .v-dash .row .deg { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .v-dash .row.alert b { color: var(--ember); }
+  .v-dash .row.nd b { color: var(--muted); font-weight: 500; }
+  .v-dash h4 { margin: 0; font: 600 18px/1 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+  .v-phone { height: 100%; background: #1f1e1c; color: #ebe8e1; padding: 26px 12px; display: flex; flex-direction: column; gap: 10px; }
+  .v-phone .clock { font: 500 44px/1 "Barlow Condensed", sans-serif; text-align: center; letter-spacing: .02em; }
+  .v-phone .date { text-align: center; font-size: 11px; opacity: .7; margin-top: -6px; }
+  .v-notif { background: #ebe8e1; color: #1d1d1b; border-radius: 12px; padding: 10px 12px; font-size: 11.5px; line-height: 1.4; margin-top: 18px; }
+  .v-notif .t { display: flex; justify-content: space-between; font-size: 10px; color: #67645c; margin-bottom: 4px; }
+  .v-notif b { font: 600 20px/1 "Barlow Condensed", sans-serif; color: var(--ember); }
+  .v-icons svg { stroke: var(--ink); stroke-width: 1.6; fill: none; stroke-linecap: square; stroke-linejoin: miter; }
+  .v-icons .hot { stroke: var(--ember); }
+  .v-name { position: absolute; right: 12px; top: 640px; writing-mode: vertical-rl; font: 600 13px/1 "Public Sans", sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+
+  @media (max-width: 1100px) {
+    .v-table, .v-applied { grid-template-columns: 1fr; }
+    .v-head { grid-template-columns: 1fr; }
+    .v-head .right { text-align: left; }
+    .v-name { display: none; }
+  }
+
+  /* =====================================================================
+     02 · LE REFUGE  (dark walnut, warm, asymmetric left anchor + pages)
+     ===================================================================== */
+  .b-refuge {
+    --wood: #241b15; --wood-2: #33271e; --page: #ece4d4; --page-ink: #2b2420; --page-muted: #7a6d60;
+    --ivory: #efe6d6; --soft: #bfae98; --lamp: #e8a33a; --line: rgba(239, 230, 214, .16); --r: 6px;
+    background: var(--wood); color: var(--ivory);
+    font-family: "Alegreya Sans", sans-serif;
+  }
+  .b-refuge::after { opacity: .35; mix-blend-mode: overlay; }
+  .r-ground { position: absolute; inset: 0; z-index: -1; }
+  .r-ground img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.3) saturate(.8) brightness(.5) contrast(1.15); }
+  .r-ground::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 90% at 18% 20%, rgba(232, 163, 58, .12), transparent 55%), linear-gradient(180deg, rgba(36, 27, 21, .1), rgba(36, 27, 21, .55) 45%, rgba(36, 27, 21, .8)); }
+  .r-glow { position: absolute; width: 60vmax; height: 60vmax; left: -20vmax; top: -18vmax; z-index: -1; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 163, 58, .14), transparent 60%); animation: r-breathe 9s ease-in-out infinite alternate; }
+  @keyframes r-breathe { from { opacity: .55; transform: translate(0, 0); } to { opacity: 1; transform: translate(3vmax, 2vmax); } }
+  .r-wrap { max-width: 1320px; margin: 0 auto; padding: 64px 40px 80px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; }
+  .r-left { display: flex; flex-direction: column; gap: 28px; }
+  .r-left .eyebrow { color: var(--soft); }
+  .r-hero { font: 500 clamp(40px, 4.9vw, 74px)/1.04 "Alegreya", serif; margin: 6px 0 0; max-width: 15ch; text-wrap: balance; }
+  .r-hero span { color: var(--soft); }
+  .r-lede { font-size: 19px; line-height: 1.5; color: var(--soft); max-width: 46ch; margin: 0; }
+  .tally { display: inline-flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .tally svg { width: 30px; height: 26px; }
+  .tally path { stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; fill: none; }
+  .r-divider { color: var(--soft); opacity: .7; }
+
+  .r-photos { position: relative; height: 330px; }
+  .polaroid { position: absolute; background: #e9e0cf; padding: 10px 10px 34px; box-shadow: 0 18px 40px rgba(0, 0, 0, .45); }
+  .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: sepia(.28) saturate(.8) contrast(1.05) brightness(.97); }
+  .polaroid p { position: absolute; left: 12px; right: 12px; bottom: 9px; margin: 0; color: #5d5246; font: 500 14px/1.1 "Alegreya", serif; }
+  .p1 { width: 250px; left: 0; top: 0; transform: rotate(-3deg); }
+  .p2 { width: 190px; left: 230px; top: 70px; transform: rotate(2.5deg); }
+  .p3 { width: 150px; left: 410px; top: 10px; transform: rotate(-1.5deg); }
+
+  .r-right { display: flex; flex-direction: column; gap: 26px; padding-top: 24px; }
+  .page {
+    background: var(--page); color: var(--page-ink); border-radius: 3px; padding: 26px 28px 22px; position: relative;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(43, 36, 32, .06);
+    background-image: linear-gradient(transparent 31px, rgba(122, 109, 96, .22) 32px);
+    background-size: 100% 32px; background-position: 0 14px;
+  }
+  .page.main { transform: rotate(-1.2deg); }
+  .page.small { transform: rotate(1.6deg) translateX(30px); width: 82%; }
+  .page h3 { font: 700 26px/1.1 "Alegreya", serif; margin: 0 0 4px; }
+  .page .date { color: var(--page-muted); font-size: 14px; margin-bottom: 14px; }
+  .entry { font-size: 17px; line-height: 32px; margin: 0; }
+  .entry b { font: 700 19px/1 "Alegreya", serif; }
+  .entry .hr { color: var(--page-muted); font-variant-numeric: tabular-nums; margin-right: 6px; }
+  .entry.alert { position: relative; }
+  .entry .lamp { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--lamp); box-shadow: 0 0 0 4px rgba(232, 163, 58, .28), 0 0 18px rgba(232, 163, 58, .9); margin-right: 8px; vertical-align: 1px; }
+  .r-slider { margin-top: 16px; display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; font-size: 14px; color: var(--page-muted); }
+  .r-slider input { width: 100%; accent-color: var(--page-ink); }
+  .r-tallyline { color: var(--page-ink); min-height: 30px; margin-top: 6px; }
+  .page .sig { position: absolute; right: 26px; top: 30px; font: 500 14px/1 "Alegreya", serif; color: var(--page-muted); }
+
+  .r-system { grid-column: span 2; display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 28px; margin-top: 30px; align-items: start; }
+  .r-card { background: rgba(239, 230, 214, .06); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; backdrop-filter: blur(2px); }
+  .r-card h3 { font: 500 13px/1 "Alegreya Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--soft); margin: 0 0 14px; }
+  .r-card .spec-row { border-color: var(--line); grid-template-columns: 88px 1fr; }
+  .r-card .spec-row small { color: var(--soft); }
+  .r-display { font: 700 38px/1 "Alegreya", serif; }
+  .r-subhead { font: 500 19px/1.3 "Alegreya Sans", sans-serif; }
+  .r-glyphs { font: 500 21px/1.35 "Alegreya", serif; word-break: break-all; }
+  .r-body { font-size: 15px; line-height: 1.55; color: var(--soft); }
+  .r-icons svg { stroke: var(--ivory); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .r-icons .hot { stroke: var(--lamp); }
+
+  .r-applied { grid-column: span 2; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; margin-top: 36px; align-items: center; }
+  .tablet { border: 12px solid #15100c; border-radius: 22px; overflow: hidden; aspect-ratio: 4/3; box-shadow: 0 30px 60px rgba(0, 0, 0, .55); transform: rotate(-1deg); }
+  .r-brief { height: 100%; background: var(--page); color: var(--page-ink); padding: 24px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; font-size: 13px; }
+  .r-brief h4 { grid-column: span 2; margin: 0; font: 700 26px/1.1 "Alegreya", serif; }
+  .r-brief h4 small { display: block; font: 400 13px/1.4 "Alegreya Sans", sans-serif; color: var(--page-muted); margin-top: 4px; }
+  .r-brief .blk { border-top: 1px solid rgba(122, 109, 96, .3); padding-top: 10px; }
+  .r-brief .blk b { font: 700 24px/1 "Alegreya", serif; }
+  .r-brief .blk p { margin: 4px 0 0; color: var(--page-muted); line-height: 1.4; }
+  .r-brief .blk.alert b { color: #a35f0c; }
+  .r-phone-wrap { display: flex; justify-content: center; }
+  .r-phone { height: 100%; background: linear-gradient(180deg, #2e241c, #1a130e); padding: 30px 12px; display: flex; flex-direction: column; gap: 12px; }
+  .r-phone .clock { font: 500 46px/1 "Alegreya", serif; text-align: center; color: var(--ivory); }
+  .r-notif { background: var(--page); color: var(--page-ink); border-radius: 14px; padding: 11px 13px; font-size: 12.5px; line-height: 1.45; margin-top: 16px; }
+  .r-notif .t { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--page-muted); margin-bottom: 4px; }
+  .b-refuge .phone { border-color: #120d09; }
+
+  @media (max-width: 1100px) {
+    .r-wrap, .r-system, .r-applied { grid-template-columns: 1fr; }
+    .r-system, .r-applied { grid-column: auto; }
+    .r-photos { height: 280px; }
+    .p3 { display: none; }
+    .page.small { transform: rotate(1.2deg); width: 100%; }
+  }
+
+  /* =====================================================================
+     03 · LES CRÊTES  (light, cool, airy, wide horizontal panorama)
+     ===================================================================== */
+  .b-cretes {
+    --sky-top: #e9eef1; --sky-low: #f5f3ee; --c1: #ccd6dc; --c2: #a3b3be; --c3: #6f8595; --c4: #3f5566; --ink: #17242f;
+    --muted: #5d6f7c; --balise: #d8362a; --rule: rgba(23, 36, 47, .14); --r: 0px;
+    color: var(--ink); font-family: "Inter", sans-serif;
+    background: linear-gradient(180deg, var(--sky-top), var(--sky-low) 62%);
+    transition: background-color .8s var(--ease-out);
+  }
+  .b-cretes::after { opacity: .22; mix-blend-mode: multiply; }
+  .c-hero { position: relative; min-height: 930px; padding: 64px 48px 0; }
+  .c-mist { position: absolute; left: -10%; right: -10%; top: 300px; height: 160px; background: radial-gradient(60% 50% at 50% 50%, rgba(255, 255, 255, .7), transparent 70%); filter: blur(10px); animation: c-drift 30s ease-in-out infinite alternate; pointer-events: none; }
+  @keyframes c-drift { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+  .c-top { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: start; position: relative; }
+  .c-top .eyebrow { color: var(--muted); }
+  .c-hero h2 { font: 300 clamp(48px, 6.4vw, 104px)/.98 "Inter Tight", sans-serif; letter-spacing: -.035em; margin: 14px 0 0; max-width: 13ch; text-wrap: balance; }
+  .c-hero h2 span { color: var(--c3); }
+  .c-aside { padding-top: 38px; font-size: 15px; color: var(--muted); }
+  .c-aside p { margin: 0 0 14px; }
+  .c-read { border-top: 1px solid var(--rule); padding-top: 14px; }
+  .c-read .n { font: 300 64px/1 "Inter Tight", sans-serif; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .c-read .n small { font-size: 26px; color: var(--muted); }
+  .c-read .s { font-size: 13px; color: var(--muted); }
+  .c-read.alert .n { color: var(--balise); }
+  .c-chart { position: absolute; left: 0; right: 0; bottom: 0; height: 430px; cursor: crosshair; touch-action: none; }
+  .c-chart svg { width: 100%; height: 100%; display: block; }
+  .c-axis { position: absolute; left: 48px; right: 48px; bottom: 14px; display: flex; justify-content: space-between; font-size: 11px; color: rgba(245, 243, 238, .85); pointer-events: none; font-variant-numeric: tabular-nums; }
+  .c-legend { position: absolute; left: 48px; bottom: 448px; display: flex; gap: 22px; font-size: 12px; color: var(--muted); }
+  .c-legend i { display: inline-block; width: 22px; height: 2px; vertical-align: 4px; margin-right: 8px; }
+
+  .c-band { position: relative; display: grid; grid-template-columns: 1.4fr 1fr 1fr; background: var(--c4); color: #e9eef1; }
+  .c-photo { position: relative; min-height: 360px; overflow: hidden; background: #2e4456; }
+  .c-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.08) brightness(1.05); mix-blend-mode: luminosity; opacity: .9; }
+  .c-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(159, 182, 198, .35), rgba(46, 68, 86, .55)); mix-blend-mode: multiply; }
+  .c-photo figcaption { position: absolute; left: 20px; bottom: 16px; z-index: 2; font-size: 11px; opacity: .85; }
+  .c-photo figcaption a { color: inherit; }
+  .c-cell { padding: 32px 28px; border-left: 1px solid rgba(233, 238, 241, .14); }
+  .c-cell h3 { font: 500 12px/1 "Inter", sans-serif; letter-spacing: .14em; text-transform: uppercase; opacity: .7; margin: 0 0 16px; }
+  .c-cell .spec-row { border-color: rgba(233, 238, 241, .14); grid-template-columns: 84px 1fr; }
+  .c-cell .spec-row small { opacity: .65; }
+  .c-display { font: 300 44px/1 "Inter Tight", sans-serif; letter-spacing: -.03em; }
+  .c-subhead { font: 500 17px/1.3 "Inter", sans-serif; }
+  .c-glyphs { font: 300 22px/1.35 "Inter Tight", sans-serif; word-break: break-all; }
+  .c-body { font-size: 14px; line-height: 1.55; opacity: .85; }
+  .strata { display: flex; flex-direction: column; gap: 0; border-radius: 0; overflow: hidden; }
+  .strata .sw { width: 100%; height: 40px; border-radius: 0; border: 0; align-items: center; justify-content: space-between; padding: 0 12px; }
+
+  .c-lower { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 40px; padding: 72px 48px 90px; align-items: end; position: relative; }
+  .c-lower .ridge-bg { position: absolute; left: 0; right: 0; top: 0; height: 120px; opacity: .55; }
+  .c-icons svg { stroke: var(--ink); stroke-width: 1.2; fill: none; stroke-linecap: round; }
+  .c-icons .hot { stroke: var(--balise); }
+  .c-dash { height: 100%; background: linear-gradient(180deg, #edf1f3, #f6f4ef); padding: 16px 18px 0; display: flex; flex-direction: column; font-size: 11px; color: var(--ink); }
+  .c-dash .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .c-dash .top b { font: 300 26px/1 "Inter Tight", sans-serif; letter-spacing: -.02em; }
+  .c-dash .rows { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
+  .c-dash .rows div { border-top: 1px solid var(--rule); padding-top: 6px; }
+  .c-dash .rows strong { display: block; font: 300 22px/1.1 "Inter Tight", sans-serif; font-variant-numeric: tabular-nums; }
+  .c-dash .rows .alert strong { color: var(--balise); }
+  .c-dash .rows .nd strong { color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .c-dash svg { margin-top: auto; width: 100%; height: 46%; display: block; }
+  .c-phone { height: 100%; background: linear-gradient(180deg, #9fb0bc, #6f8595 55%, #3f5566); padding: 30px 12px; display: flex; flex-direction: column; gap: 10px; color: #f3f6f7; }
+  .c-phone .clock { font: 300 48px/1 "Inter Tight", sans-serif; text-align: center; letter-spacing: -.02em; }
+  .c-notif { background: rgba(245, 247, 248, .92); color: var(--ink); border-radius: 14px; padding: 11px 13px; font-size: 12px; line-height: 1.45; margin-top: 14px; }
+  .c-notif .t { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); margin-bottom: 4px; }
+  .c-notif b { color: var(--balise); font-weight: 500; }
+  .b-cretes .phone { border-color: #1b2a36; }
+  .b-cretes .laptop .screen { border-color: #1b2a36; }
+
+  @media (max-width: 1100px) {
+    .c-top, .c-band, .c-lower { grid-template-columns: 1fr; }
+    .c-hero { padding: 48px 20px 0; min-height: 820px; }
+    .c-lower { padding: 56px 20px 80px; }
+    .c-legend { left: 20px; }
+  }
+
+  /* ---------- Compare view ---------- */
+  .compare { display: none; padding: 40px 32px 80px; }
+  .compare.on { display: block; }
+  .compare h2 { font: 500 22px/1.2 "Inter", sans-serif; margin: 0 0 6px; }
+  .compare > p { color: var(--shell-muted); margin: 0 0 24px; max-width: 70ch; }
+  .cmp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cmp-col { border: 1px solid var(--shell-line); background: var(--shell-card); border-radius: 10px; overflow: hidden; }
+  .cmp-thumb { height: 520px; overflow: hidden; position: relative; cursor: pointer; }
+  .cmp-thumb > .board { display: block; width: 1400px; transform: scale(.3); transform-origin: 0 0; pointer-events: none; }
+  .cmp-col .txt { padding: 16px 18px 20px; font-size: 13.5px; }
+  .cmp-col h3 { margin: 0 0 4px; font-size: 16px; }
+  .cmp-col dl { margin: 10px 0 0; display: grid; grid-template-columns: 96px 1fr; gap: 6px 10px; }
+  .cmp-col dt { color: var(--shell-muted); }
+  .cmp-col dd { margin: 0; }
+  @media (max-width: 1100px) { .cmp-grid { grid-template-columns: 1fr; } }
+
+  .credits { padding: 28px 32px 60px; font-size: 12px; color: var(--shell-muted); border-top: 1px solid var(--shell-line); }
+  .credits a { color: inherit; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring .sweep, .r-glow, .c-mist { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Pistes visuelles">
+  <h1>FlowView · 3 pistes</h1>
+  <button type="button" data-go="vigie" aria-current="true"><b>01</b><span>La Vigie</span><small>L'instrument de l'expert</small></button>
+  <button type="button" data-go="refuge"><b>02</b><span>Le Refuge</span><small>Le carnet du gardien</small></button>
+  <button type="button" data-go="cretes"><b>03</b><span>Les Crêtes</span><small>Lire la journée comme un relief</small></button>
+  <button type="button" class="cmp" data-go="compare">Comparer les trois</button>
+  <a class="cmp p4" href="piste-04.html">04 · Les Crêtes, vues du refuge (v2)</a>
+  <a class="cmp p4" href="maquette.html">04 v3 · La maquette 3D</a>
+  <p class="note">Données fictives de démonstration. Pas de logo à ce stade : on juge le système.</p>
+</nav>
+
+<main>
+
+<!-- ================================================================ 01 VIGIE -->
+<section class="board b-vigie on" id="vigie" aria-label="Piste 01, La Vigie">
+  <div class="v-wrap">
+    <div class="v-head">
+      <span class="eyebrow">Piste 01 · La Vigie</span>
+      <span class="eyebrow">Domaine des Arcs · relevé de 09:10</span>
+      <span class="eyebrow right">Respecté · serein · en confiance</span>
+    </div>
+    <h2 class="v-hero">Voir loin. <em>Alerter</em> juste.</h2>
+    <p class="v-sub">Chaque site a son cap sur l'anneau. Tant que tout va bien, l'instrument se tait. Quand la fumée monte, il pointe, il chiffre, il avoue ce qu'il ne sait pas.</p>
+    <div class="ticks" aria-hidden="true"></div>
+
+    <div class="v-table">
+      <div class="v-col">
+        <figure class="v-photo tilt-l">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Photograph_of_Sighting_a_Fire_Using_an_Osborne_Fire_Finder_-_NARA_-_2128009.jpg?width=900" alt="Archive : un guetteur vise un départ de feu avec le chercheur Osborne" loading="lazy">
+          <figcaption><span>Muse B6 · le geste de l'expert</span><span>bromure</span></figcaption>
+        </figure>
+        <figure class="v-photo tilt-r">
+          <img src="https://images.unsplash.com/photo-1787166533323-0520729b435d?w=900&q=75&auto=format&fit=crop" alt="Tour de guet au-dessus de la forêt" loading="lazy">
+          <svg class="struct" viewBox="0 0 400 300" aria-hidden="true"><g stroke="#cf4a1c" stroke-width="1.2" fill="none" opacity=".75"><path d="M150 40 L250 40 L270 290 L130 290 Z"/><path d="M150 40 L270 290 M250 40 L130 290"/><path d="M140 165 L260 165"/></g></svg>
+          <figcaption><span>Muse B1 · la structure, pas la couleur</span><span>triangulation</span></figcaption>
+        </figure>
+        <div class="v-card">
+          <h3>Traitement de l'image</h3>
+          <div class="v-before">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=70&auto=format&fit=crop" alt="Photo brute de crêtes" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=400&q=70&auto=format&fit=crop" alt="Même photo traitée en bromure" loading="lazy">
+            <p>Avant / après : niveaux de gris, contraste +18 %, grain argentique. Toute photo passe par ce bain.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ring-wrap">
+          <svg class="ring" id="v-ring" viewBox="0 0 600 600" role="img" aria-label="Anneau de visée : faites tourner la visée pour lire chaque site">
+            <defs>
+              <radialGradient id="v-face" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f3f1eb"/><stop offset="1" stop-color="#e3dfd5"/></radialGradient>
+              <linearGradient id="v-beam" x1="0" x2="1"><stop offset="0" stop-color="#1d1d1b" stop-opacity=".09"/><stop offset="1" stop-color="#1d1d1b" stop-opacity="0"/></linearGradient>
+            </defs>
+            <circle cx="300" cy="300" r="290" fill="url(#v-face)" stroke="#1d1d1b" stroke-width="1.2"/>
+            <circle cx="300" cy="300" r="262" fill="none" stroke="#b8b3a7"/>
+            <g id="v-ticks"></g>
+            <g id="v-labels" font-family="Barlow Condensed" font-size="15" font-weight="500" fill="#1d1d1b"></g>
+            <!-- abstracted contour arcs: the terrain seen from the tower -->
+            <g fill="none" stroke="#b8b3a7" stroke-width="1">
+              <path d="M110 330 C170 250 260 270 300 220 C350 160 430 200 490 160"/>
+              <path d="M120 380 C190 300 270 320 320 270 C370 220 440 250 492 220"/>
+              <path d="M140 430 C210 360 290 370 340 330 C390 290 450 310 486 290"/>
+              <path d="M180 470 C240 420 310 420 360 390 C400 365 440 375 470 360"/>
+            </g>
+            <g class="sweep"><path d="M300 300 L300 10 A290 290 0 0 1 430 40 Z" fill="url(#v-beam)"/></g>
+            <g id="v-sites"></g>
+            <g id="v-alidade">
+              <line x1="300" y1="300" x2="300" y2="22" stroke="#1d1d1b" stroke-width="2"/>
+              <rect x="294" y="22" width="12" height="26" fill="#1d1d1b"/>
+              <circle cx="300" cy="300" r="9" fill="#1d1d1b"/>
+              <circle cx="300" cy="300" r="3" fill="#e6e3db"/>
+            </g>
+          </svg>
+          <div class="readout" id="v-read" aria-live="polite"></div>
+        </div>
+        <p class="hint">Faites tourner la visée (glisser, ou flèches du clavier sur l'anneau).</p>
+      </div>
+
+      <div class="v-col">
+        <div class="v-card">
+          <h3>Typographie</h3>
+          <div class="spec-row"><small>Titre<br>Barlow Condensed 600</small><span class="v-display">Arcabulle 64</span></div>
+          <div class="spec-row"><small>Sous-titre<br>Public Sans 500</small><span class="v-subhead">D'habitude 35 à cette heure</span></div>
+          <div class="spec-row"><small>Texte<br>Public Sans 400</small><span class="v-body">La caméra de Varet ne répond plus depuis 08:40. Nous n'affichons pas zéro : nous affichons « pas de donnée ».</span></div>
+          <div class="spec-row"><small>Glyphes</small><span class="v-glyphs">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 ° ± : · %</span></div>
+          <p class="credit">Barlow vient de la signalétique publique californienne, Public Sans du design system de l'administration américaine : deux voix d'institution, jamais de déguisement « forestier ».</p>
+        </div>
+        <div class="v-card">
+          <h3>Couleur</h3>
+          <div class="swatches" data-swatches="vigie"></div>
+          <div class="ramp" id="ramp-vigie"></div>
+          <p class="ramp-label" id="ramp-vigie-l"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="v-applied">
+      <div>
+        <div class="laptop">
+          <div class="screen">
+            <div class="v-dash">
+              <div class="l">
+                <h4>Relevé 09:10</h4>
+                <div class="row"><span class="deg">040°</span><span>Vagère</span><b>28 <small>±5</small></b></div>
+                <div class="row"><span class="deg">120°</span><span>Place Manoir</span><b>46 <small>±7</small></b></div>
+                <div class="row alert"><span class="deg">200°</span><span>Arcabulle · d'habitude 35</span><b>64 <small>±8</small></b></div>
+                <div class="row nd"><span class="deg">285°</span><span>Varet · muette depuis 08:40</span><b>pas de donnée</b></div>
+                <div class="row"><span class="deg">330°</span><span>Arpette</span><b>12 <small>±3</small></b></div>
+              </div>
+              <div class="r"><svg viewBox="0 0 600 600" width="100%" id="v-mini" aria-hidden="true"></svg></div>
+            </div>
+          </div>
+          <div class="base"></div>
+        </div>
+        <p class="credit">Application : le relevé de 09:10. Une seule ligne en braise ; le reste reste gris.</p>
+      </div>
+      <div>
+        <div class="phone">
+          <div class="v-phone">
+            <div class="clock">10:20</div>
+            <div class="date">samedi 14 février</div>
+            <div class="v-notif"><div class="t"><span>FLOWVIEW · CAP 200°</span><span>maintenant</span></div><b>Arcabulle 64 ±8</b><br>D'habitude 35 à cette heure. La file monte depuis 09:50.</div>
+          </div>
+        </div>
+        <p class="credit" style="text-align:center">Application : la seule notification de la matinée.</p>
+      </div>
+      <div class="v-card v-icons">
+        <h3>Pictogrammes · gravés</h3>
+        <div class="icons">
+          <figure><svg viewBox="0 0 32 32"><path d="M4 26 L16 6 L28 26"/><path d="M10 26 L16 16 L22 26"/></svg>Site</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M4 8 L28 8"/><path d="M10 8 L10 20 M22 8 L22 20"/><rect x="7" y="20" width="6" height="5"/><rect x="19" y="20" width="6" height="5"/></svg>Remontée</figure>
+          <figure><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M16 5 L16 9 M16 23 L16 27 M5 16 L9 16 M23 16 L27 16"/><path d="M16 16 L22 10"/></svg>Cap</figure>
+          <figure><svg viewBox="0 0 32 32" class="hot"><path d="M16 4 C22 10 24 14 24 19 A8 8 0 0 1 8 19 C8 14 12 12 13 8 C15 11 16 12 16 4 Z"/></svg>Alerte</figure>
+          <figure><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M8 24 L24 8"/></svg>Pas de donnée</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M6 16 L26 16"/><path d="M6 11 L6 21 M26 11 L26 21"/><path d="M16 12 L16 20"/></svg>Fourchette</figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="v-name" aria-hidden="true">La Vigie · FlowView</span>
+</section>
+
+<!-- ================================================================ 02 REFUGE -->
+<section class="board b-refuge" id="refuge" aria-label="Piste 02, Le Refuge">
+  <div class="r-ground"><img src="https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?w=1800&q=70&auto=format&fit=crop" alt="" loading="lazy"></div>
+  <div class="r-glow" aria-hidden="true"></div>
+  <div class="r-wrap">
+    <div class="r-left">
+      <span class="eyebrow">Piste 02 · Le Refuge</span>
+      <h2 class="r-hero">D'habitude, à neuf heures, il y a trente personnes à la Vagère. <span>Ce matin aussi.</span></h2>
+      <p class="r-lede">Le gardien tient son carnet depuis des hivers. Il compte, il note, il sait ce qui est normal. Il ne vous réveille que si quelque chose sort de l'ordinaire.</p>
+      <div class="tally r-divider" id="r-tally-hero" aria-hidden="true"></div>
+      <div class="r-photos">
+        <figure class="polaroid p1"><img src="https://images.unsplash.com/photo-1768702133235-70b0815044f6?w=600&q=75&auto=format&fit=crop" alt="Matin brumeux sur un lac" loading="lazy"><p>Le matin, muse D3</p></figure>
+        <figure class="polaroid p2"><img src="https://images.unsplash.com/photo-1653106520329-0cd3af731811?w=500&q=75&auto=format&fit=crop" alt="Mains âgées tenant un bâton de bois" loading="lazy"><p>Les mains, muse E2</p></figure>
+        <figure class="polaroid p3"><img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?w=400&q=75&auto=format&fit=crop" alt="Une mère porte son bébé" loading="lazy"><p>Porter, F2</p></figure>
+      </div>
+    </div>
+
+    <div class="r-right">
+      <article class="page main" aria-label="Carnet du gardien">
+        <h3>Carnet · samedi 14 février</h3>
+        <div class="date">Domaine des Arcs · tenu par FlowView</div>
+        <p class="entry" id="r-entry" aria-live="polite"></p>
+        <div class="r-tallyline tally" id="r-tally" aria-hidden="true"></div>
+        <label class="r-slider"><span>08 h</span><input type="range" id="r-hour" min="0" max="36" value="4" aria-label="Heure de la journée"><span>17 h</span></label>
+        <span class="sig">le gardien</span>
+      </article>
+      <article class="page small" aria-label="Note de la veille">
+        <p class="entry"><span class="hr">17:30</span>Journée calme. Varet est restée muette de 13 h à 13 h 45 : <b>pas de donnée</b>, pas zéro. J'ai laissé le trou dans le carnet.</p>
+      </article>
+    </div>
+
+    <div class="r-system">
+      <div class="r-card">
+        <h3>Typographie</h3>
+        <div class="spec-row"><small>Titre<br>Alegreya 700</small><span class="r-display">Ce matin aussi.</span></div>
+        <div class="spec-row"><small>Sous-titre<br>Alegreya Sans 500</small><span class="r-subhead">Arcabulle se remplit plus vite que d'habitude</span></div>
+        <div class="spec-row"><small>Texte<br>Alegreya Sans 400</small><span class="r-body">64 personnes à 10 h, à huit près. D'habitude, on en compte 35 à cette heure-là. Je préviendrais l'accueil.</span></div>
+        <div class="spec-row"><small>Glyphes</small><span class="r-glyphs">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 ± h ·</span></div>
+        <p class="credit">Une super-famille : l'écriture du carnet (Alegreya, née de la calligraphie) et la voix posée du texte (Alegreya Sans). Aucune police manuscrite : la main est dans les bâtons de comptage.</p>
+      </div>
+      <div class="r-card">
+        <h3>Couleur</h3>
+        <div class="swatches" data-swatches="refuge"></div>
+        <div class="ramp" id="ramp-refuge"></div>
+        <p class="ramp-label" id="ramp-refuge-l"></p>
+      </div>
+      <div class="r-card r-icons">
+        <h3>Pictogrammes · tracés à la main</h3>
+        <div class="icons">
+          <figure><svg viewBox="0 0 32 32"><path d="M5 25 C9 20 12 12 16 7 C20 12 23 19 27 25"/><path d="M12 25 C13 22 15 19 16 17 C18 20 19 22 20 25"/></svg>Site</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M4 9 C12 7.5 20 7.5 28 9"/><path d="M11 9 L11 19 M21 9 L21 19"/><path d="M8 19 C9 23 13 23 14 19 M18 19 C19 23 23 23 24 19"/></svg>Remontée</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M7 6 L7 26 M12 6 L12 26 M17 6 L17 26 M22 6 L22 26"/><path d="M4 22 C12 16 18 13 27 9"/></svg>Compter</figure>
+          <figure><svg viewBox="0 0 32 32" class="hot"><path d="M12 7 L20 7 M13 7 L12 11 L20 11 L19 7"/><path d="M10 11 C9 17 9 21 10 25 L22 25 C23 21 23 17 22 11"/><path d="M16 15 C18 17 18 20 16 21 C14 20 14 17 16 15"/></svg>Lanterne</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M6 10 C10 8 14 12 18 10 C21 9 24 9 26 10"/><path d="M6 16 C10 14 14 18 18 16 C21 15 24 15 26 16"/><path d="M6 22 C10 20 14 24 18 22 C21 21 24 21 26 22"/></svg>Pas de donnée</figure>
+          <figure><svg viewBox="0 0 32 32"><path d="M8 5 L24 5 L24 27 L8 27 Z"/><path d="M12 11 L20 11 M12 16 L20 16 M12 21 L17 21"/></svg>Carnet</figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-applied">
+      <div>
+        <div class="tablet">
+          <div class="r-brief">
+            <h4>Ce matin aux Arcs<small>Le point de 08:30, à lire avec le café. Trois sites calmes, un à surveiller.</small></h4>
+            <div class="blk"><b>Vagère</b><p>D'habitude 30 vers 9 h. Rien de particulier attendu.</p></div>
+            <div class="blk"><b>Place Manoir</b><p>Marché ce matin : comptez 10 à 15 de plus que d'habitude.</p></div>
+            <div class="blk alert"><b>Arcabulle</b><p>Les samedis de vacances, la file monte vite après 9 h 45. À surveiller.</p></div>
+            <div class="blk"><b>Varet</b><p>Caméra muette hier de 13 h à 13 h 45. On vous le dira si ça recommence.</p></div>
+          </div>
+        </div>
+        <p class="credit">Application : le point du matin, la « prédiction » sous sa forme honnête (la normale de l'heure).</p>
+      </div>
+      <div class="r-phone-wrap">
+        <div>
+          <div class="phone">
+            <div class="r-phone">
+              <div class="clock">10:02</div>
+              <div class="r-notif"><div class="t"><span>Le gardien · FlowView</span><span>maintenant</span></div>Arcabulle se remplit plus vite que d'habitude : <b>64 personnes</b>, à huit près. D'habitude 35 à cette heure.</div>
+            </div>
+          </div>
+          <p class="credit" style="text-align:center">Application : l'alerte, dans la voix du sage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ 03 CRETES -->
+<section class="board b-cretes" id="cretes" aria-label="Piste 03, Les Crêtes">
+  <div class="c-hero">
+    <div class="c-mist" aria-hidden="true"></div>
+    <div class="c-top">
+      <div>
+        <span class="eyebrow">Piste 03 · Les Crêtes · Arcabulle, samedi 14 février</span>
+        <h2>Lire la journée comme on lit <span>le relief.</span></h2>
+      </div>
+      <div class="c-aside">
+        <p>La crête pâle, c'est la normale. La crête nette, c'est aujourd'hui. La brume, c'est là où nous ne savons pas.</p>
+        <div class="c-read" id="c-read" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="c-legend"><span><i style="background:#a3b3be"></i>la normale</span><span><i style="background:#17242f"></i>aujourd'hui</span><span><i style="background:#d8362a"></i>au-dessus de la normale</span></div>
+    <div class="c-chart" id="c-chart"><svg id="c-svg" viewBox="0 0 1400 430" preserveAspectRatio="none" role="img" aria-label="Relief de l'affluence à Arcabulle sur la journée : survolez pour lire une heure"></svg>
+      <div class="c-axis"><span>08 h</span><span>11 h</span><span>14 h</span><span>17 h</span></div>
+    </div>
+  </div>
+
+  <div class="c-band">
+    <figure class="c-photo" style="margin:0">
+      <img src="https://images.unsplash.com/photo-1573126617899-41f1dffb196c?w=1400&q=70&auto=format&fit=crop" alt="Crêtes et brouillard, traitées en bleu ardoise" loading="lazy">
+      <figcaption>Muse C · plans successifs, bain bleu ardoise · <a href="https://unsplash.com/@konstantinkleine">@konstantinkleine</a></figcaption>
+    </figure>
+    <div class="c-cell">
+      <h3>Typographie</h3>
+      <div class="spec-row"><small>Titre<br>Inter Tight 300</small><span class="c-display">58 ± 8</span></div>
+      <div class="spec-row"><small>Sous-titre<br>Inter 500</small><span class="c-subhead">Au-dessus de la normale depuis 09:50</span></div>
+      <div class="spec-row"><small>Texte<br>Inter 400</small><span class="c-body">Nous comptons une image toutes les cinq minutes : c'est une occupation, pas un flux. Nous ne dirons jamais combien sont passés.</span></div>
+      <div class="spec-row"><small>Glyphes</small><span class="c-glyphs">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz 0123456789 ±</span></div>
+      <p class="credit">Neutre par choix : Inter Tight très léger et très grand, comme l'air en altitude. C'est le relief qui porte la marque, pas la police.</p>
+    </div>
+    <div class="c-cell">
+      <h3>Couleur · les strates</h3>
+      <div class="strata swatches" data-swatches="cretes"></div>
+      <div class="ramp" id="ramp-cretes"></div>
+      <p class="ramp-label" id="ramp-cretes-l"></p>
+    </div>
+  </div>
+
+  <div class="c-lower">
+    <svg class="ridge-bg" viewBox="0 0 1400 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120 L0 70 C120 40 220 80 340 50 C460 20 560 60 700 35 C840 10 960 55 1100 40 C1220 28 1320 50 1400 45 L1400 120 Z" fill="#ccd6dc"/><path d="M0 120 L0 95 C140 70 260 100 400 80 C540 60 640 92 780 72 C920 52 1060 86 1200 70 C1300 60 1360 74 1400 70 L1400 120 Z" fill="#a3b3be"/></svg>
+    <div class="c-icons" style="position:relative">
+      <h3 class="eyebrow" style="color:var(--muted);font-weight:500;margin:0 0 14px">Pictogrammes · à l'horizon</h3>
+      <div class="icons">
+        <figure><svg viewBox="0 0 32 32"><path d="M3 24 L11 14 L16 19 L22 10 L29 24"/></svg>Site</figure>
+        <figure><svg viewBox="0 0 32 32"><path d="M3 10 L29 6"/><path d="M12 8.6 L12 18 M22 7.2 L22 16"/><path d="M9 18 L15 18 M19 16 L25 16"/></svg>Remontée</figure>
+        <figure><svg viewBox="0 0 32 32"><path d="M3 22 C9 22 10 12 16 12 C22 12 23 18 29 18"/><path d="M3 26 L29 26" opacity=".4"/></svg>Normale</figure>
+        <figure><svg viewBox="0 0 32 32" class="hot"><path d="M16 4 L16 22"/><path d="M16 4 L25 8 L16 12"/><path d="M8 28 L24 28"/></svg>Balise</figure>
+        <figure><svg viewBox="0 0 32 32"><path d="M4 13 L28 13 M7 18 L25 18 M4 23 L28 23"/></svg>Brume</figure>
+        <figure><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M16 9 L16 16 L21 19"/></svg>Heure</figure>
+      </div>
+    </div>
+    <div style="position:relative">
+      <div class="laptop">
+        <div class="screen">
+          <div class="c-dash">
+            <div class="top"><b>Les Arcs, 10:20</b><span>Un site au-dessus de la normale</span></div>
+            <div class="rows">
+              <div><span>Vagère</span><strong>31</strong>± 5</div>
+              <div><span>Place Manoir</span><strong>48</strong>± 7</div>
+              <div class="alert"><span>Arcabulle</span><strong>64</strong>± 8</div>
+              <div class="nd"><span>Varet</span><strong>pas de donnée</strong>depuis 08:40</div>
+            </div>
+            <svg viewBox="0 0 600 120" preserveAspectRatio="none" id="c-mini" aria-hidden="true"></svg>
+          </div>
+        </div>
+        <div class="base"></div>
+      </div>
+      <p class="credit">Application : le tableau de bord, quatre chiffres et un relief. Rien d'autre.</p>
+    </div>
+    <div style="position:relative">
+      <div class="phone">
+        <div class="c-phone">
+          <div class="clock">10:20</div>
+          <div class="c-notif"><div class="t"><span>FlowView</span><span>maintenant</span></div>Arcabulle passe au-dessus de sa crête habituelle : <b>64 ± 8</b>, d'habitude 35 à cette heure.</div>
+        </div>
+      </div>
+      <p class="credit" style="text-align:center">Application : l'alerte, une balise rouge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ COMPARE -->
+<section class="compare" id="compare" aria-label="Comparaison des trois pistes">
+  <h2>Les trois pistes côte à côte</h2>
+  <p>Même socle partout (grain, silence, une seule alerte, chiffre honnête, voix du sage). Tout le reste diffère : composition, lumière, polices, couleurs, motif, pictogrammes. Cliquez une vignette pour l'ouvrir.</p>
+  <div class="cmp-grid">
+    <div class="cmp-col"><div class="cmp-thumb" data-clone="vigie" data-go="vigie"></div><div class="txt"><h3>01 · La Vigie</h3>L'instrument de l'expert : l'anneau gradué du guetteur.<dl><dt>Domine</dt><dd>Respecté</dd><dt>Lumière</dt><dd>Clair, papier photo, noir et blanc</dd><dt>Motif</dt><dd>Graduations de l'anneau</dd><dt>Alerte</dt><dd>Braise #CF4A1C</dd><dt>Risque</dt><dd>Le cercle demande de placer chaque site par cap : à bien justifier.</dd></dl></div></div>
+    <div class="cmp-col"><div class="cmp-thumb" data-clone="refuge" data-go="refuge"></div><div class="txt"><h3>02 · Le Refuge</h3>Le carnet du gardien : la voix du sage, les bâtons de comptage.<dl><dt>Domine</dt><dd>Serein</dd><dt>Lumière</dt><dd>Sombre, bois et pages chaudes</dd><dt>Motif</dt><dd>Bâtons de comptage</dd><dt>Alerte</dt><dd>Lanterne #E8A33A</dd><dt>Risque</dt><dd>Le fond bois doit rester lisible en plein jour, sur un écran de bureau.</dd></dl></div></div>
+    <div class="cmp-col"><div class="cmp-thumb" data-clone="cretes" data-go="cretes"></div><div class="txt"><h3>03 · Les Crêtes</h3>La journée devient un relief : la normale derrière, aujourd'hui devant, la brume pour le doute.<dl><dt>Domine</dt><dd>En confiance</dd><dt>Lumière</dt><dd>Clair, froid, aérien</dd><dt>Motif</dt><dd>Plans de crêtes successifs</dd><dt>Alerte</dt><dd>Balise #D8362A</dd><dt>Risque</dt><dd>Le plus proche d'un graphique classique : la force est dans l'exécution.</dd></dl></div></div>
+  </div>
+</section>
+
+<footer class="credits">
+  Images : Unsplash (licence Unsplash) · <a href="https://unsplash.com/@hfracz_721">@hfracz_721</a>, <a href="https://unsplash.com/@von_co">@von_co</a>, <a href="https://unsplash.com/@nate_dumlao">@nate_dumlao</a>, <a href="https://unsplash.com/@maddox_4k">@maddox_4k</a>, <a href="https://unsplash.com/@rocinante_11">@rocinante_11</a>, <a href="https://unsplash.com/@kellysikkema">@kellysikkema</a>, <a href="https://unsplash.com/@konstantinkleine">@konstantinkleine</a> · Wikimedia Commons : <a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Sighting_a_Fire_Using_an_Osborne_Fire_Finder_-_NARA_-_2128009.jpg">archive NARA</a> (licence à vérifier). Polices : Google Fonts (licence SIL Open Font License). Chiffres : données fictives de démonstration.
+</footer>
+</main>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- Grain: generated once on a canvas (no SVG turbulence) ---------- */
+  try {
+    const c = document.createElement("canvas");
+    c.width = c.height = 180;
+    const ctx = c.getContext("2d");
+    const img = ctx.createImageData(180, 180);
+    for (let i = 0; i < img.data.length; i += 4) {
+      const v = 110 + Math.random() * 120;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 38;
+    }
+    ctx.putImageData(img, 0, 0);
+    document.documentElement.style.setProperty("--grain", `url(${c.toDataURL()})`);
+  } catch (e) { /* grain is decorative */ }
+
+  /* ---------- Demo data (fictional) ---------- */
+  const SITES = [
+    { name: "Vagère", zone: "Arc 1800 · départ du télésiège", deg: 40, n: 28, r: 5, normal: 30, state: "ok" },
+    { name: "Place Manoir", zone: "Arc 1950 · place du village", deg: 120, n: 46, r: 7, normal: 40, state: "ok" },
+    { name: "Arcabulle", zone: "Arc 1800 · départ du télésiège", deg: 200, n: 64, r: 8, normal: 35, state: "alert" },
+    { name: "Varet", zone: "Arc 2000 · départ de la télécabine", deg: 285, state: "nd", since: "08:40" },
+    { name: "Arpette", zone: "Arc 1800 · sommet", deg: 330, n: 12, r: 3, normal: 15, state: "ok" }
+  ];
+
+  /* ---------- Navigation + compare ---------- */
+  const boards = ["vigie", "refuge", "cretes", "compare"];
+  const navBtns = document.querySelectorAll(".nav [data-go]");
+  function go(id) {
+    boards.forEach(b => document.getElementById(b).classList.toggle("on", b === id));
+    navBtns.forEach(btn => btn.setAttribute("aria-current", String(btn.dataset.go === id)));
+    if (id === "compare") buildCompare();
+    window.scrollTo({ top: 0 });
+  }
+  navBtns.forEach(btn => btn.addEventListener("click", () => go(btn.dataset.go)));
+  let compareBuilt = false;
+  function buildCompare() {
+    if (compareBuilt) return;
+    document.querySelectorAll(".cmp-thumb").forEach(slot => {
+      const src = document.getElementById(slot.dataset.clone);
+      const clone = src.cloneNode(true);
+      clone.removeAttribute("id");
+      clone.querySelectorAll("[id]").forEach(el => el.removeAttribute("id"));
+      clone.setAttribute("aria-hidden", "true");
+      clone.classList.add("on");
+      slot.appendChild(clone);
+      slot.addEventListener("click", () => go(slot.dataset.go));
+    });
+    compareBuilt = true;
+  }
+
+  /* ---------- Color switchboards ---------- */
+  const PALETTES = {
+    vigie: [
+      ["Papier", "#e6e3db", "fond"], ["Graphite", "#1d1d1b", "encre"], ["Gris argentique", "#67645c", "texte secondaire"],
+      ["Trait", "#b8b3a7", "structure"], ["Braise", "#cf4a1c", "alerte seulement"]
+    ],
+    refuge: [
+      ["Noyer", "#241b15", "fond"], ["Page", "#ece4d4", "surface"], ["Encre brune", "#2b2420", "encre"],
+      ["Écorce", "#bfae98", "texte secondaire"], ["Lanterne", "#e8a33a", "alerte seulement"]
+    ],
+    cretes: [
+      ["Ciel", "#e9eef1", "fond"], ["Brume", "#ccd6dc", "normale lointaine"], ["Crête", "#a3b3be", "la normale"],
+      ["Ardoise", "#3f5566", "aplat profond"], ["Nuit", "#17242f", "encre"], ["Balise", "#d8362a", "alerte seulement"]
+    ]
+  };
+  const hex2rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const rgb2hex = a => "#" + a.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+  const mix = (a, b, t) => rgb2hex(hex2rgb(a).map((v, i) => v + (hex2rgb(b)[i] - v) * t));
+  const lum = h => { const [r, g, b] = hex2rgb(h).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4; }); return .2126 * r + .7152 * g + .0722 * b; };
+  const labelOn = h => (lum(h) > .36 ? "#1d1d1b" : "#f3f1ea");
+  function ramp(h) { return [mix(h, "#121212", .45), mix(h, "#121212", .22), h, mix(h, "#f7f6f2", .35), mix(h, "#f7f6f2", .65)]; }
+
+  document.querySelectorAll("[data-swatches]").forEach(box => {
+    const key = box.dataset.swatches;
+    const rampEl = document.getElementById("ramp-" + key);
+    const rampLbl = document.getElementById("ramp-" + key + "-l");
+    const show = (i) => {
+      const [name, hex, role] = PALETTES[key][i];
+      rampEl.innerHTML = ramp(hex).map(c => `<div style="background:${c};color:${labelOn(c)}">${c.toUpperCase()}</div>`).join("");
+      rampLbl.textContent = `${name} · ${role} · base, deux ombres, deux clartés`;
+      box.querySelectorAll(".sw").forEach((s, j) => s.setAttribute("aria-pressed", String(i === j)));
+    };
+    PALETTES[key].forEach(([name, hex, role], i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "sw";
+      b.style.background = hex; b.style.color = labelOn(hex);
+      b.style.setProperty("--sel", labelOn(hex));
+      b.innerHTML = key === "cretes" ? `<span>${name}</span><span>${hex.toUpperCase()}</span>` : `${name}<br>${hex.toUpperCase()}`;
+      b.setAttribute("aria-label", `${name}, ${hex}, ${role}`);
+      b.addEventListener("click", () => show(i));
+      box.appendChild(b);
+    });
+    show(PALETTES[key].length - 1); // pre-select the alert color: it is the one that must be protected
+  });
+
+  /* =================================================================== VIGIE */
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+  const polar = (deg, r, cx = 300, cy = 300) => { const a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; };
+
+  function drawRingFace(svg, withLabels) {
+    const ticks = svg.querySelector("#v-ticks") || el("g", {}, svg);
+    for (let d = 0; d < 360; d += 2) {
+      const long = d % 10 === 0, major = d % 30 === 0;
+      const [x1, y1] = polar(d, 290); const [x2, y2] = polar(d, major ? 266 : long ? 274 : 282);
+      el("line", { x1, y1, x2, y2, stroke: "#1d1d1b", "stroke-width": major ? 1.6 : 1, opacity: major ? 1 : .7 }, ticks);
+    }
+    if (withLabels) {
+      const labels = svg.querySelector("#v-labels");
+      for (let d = 0; d < 360; d += 30) {
+        const [x, y] = polar(d, 248);
+        const t = el("text", { x, y: y + 5, "text-anchor": "middle" }, labels);
+        t.textContent = String(d).padStart(3, "0");
+      }
+    }
+  }
+  function drawSites(group, big) {
+    SITES.forEach(s => {
+      const [x, y] = polar(s.deg, big ? 200 : 210);
+      const color = s.state === "alert" ? "#cf4a1c" : s.state === "nd" ? "#67645c" : "#1d1d1b";
+      if (s.state === "nd") {
+        el("circle", { cx: x, cy: y, r: big ? 9 : 14, fill: "none", stroke: color, "stroke-width": 1.5, "stroke-dasharray": "3 3" }, group);
+      } else {
+        const rad = 5 + Math.sqrt(s.n) * (big ? 1.1 : 1.6);
+        el("circle", { cx: x, cy: y, r: rad, fill: s.state === "alert" ? color : "none", "fill-opacity": .18, stroke: color, "stroke-width": 1.5 }, group);
+        el("circle", { cx: x, cy: y, r: 2.5, fill: color }, group);
+      }
+      if (big) {
+        const [lx, ly] = polar(s.deg, 162);
+        const t = el("text", { x: lx, y: ly + 4, "text-anchor": "middle", "font-family": "Public Sans", "font-size": 12, fill: color }, group);
+        t.textContent = s.name;
+      }
+    });
+  }
+  const ring = document.getElementById("v-ring");
+  drawRingFace(ring, true);
+  drawSites(ring.querySelector("#v-sites"), true);
+  const mini = document.getElementById("v-mini");
+  el("circle", { cx: 300, cy: 300, r: 290, fill: "#f1efe9", stroke: "#1d1d1b", "stroke-width": 2 }, mini);
+  drawRingFace(mini, false);
+  drawSites(el("g", {}, mini), false);
+  const miniArm = el("line", { x1: 300, y1: 300, ...(() => { const [x, y] = polar(200, 280); return { x2: x, y2: y }; })(), stroke: "#cf4a1c", "stroke-width": 3 }, mini);
+
+  const alidade = document.getElementById("v-alidade");
+  const read = document.getElementById("v-read");
+  let angle = 200;
+  function readAt(a) {
+    const near = SITES.map(s => ({ s, d: Math.abs(((a - s.deg + 540) % 360) - 180) })).sort((p, q) => p.d - q.d)[0];
+    const cap = String(Math.round(a) % 360).padStart(3, "0") + "°";
+    read.classList.remove("alert");
+    if (near.d > 14) {
+      read.innerHTML = `<div class="ln"><span>Cap ${cap}</span><span>09:10</span></div><div class="big">Rien <small>dans cette direction</small></div>`;
+      return;
+    }
+    const s = near.s;
+    if (s.state === "nd") {
+      read.innerHTML = `<div class="ln"><span>${s.name} · ${s.zone}</span><span>cap ${String(s.deg).padStart(3, "0")}°</span></div><div class="big">Pas de donnée <small>depuis ${s.since}</small></div><div>Caméra muette. Nous n'affichons pas zéro.</div>`;
+      return;
+    }
+    if (s.state === "alert") read.classList.add("alert");
+    read.innerHTML = `<div class="ln"><span>${s.name} · ${s.zone}</span><span>cap ${String(s.deg).padStart(3, "0")}°</span></div><div class="big">${s.n} <small>± ${s.r} personnes</small></div><div>D'habitude ${s.normal} à cette heure${s.state === "alert" ? ". La file monte depuis 09:50." : ". Rien à signaler."}</div>`;
+  }
+  function setAngle(a) {
+    angle = (a + 360) % 360;
+    alidade.setAttribute("transform", `rotate(${angle} 300 300)`);
+    readAt(angle);
+  }
+  setAngle(angle);
+  let dragging = false;
+  const toAngle = (ev) => {
+    const r = ring.getBoundingClientRect();
+    const x = ev.clientX - (r.left + r.width / 2), y = ev.clientY - (r.top + r.height / 2);
+    return Math.atan2(y, x) * 180 / Math.PI + 90;
+  };
+  ring.addEventListener("pointerdown", ev => { dragging = true; ring.setPointerCapture(ev.pointerId); setAngle(toAngle(ev)); });
+  ring.addEventListener("pointermove", ev => { if (dragging) setAngle(toAngle(ev)); });
+  ring.addEventListener("pointerup", () => { dragging = false; });
+  ring.setAttribute("tabindex", "0");
+  ring.addEventListener("keydown", ev => {
+    if (ev.key === "ArrowRight" || ev.key === "ArrowUp") { setAngle(angle + 5); ev.preventDefault(); }
+    if (ev.key === "ArrowLeft" || ev.key === "ArrowDown") { setAngle(angle - 5); ev.preventDefault(); }
+  });
+
+  /* =================================================================== REFUGE */
+  function tallySVG(count) {
+    const groups = Math.floor(count / 5), rest = count % 5, out = [];
+    const strokeSet = (k, slash) => {
+      let d = "";
+      for (let i = 0; i < k; i++) { const x = 5 + i * 5 + (i % 2 ? .6 : -.4); d += `M${x} 3 L${x + .8} 23 `; }
+      if (slash) d += "M2 19 L28 6";
+      return `<svg viewBox="0 0 30 26"><path d="${d}"/></svg>`;
+    };
+    for (let g = 0; g < groups; g++) out.push(strokeSet(4, true));
+    if (rest) out.push(strokeSet(rest, false));
+    return out.join("");
+  }
+  document.getElementById("r-tally-hero").innerHTML = tallySVG(30);
+
+  const HOURS = Array.from({ length: 37 }, (_, i) => 8 * 60 + i * 15);
+  const fmt = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+  function series(seed, base, peakAt, peakH, width) {
+    let s = seed;
+    const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+    return HOURS.map(m => {
+      const x = (m - peakAt) / width;
+      const v = base + peakH * Math.exp(-x * x) + 6 * Math.sin(m / 37) + (rnd() - .5) * 5;
+      return Math.max(2, Math.round(v));
+    });
+  }
+  const today = series(7, 14, 10 * 60 + 40, 50, 75);
+  const normal = series(3, 12, 11 * 60 + 30, 26, 110);
+  const ghost1 = series(11, 13, 11 * 60, 30, 95);
+  const ghost2 = series(19, 11, 12 * 60, 22, 120);
+  const ND = [20, 21, 22]; // 13:00 to 13:30 have no data
+  const isND = i => ND.includes(i);
+
+  const entry = document.getElementById("r-entry");
+  const tally = document.getElementById("r-tally");
+  const hourInput = document.getElementById("r-hour");
+  function refugeAt(i) {
+    const t = fmt(HOURS[i]).replace(":", " h ");
+    if (isND(i)) {
+      entry.innerHTML = `<span class="hr">${t}</span>Arcabulle : <b>pas de donnée</b>. La caméra ne répond plus ; je n'écris pas zéro.`;
+      tally.innerHTML = "";
+      return;
+    }
+    const n = today[i], nm = normal[i], hot = n > nm * 1.4 && n - nm > 10;
+    entry.className = "entry" + (hot ? " alert" : "");
+    entry.innerHTML = `<span class="hr">${t}</span>${hot ? '<span class="lamp" aria-hidden="true"></span>' : ""}Arcabulle : <b>${n} personnes</b>, à ${Math.max(3, Math.round(n * .12))} près. D'habitude ${nm} à cette heure.${hot ? " Je préviendrais l'accueil." : " Rien à signaler."}`;
+    tally.innerHTML = tallySVG(n);
+  }
+  hourInput.addEventListener("input", () => refugeAt(+hourInput.value));
+  hourInput.value = 9; refugeAt(9);
+
+  /* =================================================================== CRETES */
+  const W = 1400, H = 430, TOP = 70;
+  const maxV = Math.max(...today, ...normal, ...ghost1, ...ghost2) * 1.1;
+  const X = i => (i / (HOURS.length - 1)) * W;
+  const Y = v => H - (v / maxV) * (H - TOP);
+  function smoothPath(vals, skipND, close) {
+    let d = "", pen = false;
+    vals.forEach((v, i) => {
+      if (skipND && isND(i)) { pen = false; return; }
+      const x = X(i), y = Y(v);
+      if (!pen) { d += `M${x} ${y} `; pen = true; }
+      else {
+        const px = X(i - 1), py = Y(vals[i - 1]);
+        const cx = (px + x) / 2;
+        d += `C${cx} ${py} ${cx} ${y} ${x} ${y} `;
+      }
+    });
+    if (close) d += `L${W} ${H} L0 ${H} Z`;
+    return d;
+  }
+  const svg = document.getElementById("c-svg");
+  const defs = el("defs", {}, svg);
+  const g1 = el("linearGradient", { id: "c-today", x1: 0, x2: 0, y1: 0, y2: 1 }, defs);
+  el("stop", { offset: 0, "stop-color": "#3f5566" }, g1); el("stop", { offset: 1, "stop-color": "#17242f" }, g1);
+  el("path", { d: smoothPath(ghost2, false, true), fill: "#dde4e8" }, svg);
+  el("path", { d: smoothPath(ghost1, false, true), fill: "#ccd6dc" }, svg);
+  el("path", { d: smoothPath(normal, false, true), fill: "#a3b3be" }, svg);
+  // today: filled mass, split around the no-data gap
+  const segs = [[0, ND[0] - 1], [ND[ND.length - 1] + 1, HOURS.length - 1]];
+  segs.forEach(([a, b]) => {
+    let d = `M${X(a)} ${H} L${X(a)} ${Y(today[a])} `;
+    for (let i = a + 1; i <= b; i++) { const cx = (X(i - 1) + X(i)) / 2; d += `C${cx} ${Y(today[i - 1])} ${cx} ${Y(today[i])} ${X(i)} ${Y(today[i])} `; }
+    d += `L${X(b)} ${H} Z`;
+    el("path", { d, fill: "url(#c-today)" }, svg);
+  });
+  // mist band where we don't know
+  const mx = X(ND[0] - .5), mw = X(ND[ND.length - 1] + .5) - mx;
+  el("rect", { x: mx, y: TOP - 20, width: mw, height: H - TOP + 20, fill: "#f5f3ee", opacity: .82 }, svg);
+  const mistT = el("text", { x: mx + mw / 2, y: TOP + 6, "text-anchor": "middle", "font-family": "Inter", "font-size": 13, fill: "#5d6f7c" }, svg);
+  mistT.textContent = "brume : pas de donnée";
+  // red crest where above normal
+  today.forEach((v, i) => {
+    if (isND(i) || i === 0) return;
+    const hot = v > normal[i] * 1.4 && v - normal[i] > 10, hotPrev = today[i - 1] > normal[i - 1] * 1.4 && today[i - 1] - normal[i - 1] > 10 && !isND(i - 1);
+    if (hot && hotPrev) {
+      const cx = (X(i - 1) + X(i)) / 2;
+      el("path", { d: `M${X(i - 1)} ${Y(today[i - 1])} C${cx} ${Y(today[i - 1])} ${cx} ${Y(v)} ${X(i)} ${Y(v)}`, fill: "none", stroke: "#d8362a", "stroke-width": 3.5, "stroke-linecap": "round" }, svg);
+    }
+  });
+  const cursor = el("line", { x1: 0, x2: 0, y1: TOP - 10, y2: H, stroke: "#17242f", "stroke-width": 1, opacity: .55 }, svg);
+  const dot = el("circle", { r: 6, fill: "#f5f3ee", stroke: "#17242f", "stroke-width": 2 }, svg);
+  const cRead = document.getElementById("c-read");
+  const board3 = document.getElementById("cretes");
+  function cretesAt(i) {
+    cursor.setAttribute("x1", X(i)); cursor.setAttribute("x2", X(i));
+    const t = fmt(HOURS[i]);
+    // flexible range: the light warms in the morning and cools at noon (alert color never changes)
+    const h = HOURS[i] / 60, warm = Math.max(0, 1 - Math.abs(h - 8.5) / 3);
+    board3.style.setProperty("--sky-low", mix("#f5f3ee", "#f6ead8", warm * .8));
+    if (isND(i)) {
+      dot.setAttribute("opacity", 0);
+      cRead.className = "c-read";
+      cRead.innerHTML = `<div class="n">pas de donnée</div><div class="s">${t} · la caméra ne répond pas. Nous ne dessinons pas de crête là où nous ne savons pas.</div>`;
+      return;
+    }
+    dot.setAttribute("opacity", 1); dot.setAttribute("cx", X(i)); dot.setAttribute("cy", Y(today[i]));
+    const n = today[i], nm = normal[i], hot = n > nm * 1.4 && n - nm > 10;
+    cRead.className = "c-read" + (hot ? " alert" : "");
+    cRead.innerHTML = `<div class="n">${n} <small>± ${Math.max(3, Math.round(n * .12))}</small></div><div class="s">${t} · Arcabulle · d'habitude ${nm} à cette heure${hot ? " · au-dessus de la normale" : ""}</div>`;
+  }
+  const chart = document.getElementById("c-chart");
+  const pick = ev => { const r = chart.getBoundingClientRect(); return Math.max(0, Math.min(HOURS.length - 1, Math.round(((ev.clientX - r.left) / r.width) * (HOURS.length - 1)))); };
+  chart.addEventListener("pointermove", ev => cretesAt(pick(ev)));
+  chart.addEventListener("pointerdown", ev => cretesAt(pick(ev)));
+  cretesAt(10);
+
+  // mini relief for the applied dashboard
+  const cm = document.getElementById("c-mini");
+  const mxV = maxV, mX = i => (i / (HOURS.length - 1)) * 600, mY = v => 120 - (v / mxV) * 110;
+  const mp = (vals) => vals.map((v, i) => `${i ? "L" : "M"}${mX(i)} ${mY(v)}`).join(" ") + " L600 120 L0 120 Z";
+  el("path", { d: mp(normal), fill: "#a3b3be" }, cm);
+  el("path", { d: mp(today.map((v, i) => (isND(i) ? 0 : v))), fill: "#3f5566" }, cm);
+})();
+</script>
+</body>
+</html>

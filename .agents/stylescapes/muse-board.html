@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planche des muses — FlowView</title>
+<!-- Working muse board for brand-strategy (Q6). Neutral styling on purpose: the brand look is not decided yet. -->
+<style>
+  :root {
+    --bg: #f4f2ee;
+    --card: #ffffff;
+    --ink: #22201c;
+    --muted: #6b665d;
+    --line: #dcd7cd;
+    --tag: #ebe6dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1b19;
+      --card: #262522;
+      --ink: #eeebe4;
+      --muted: #a8a397;
+      --line: #3a3833;
+      --tag: #33312c;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.55 Georgia, "Times New Roman", serif;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 48px 16px 96px; }
+  header p { color: var(--muted); max-width: 62ch; }
+  h1 { font-size: 2rem; font-weight: 400; margin: 0 0 8px; }
+  h2 { font-size: 1.35rem; font-weight: 400; margin: 0; }
+  section { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .head { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+  .letter {
+    font: 600 0.8rem/1 ui-monospace, Consolas, monospace;
+    background: var(--tag); padding: 6px 8px; border-radius: 4px;
+  }
+  .said { color: var(--muted); font-style: italic; margin: 8px 0 0; max-width: 70ch; }
+  .cue { margin: 12px 0 0; max-width: 70ch; }
+  .grid {
+    display: grid; gap: 16px; margin-top: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  figure img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--tag); }
+  figcaption { padding: 12px 14px 14px; font-size: 0.9rem; }
+  figcaption b { font-family: ui-monospace, Consolas, monospace; margin-right: 6px; }
+  figcaption small { display: block; color: var(--muted); margin-top: 6px; font-size: 0.78rem; }
+  figcaption a { color: inherit; }
+  .note {
+    background: var(--card); border: 1px dashed var(--line); border-radius: 6px;
+    padding: 16px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .note p { margin: 0 0 8px; }
+  .kept { margin-top: 40px; }
+  .kept .grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .kept figcaption q { display: block; margin-top: 6px; font-style: italic; color: var(--muted); }
+  .threads { margin: 16px 0 0; padding-left: 20px; max-width: 70ch; }
+  footer { margin-top: 72px; color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Planche des muses — FlowView</h1>
+    <p>Émotions visées : <strong>serein · respecté dans son métier · en confiance</strong>. Chaque image est numérotée : réponds avec les numéros qui portent l'émotion, ceux qui sont à côté, et <em>quelle partie</em> de l'image est la bonne (la lumière, la matière, la forme…).</p>
+  </header>
+
+  <!-- v2: confirmed selection (Q7). Everything below is the full v1 board for reference. -->
+  <section class="kept">
+    <div class="head"><span class="letter">v2</span><h2>Sélection retenue — 17 novembre 2026</h2></div>
+    <ol class="threads">
+      <li><strong>Ce qui a duré et tient encore</strong> : le bois marqué, la tour usée, les mains âgées, l'archive.</li>
+      <li><strong>La nature plus grande que nous, qu'on observe</strong> : les crêtes, le matin brumeux, la lumière dans les bois.</li>
+      <li><strong>Le geste sûr</strong> : le guetteur à son instrument, la main qui tient, la mère qui porte.</li>
+    </ol>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?w=900&q=75&auto=format&fit=crop" alt="Bois sombre au grain marqué" loading="lazy">
+        <figcaption><b>A3</b>Le bois qui a vécu<q>On sent qu'elle a vécu et qu'elle peut encore vivre.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1787166533323-0520729b435d?w=900&q=75&auto=format&fit=crop" alt="Tour de guet au-dessus des arbres" loading="lazy">
+        <figcaption><b>B1</b>La structure, pas la couleur<q>Sa structure solide et usée.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Photograph_of_Sighting_a_Fire_Using_an_Osborne_Fire_Finder_-_NARA_-_2128009.jpg?width=900" alt="Archive : guetteur à l'instrument" loading="lazy">
+        <figcaption><b>B6</b>Le geste de l'expert<q>Sérieux et dynamique, genre valeur fiable.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=75&auto=format&fit=crop" alt="Crêtes dans la brume" loading="lazy">
+        <figcaption><b>C</b>Ce qui nous dépasse<q>Majestueux, immense, divers et varié.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1768702133235-70b0815044f6?w=900&q=75&auto=format&fit=crop" alt="Matin brumeux sur le lac" loading="lazy">
+        <figcaption><b>D3</b>La vie comme elle devrait être<q>Le grain de l'image, ses couleurs.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1653106520329-0cd3af731811?w=900&q=75&auto=format&fit=crop" alt="Mains âgées tenant un bâton" loading="lazy">
+        <figcaption><b>E2</b>L'âge comme force<q>Une tenue toujours forte et confiante.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?w=900&q=75&auto=format&fit=crop" alt="Une mère porte son bébé" loading="lazy">
+        <figcaption><b>F2</b>Être porté<q>Une confiance et une fusion forte.</q></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=900&q=75&auto=format&fit=crop" alt="Rais de lumière dans la forêt" loading="lazy">
+        <figcaption><b>G2</b>La lumière qui apaise<q>Une vie qui évolue sans nous et qui nous propose juste de l'observer.</q></figcaption>
+      </figure>
+      <div class="note">
+        <p><b>La berceuse</b></p>
+        <p>Pas d'image : une voix apaisante, lente, mélodique. Elle donnera le ton des textes et le rythme des animations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- A. Wood -->
+  <section>
+    <div class="head"><span class="letter">A</span><h2>Le bois</h2></div>
+    <p class="said">« Le bois de façon générale. La nature brute qui n'a jamais déçu personne. »</p>
+    <p class="cue">Indice à voler (hypothèse) : le grain, l'usure, la patine des surfaces touchées des milliers de fois. La fiabilité qui n'a plus besoin de se prouver.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1611600700192-d87eaeed4f81?w=800&q=75&auto=format&fit=crop" alt="Planche de bois patinée" loading="lazy">
+        <figcaption><b>A1</b>Planche patinée<small><a href="https://unsplash.com/@pandavtank">@pandavtank</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1644931551533-02906718127f?w=800&q=75&auto=format&fit=crop" alt="Gros plan sur un grain de bois" loading="lazy">
+        <figcaption><b>A2</b>Grain en gros plan<small><a href="https://unsplash.com/@enginakyurt">@enginakyurt</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?w=800&q=75&auto=format&fit=crop" alt="Surface de bois brun foncé au grain visible" loading="lazy">
+        <figcaption><b>A3</b>Bois sombre, grain marqué<small><a href="https://unsplash.com/@nate_dumlao">@nate_dumlao</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- B. Fire lookout -->
+  <section>
+    <div class="head"><span class="letter">B</span><h2>La vigie — l'univers de Firewatch</h2></div>
+    <p class="said">« Dans sa tour en bois usé, il travaille de façon sereine, avec de l'espace et de la verdure. »</p>
+    <p class="cue">Indice à voler (hypothèse) : la vigie incendie fait exactement notre métier. Elle surveille un territoire immense sans écran, avec une carte, une radio, et ne donne l'alerte que quand la fumée apparaît. Au centre de la tour, le <strong>chercheur de feu Osborne</strong> : une carte ronde, un anneau gradué en degrés, une visée en laiton.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1787166533323-0520729b435d?w=800&q=75&auto=format&fit=crop" alt="Haute tour de guet au-dessus de la forêt" loading="lazy">
+        <figcaption><b>B1</b>Tour de guet au-dessus des arbres<small><a href="https://unsplash.com/@hfracz_721">@hfracz_721</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1775557638301-6dae7a9f5dd4?w=800&q=75&auto=format&fit=crop" alt="Tour de guet incendie" loading="lazy">
+        <figcaption><b>B2</b>Tour de guet incendie<small><a href="https://unsplash.com/@molly_hennessey292">@molly_hennessey292</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1699299344920-5d049bfc7a5c?w=800&q=75&auto=format&fit=crop" alt="Intérieur d'une tour de guet : instrument sur une table près d'une fenêtre" loading="lazy">
+        <figcaption><b>B3</b>Dans la tour, la table de visée<small><a href="https://unsplash.com/@izzyatthelookout">@izzyatthelookout</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Osborne_Fire_Finder_at_Sand_Mountain_Lookout_01.jpg?width=800" alt="Chercheur de feu Osborne dans la tour de Sand Mountain" loading="lazy">
+        <figcaption><b>B4</b>Chercheur de feu Osborne<small><a href="https://commons.wikimedia.org/wiki/File:Osborne_Fire_Finder_at_Sand_Mountain_Lookout_01.jpg">Wikimedia Commons</a> · licence à vérifier</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Osborne_Fire_Finder_Map.jpg?width=800" alt="Carte ronde graduée d'un chercheur de feu Osborne" loading="lazy">
+        <figcaption><b>B5</b>La carte graduée du chercheur de feu<small><a href="https://commons.wikimedia.org/wiki/File:Osborne_Fire_Finder_Map.jpg">Wikimedia Commons</a> · licence à vérifier</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Photograph_of_Sighting_a_Fire_Using_an_Osborne_Fire_Finder_-_NARA_-_2128009.jpg?width=800" alt="Photo d'archive : un guetteur vise un feu avec le chercheur Osborne" loading="lazy">
+        <figcaption><b>B6</b>Archive : le guetteur vise un départ de feu<small><a href="https://commons.wikimedia.org/wiki/File:Photograph_of_Sighting_a_Fire_Using_an_Osborne_Fire_Finder_-_NARA_-_2128009.jpg">Wikimedia Commons (NARA)</a> · domaine public probable, à vérifier</small></figcaption>
+      </figure>
+      <div class="note">
+        <p><b>B7 — Firewatch (le jeu)</b></p>
+        <p>Pas d'image ici : les visuels du jeu sont protégés. On ne copie pas son style, on en retient des principes : crêtes en plans successifs qui pâlissent dans la brume, palette qui change avec l'heure, la radio comme seul lien.</p>
+        <small><a href="https://www.firewatchgame.com">firewatchgame.com</a></small>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. Ridges in the haze -->
+  <section>
+    <div class="head"><span class="letter">C</span><h2>Les crêtes dans la brume</h2></div>
+    <p class="said">« De l'espace. » (Firewatch, la tour, le silence)</p>
+    <p class="cue">Indice à voler (hypothèse) : la profondeur par plans successifs. Chaque crête est plus pâle que la précédente, et on lit la distance sans un seul trait.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=75&auto=format&fit=crop" alt="Montagnes sous la brume blanche" loading="lazy">
+        <figcaption><b>C1</b>Plans dans la brume blanche<small><a href="https://unsplash.com/@von_co">@von_co</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1573126617899-41f1dffb196c?w=800&q=75&auto=format&fit=crop" alt="Montagnes avec brouillard" loading="lazy">
+        <figcaption><b>C2</b>Crêtes et brouillard<small><a href="https://unsplash.com/@konstantinkleine">@konstantinkleine</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1542662565-7e4b66bae529?w=800&q=75&auto=format&fit=crop" alt="Montagnes à l'heure dorée" loading="lazy">
+        <figcaption><b>C3</b>Heure dorée<small><a href="https://unsplash.com/@jmagpie">@jmagpie</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- D. Refuge morning -->
+  <section>
+    <div class="head"><span class="letter">D</span><h2>Le refuge au petit matin</h2></div>
+    <p class="said">« Le refuge qui passe les hivers les uns après les autres. »</p>
+    <p class="cue">Indice à voler (hypothèse) : la lumière basse qui entre par une fenêtre à cadre de bois, la tasse chaude, le calme avant l'arrivée des premiers.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1598721987126-0e7bee3ba71f?w=800&q=75&auto=format&fit=crop" alt="Fenêtre à cadre de bois" loading="lazy">
+        <figcaption><b>D1</b>Fenêtre à cadre de bois<small><a href="https://unsplash.com/@markolsen">@markolsen</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1553776403-fa7fce8e4c31?w=800&q=75&auto=format&fit=crop" alt="Cafetière sur le rebord d'une fenêtre" loading="lazy">
+        <figcaption><b>D2</b>Café sur le rebord<small><a href="https://unsplash.com/@amyjoyhumphries">@amyjoyhumphries</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1768702133235-70b0815044f6?w=800&q=75&auto=format&fit=crop" alt="Matin brumeux au-dessus d'un lac et d'une forêt" loading="lazy">
+        <figcaption><b>D3</b>Matin brumeux sur le lac<small><a href="https://unsplash.com/@maddox_4k">@maddox_4k</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- E. The old sage -->
+  <section>
+    <div class="head"><span class="letter">E</span><h2>Le vieux sage</h2></div>
+    <p class="said">« Un vieux sage qui a toutes les connaissances et les petites anecdotes utiles pour travailler plus efficacement. »</p>
+    <p class="cue">Indice à voler (hypothèse) : surtout une <em>voix</em>. Il dit « d'habitude à 9 h, la Vagère est à 30 » : c'est exactement la normale de l'heure. Visuellement : des mains qui ont travaillé, des outils entretenus.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1676842987856-0a23454e0b6e?w=800&q=75&auto=format&fit=crop" alt="Homme assis tenant un morceau de bois" loading="lazy">
+        <figcaption><b>E1</b>L'homme et le bois<small><a href="https://unsplash.com/@ispywithmylittleeye">@ispywithmylittleeye</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1653106520329-0cd3af731811?w=800&q=75&auto=format&fit=crop" alt="Mains tenant un bâton de bois" loading="lazy">
+        <figcaption><b>E2</b>Des mains qui savent<small><a href="https://unsplash.com/@rocinante_11">@rocinante_11</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- F. The lullaby -->
+  <section>
+    <div class="head"><span class="letter">F</span><h2>La berceuse</h2></div>
+    <p class="said">« Une mère avec son bébé dans les bras qui le porte et lui chante une berceuse calme et douce. »</p>
+    <p class="cue">Indice à voler (hypothèse) : pas une image à reprendre, mais un <em>rythme</em>. Lent, régulier, enveloppant, à voix basse. Candidat pour le mouvement (une respiration lente) et pour le ton.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1755190897799-bd281798d122?w=800&q=75&auto=format&fit=crop" alt="Une mère tient son bébé contre elle, noir et blanc" loading="lazy">
+        <figcaption><b>F1</b>Tenir contre soi<small><a href="https://unsplash.com/@denmirov">@denmirov</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?w=800&q=75&auto=format&fit=crop" alt="Une mère porte son bébé" loading="lazy">
+        <figcaption><b>F2</b>Porter<small><a href="https://unsplash.com/@kellysikkema">@kellysikkema</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- G. Silence -->
+  <section>
+    <div class="head"><span class="letter">G</span><h2>Le silence</h2></div>
+    <p class="said">« Un océan ou une forêt, une nature calme et sans bruit… juste le bruit des vagues, des oiseaux qui chantent. Pas de pollution, juste du silence. »</p>
+    <p class="cue">Indice à voler (hypothèse) : le vide comme matière. Beaucoup d'espace, très peu d'éléments, aucun bruit visuel. Le silence est une décision de design.</p>
+    <div class="grid">
+      <figure>
+        <img src="https://images.unsplash.com/photo-1732130318657-c8740c0f5215?w=800&q=75&auto=format&fit=crop" alt="Forêt brumeuse" loading="lazy">
+        <figcaption><b>G1</b>Forêt dans la brume<small><a href="https://unsplash.com/@picture_scape">@picture_scape</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=75&auto=format&fit=crop" alt="Rayons du soleil dans une forêt" loading="lazy">
+        <figcaption><b>G2</b>Lumière dans les arbres<small><a href="https://unsplash.com/@sebastian_unrau">@sebastian_unrau</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1550188225-af2e1c2529b2?w=800&q=75&auto=format&fit=crop" alt="Mer calme" loading="lazy">
+        <figcaption><b>G3</b>Mer calme<small><a href="https://unsplash.com/@fx24">@fx24</a> · Unsplash</small></figcaption>
+      </figure>
+      <figure>
+        <img src="https://images.unsplash.com/photo-1536082558989-67e8fb74a9a0?w=800&q=75&auto=format&fit=crop" alt="Grand angle sur un plan d'eau" loading="lazy">
+        <figcaption><b>G4</b>L'horizon vide<small><a href="https://unsplash.com/@craft_ear">@craft_ear</a> · Unsplash</small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    Images Unsplash : licence Unsplash (usage libre, crédit apprécié). Images Wikimedia Commons : licence propre à chaque fichier, à vérifier avant tout usage hors planche de travail. Les images sont liées, pas téléchargées.
+  </footer>
+</main>
+</body>
+</html>
