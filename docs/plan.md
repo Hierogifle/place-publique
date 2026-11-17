@@ -80,6 +80,19 @@ Le domaine est fermé jusqu'au 12 décembre : en novembre, les places et les dé
 
 **Critère de validation :** CI verte et `docker compose up` démarre l'application depuis un clone vierge.
 
+### Extension visée · Mode « direct » avec suivi (dès que les trois paliers sont validés)
+Objectif final du projet, atteint pas à pas : chaque étape a une hypothèse, une mesure et un critère de passage écrits avant de commencer (fiche [0019](decisions/0019-socle-periodique-puis-temps-reel.md)).
+
+| Quoi | Livrable |
+|---|---|
+| Trouver une source vidéo lisible par OpenCV et autorisée (RTSP / HLS), sinon une vidéo libre de droits en rejeu | Ligne dans `docs/stations.md` + conditions d'utilisation lues |
+| Détection + suivi (ByteTrack) sur GPU, 1 puis 2 caméras ; mesurer la cadence tenue (images/s) par caméra et par résolution | Tableau de cadences dans MLflow |
+| Franchissement de ligne / zone → passages par minute, occupation moyenne ; agrégats par minute dans SQLite, identifiants jamais stockés | Série « flux » dans l'écran FlowView |
+| Affichage en direct, personnes floutées sous leurs cadres (idée I-07) | Vue caméra en direct |
+| Montée en charge : autant de caméras que la carte le permet, à la cadence la plus haute | Courbe caméras × images/s |
+| Repli CPU dans Docker (cadence réduite) ; profil GPU séparé | `docker compose` qui démarre partout |
+| Section « mode direct » dans l'AIPD de `conformite.md` | `conformite.md` |
+
 ### J14 → J15 · Finalisation et soutenance
 - README final (lancer le projet depuis un clone vierge), documentation, captures.
 - Slides dans la DA (20 min) + démo répétée (10 min) **sur le rejeu, pas sur la webcam en direct** (consigne du guide formateur).
@@ -106,6 +119,9 @@ Ce que le sujet impose quand même à chacun des deux membres (à garder en têt
 | Licence AGPL d'Ultralytics | La signaler dans conformite.md, proposer une alternative permissive (à vérifier) |
 | Le front et la 3D mangent le temps | Règle des paliers ; la maquette 3D vient en dernier au palier 2 |
 | Soutenance qui dépend du direct | Démo sur le rejeu, vidéo de secours |
+| Mode direct : pas de flux vidéo autorisé (live YouTube) | Vidéo libre de droits en rejeu, au même débit qu'un flux |
+| Mode direct : la carte ne tient pas la cadence | Baisser la résolution ou la cadence, regrouper les caméras en lots ; mesurer avant de promettre un chiffre |
+| Mode direct qui retarde les paliers | Il ne démarre qu'après validation des trois paliers (règle du sujet) |
 
 ## 6. Calendrier
 Pas de dates fixées pour J2 à J15 (choix de Romuald, 2026-11-17) : on avance au rythme des jours de projet. Deux dates comptent : **l'ouverture des Arcs le 12/12** (branchement final) et **la soutenance le 15/12**. Les webcams de la station ouverte doivent être branchées avant, pour avoir des journées réelles à montrer.
