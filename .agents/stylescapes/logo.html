@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowView · logo</title>
+<!-- Logo presentation sheet (logo-design). Places the locked files from ../assets/logo/; never redraws them. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2efe9; --surface: #fbfaf7; --surface-2: #f5f2ec;
+    --ink: #2a2420; --muted: #6b625a; --line: #e3ded5;
+    --dark: #1a1512; --dark-2: #231d18;
+    --font-ui: "Inter", system-ui, sans-serif; --font-voice: "Alegreya", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--font-ui); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-weight: 600; font-size: 28px; letter-spacing: -.01em; margin: 0 0 6px; }
+  h2 { font-weight: 600; font-size: 19px; margin: 0 0 6px; }
+  p { margin: 0 0 10px; max-width: 72ch; }
+  .muted { color: var(--muted); }
+  .voice { font-family: var(--font-voice); font-weight: 500; font-size: 19px; }
+  section { margin-top: 44px; }
+  .hero { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; display: grid; place-items: center; padding: 56px 16px; }
+  .hero img { width: min(560px, 100%); height: auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .tile { border-radius: 12px; border: 1px solid var(--line); padding: 28px 18px 14px; display: grid; gap: 14px; justify-items: center; background: var(--surface); }
+  .tile img { width: 100%; max-width: 230px; height: auto; }
+  .tile.dark { background: var(--dark); border-color: #3a3029; }
+  .tile.slate { background: #1f3140; border-color: #1f3140; }
+  .tile small { font-size: 12px; color: var(--muted); justify-self: start; }
+  .tile.dark small, .tile.slate small { color: #b3a796; }
+  .sizes { display: flex; flex-wrap: wrap; align-items: end; gap: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+  .sizes figure { margin: 0; display: grid; gap: 6px; justify-items: center; font-size: 12px; color: var(--muted); }
+  .tab { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px 8px 0 0; background: #e9e5de; font-size: 13px; }
+  .tab img { width: 16px; height: 16px; }
+  .round { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 1px solid var(--line); }
+  .round img { width: 100%; height: 100%; display: block; }
+  .nav { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+  .nav img { height: 28px; width: auto; }
+  .nav span { color: var(--muted); font-size: 14px; }
+  .nav.dark { background: var(--dark-2); border-color: #3a3029; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--surface); }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; background: var(--surface-2); }
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  ul { margin: 0; padding-left: 18px; max-width: 72ch; }
+  li { margin: 3px 0; }
+  code { font-size: 13px; }
+  footer { margin-top: 44px; font-size: 13px; color: var(--muted); max-width: 80ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FlowView · le refuge éclairé</h1>
+  <p class="muted">Logo v1 du 17/11/2026, piste B1. Fichiers verrouillés dans <code>.agents/assets/logo/</code> : cette page les place, elle ne les redessine pas.</p>
+  <p class="voice">« Là-haut, une fenêtre est allumée : quelqu'un veille, vous pouvez dormir. »</p>
+
+  <div class="hero"><img src="../assets/logo/logo-lockup.svg" alt="FlowView"></div>
+
+  <section>
+    <h2>L'idée</h2>
+    <p>La masse de la montagne, un seul sommet, et une fenêtre : le refuge au petit matin, quelqu'un veille. C'est l'émotion n°1 (serein) et la règle « une seule lumière » de la marque. La fenêtre est un <b>vide</b> dans la forme : sur fond clair, c'est la lumière du jour qui passe. Le point du « i » de View est un carré, l'écho de la fenêtre dans le nom.</p>
+    <p class="muted">La montagne est en ardoise (ce qui vient de la montagne), le nom en encre brune (ce qui vient du refuge), comme dans l'interface.</p>
+  </section>
+
+  <section>
+    <h2>Les variantes</h2>
+    <div class="grid">
+      <div class="tile"><img src="../assets/logo/logo-lockup.svg" alt="Logo couleur"><small>Couleur, sur fond clair</small></div>
+      <div class="tile dark"><img src="../assets/logo/logo-lockup-inverse.svg" alt="Logo inversé"><small>Inversé, sur fond sombre</small></div>
+      <div class="tile"><img src="../assets/logo/logo-lockup-black.svg" alt="Logo une couleur encre"><small>Une couleur : encre</small></div>
+      <div class="tile slate"><img src="../assets/logo/logo-lockup-white.svg" alt="Logo une couleur claire"><small>Une couleur : clair</small></div>
+      <div class="tile"><img src="../assets/logo/logo-lockup-gray.svg" alt="Logo gris"><small>Gris</small></div>
+      <div class="tile"><img src="../assets/logo/app-icon.svg" alt="Icône d'application" style="max-width:120px"><small>Icône d'application</small></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Aux petites tailles</h2>
+    <div class="sizes">
+      <figure><div class="tab"><img src="../assets/logo/favicon.svg" alt="">FlowView · Les Arcs</div>Onglet, 16 px</figure>
+      <figure><img src="../assets/logo/favicon.svg" alt="" width="16" height="16">16</figure>
+      <figure><img src="../assets/logo/favicon.svg" alt="" width="24" height="24">24</figure>
+      <figure><img src="../assets/logo/favicon.svg" alt="" width="32" height="32">32</figure>
+      <figure><img src="../assets/logo/favicon.svg" alt="" width="64" height="64">64</figure>
+      <figure><div class="round"><img src="../assets/logo/avatar.svg" alt=""></div>Avatar rond</figure>
+    </div>
+    <p class="muted" style="margin-top:10px">Même dessin à toutes les tailles. En 16 px, la fenêtre devient un point : la montagne seule reste lisible.</p>
+  </section>
+
+  <section>
+    <h2>En situation</h2>
+    <div style="display:grid;gap:12px">
+      <div class="nav"><img src="../assets/logo/logo-lockup.svg" alt="FlowView"><span>Les Arcs · samedi 14 février · 10:20</span></div>
+      <div class="nav dark"><img src="../assets/logo/logo-lockup-inverse.svg" alt="FlowView"><span style="color:#b3a796">Les Arcs · le soir</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sur le rayon, face aux concurrents</h2>
+    <div class="tablewrap"><table>
+      <tr><th>Logo</th><th>Silhouette</th><th>Couleur</th><th>Ce qu'il raconte</th></tr>
+      <tr><td><b>FlowView</b></td><td>Montagne pleine à un sommet, une fenêtre carrée</td><td>Ardoise et encre brune</td><td>Quelqu'un veille, au calme</td></tr>
+      <tr><td>Wintics</td><td>« W » en dents de scie (trois pointes)</td><td>Violet</td><td>L'IA, la vitesse</td></tr>
+      <tr><td>Viziosense</td><td>Nom, un œil dans le « o »</td><td>Noir, bleu</td><td>La caméra</td></tr>
+      <tr><td>Safari AI</td><td>Glyphe anguleux dans un cadre</td><td>Vert vif</td><td>La start-up</td></tr>
+    </table></div>
+    <p class="muted" style="margin-top:10px">Aucun concurrent n'utilise de montagne, de forme pleine ni de couleur chaude. Logos concurrents décrits d'après leurs sites (17/11/2026), non reproduits.</p>
+  </section>
+
+  <section>
+    <h2>Règles d'usage</h2>
+    <ul>
+      <li><b>Zone de protection :</b> une fenêtre de vide tout autour (déjà incluse dans les fichiers).</li>
+      <li><b>Taille minimale :</b> nom et symbole : 96 px de large à l'écran, 25 mm en impression. Symbole seul : 16 px.</li>
+      <li><b>Toujours un fichier de <code>.agents/assets/logo/</code></b>, jamais recomposé : pas de nom retapé, pas d'autre police, pas d'autre écart entre symbole et nom.</li>
+      <li><b>Interdits :</b> recolorer (et surtout jamais en rouge d'alerte), remplir la fenêtre, encadrer ou mettre dans une pastille, rogner, déformer, ajouter ombre, contour, dégradé ou flou, ajouter un slogan au bloc.</li>
+    </ul>
+  </section>
+
+  <footer>Construction : symbole calculé sur une grille de 64 unités (un sommet, un épaulement, coins adoucis, fenêtre de 8 unités) ; nom en Inter Display SemiBold 4.1 (SIL OFL 1.1), crénage de la police, interlettrage −0,012 em, vectorisé (aucune dépendance à la police). Recherche de logos ressemblants par image : non lancée à ce jour (voir design.md).</footer>
+</div>
+</body>
+</html>

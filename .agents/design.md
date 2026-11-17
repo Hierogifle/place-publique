@@ -253,7 +253,7 @@ Synthèse 02 + 03 avec la station en 3D au centre. Retour de Romuald (Q11) : mal
 - **Tropes repérés :** beaucoup de cartes (bordure + ombre) pour structurer l'écran ; pastilles et puces arrondies ; contrôles de carte MapLibre par défaut ; Inter peut être perçue comme le choix par défaut (ici assumé et documenté) ; une seule photo d'illustration pour toutes les zones ; cadres placés à la main.
 - **Corrigés depuis la v1 :** mélange de polices, fond bois chargé, hiérarchie confuse, étiquettes de carte décalées, débordement horizontal sur mobile, contraste de la pastille d'alerte (passée à `#A52A21`).
 - **Logo caché :** la v2 reste reconnaissable par la crête, le papier chaud, l'ardoise et la balise, plus que par la police.
-- **Encore ouvert :** références d'interfaces de Romuald (goût) ; passe `art-direction` (photos des slides) ; `logo-design`.
+- **Encore ouvert :** références d'interfaces de Romuald (goût) ; passe `art-direction` (photos des slides). Logo : fait le 2026-11-17 (voir § Logo).
 
 ---
 
@@ -282,8 +282,35 @@ Synthèse 02 + 03 avec la station en 3D au centre. Retour de Romuald (Q11) : mal
 ---
 <!-- ============ LIVING RECORD — appended by downstream skills ============ -->
 
-## Logo *(à ajouter par logo-design)*
-Pas encore de marque graphique : « FlowView » est composé en Inter 600 dans la maquette, en attendant `logo-design`.
+## Logo — v1 « le refuge éclairé » (2026-11-17)
+**Choix :** piste B1, retenue par Romuald parmi 3 pistes et 8 esquisses ([stylescapes/logo-sketches.html](stylescapes/logo-sketches.html)). Planche de présentation : [stylescapes/logo.html](stylescapes/logo.html). Fiche : `docs/decisions/0020-logo-refuge-eclaire.md`.
+
+**Pourquoi ce logo répond à l'émotion :** la fenêtre unique est la « seule lumière qui apaise dans l'obscurité » (muse G2) et le refuge au petit matin (couche « refuge » de la sérénité) : quelqu'un veille, l'exploitant peut lever les yeux de l'écran. Pas d'œil ni de caméra : on vend la veille, pas la surveillance. La couleur suit la règle dedans / dehors : la montagne en ardoise, le nom en encre brune.
+
+**Pistes écartées et pourquoi :**
+- A2, la crête et sa marge : en traits, elle se lit comme une icône de graphique (proche de l'icône Phosphor ChartLine de notre interface). L'idée de la marge vit dans l'écran, pas dans le logo.
+- X3, la crête en zigzag : trop proche du « W » de Wintics.
+- X1, la tour de guet : lue comme un pylône.
+- X2, l'anneau gradué : lu comme une boussole ou une icône de réglages.
+- C1, le nom seul : faible en icône. Son point carré est gardé dans le nom.
+
+**Construction :**
+- **Grille :** 64 unités, base à y = 52.
+- **Crête :** (4,52) → épaulement (19,33) → col (26,38) → sommet (39,13) → (60,52). Un seul sommet dominant, décalé à droite.
+- **Coins :** adoucis par courbes quadratiques, rayon 1,6 en haut et 0,9 à la base (la patine).
+- **Fenêtre :** carré net de 8 unités en (31,36), découpé en creux. Elle donne l'unité de zone de protection.
+- **Nom :** Inter Display SemiBold 4.1 (SIL OFL 1.1 ✅), corps 36 unités, hauteur de capitale 26,2 pour un symbole de 39,5. Mis en forme par HarfBuzz (crénage de la police), interlettrage −0,012 em, vectorisé : aucune dépendance à la police.
+- **Point du « i » :** un carré de 5,9 unités, centré sur le point d'origine de la police (1,12 × sa taille).
+- **Bloc :** espace symbole → nom = 1,5 fenêtre. La base de la montagne est posée sur la ligne de base du nom.
+- **Script de construction** (`logo_build.py`) : tenu hors dépôt dans l'espace de travail de la session. Tout est calculé, rien n'est tapé à la main. À verser dans `tools/` si le logo doit évoluer.
+
+**Fichiers :** `.agents/assets/logo/` (voir la liste dans [brand.md](brand.md) § Logo). Les PNG ont été rendus par Edge sans interface, les JPEG et l'ICO produits avec PIL.
+
+**Ce qui reste à faire :**
+- La recherche de logos ressemblants par image : Google Lens (exacte et visuelle), Pinterest, base de marques de l'OMPI en similarité conceptuelle. **Non lancée** : l'outil ne permet pas de téléverser une image. Le critère « distinct hors secteur » reste **non évalué**.
+- Ce n'est pas une recherche d'antériorité de marque : un usage commercial réel demanderait une vérification par un juriste.
+- Une passe d'un graphiste reste souhaitable (tension des coins, équilibre optique du bloc).
+- Remplacer le « FlowView » en texte des maquettes par `logo-lockup.svg` au moment du code front (palier 2).
 
 ## Art Direction *(à ajouter par art-direction)*
 
