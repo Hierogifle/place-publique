@@ -45,8 +45,7 @@ Prévu : `app/` (service d'inférence, planification, front Flask), `notebooks/`
 | [veille.md](veille.md) | La veille technique |
 
 ## Équipe
-- **Romuald** : produit, front, planification, maquette 3D, Docker, CI.
-- **Olivier** : données, jeu de référence, modèle, évaluation, inférence, tests.
+Romuald et Olivier.
 
 ## Données et crédits
 - Remontées mécaniques et pistes : © contributeurs [OpenStreetMap](https://www.openstreetmap.org/copyright), licence ODbL.

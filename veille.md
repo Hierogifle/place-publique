@@ -1,6 +1,6 @@
 # Veille technique — FlowView · Place Publique
 
-*Compte rendu illustré et référencé des 8 questions du sujet. Chaque question a **un auteur qui la rédige et la défend** à la soutenance (au moins 2 par personne). Répartition proposée dans `docs/plan.md` (§4).*
+*Compte rendu illustré et référencé des 8 questions du sujet. Chaque question a **un auteur qui la rédige et la défend** à la soutenance. Le sujet exige **au moins 2 questions par membre de l'équipe** : l'auteur de chaque question est à fixer au moment de la rédiger.*
 
 **Règles de rédaction**
 - Un **tableau comparatif** vaut mieux qu'un long paragraphe.
@@ -11,14 +11,14 @@
 
 | Q | Thème | Auteur | Palier | État |
 |---|---|---|---|---|
-| [Q1](#q1) | Modèles de détection : vitesse, précision, ressources | Olivier | 1 | à faire |
-| [Q2](#q2) | Évaluer un détecteur sur caméras fixes ; mAP ≠ comptage | Olivier | 1 | à faire |
-| [Q3](#q3) | Datasets, annotation, augmentation, adaptation de domaine | Olivier | 1 | à faire |
-| [Q4](#q4) | Architectures flux → inférence → base → front | Romuald | 2 | à faire |
-| [Q5](#q5) | MLOps : MLflow, CI/CD, versioning, tests | Olivier | 3 | à faire |
-| [Q6](#q6) | Dérive de données et de concept, ré-entraînement | Olivier | 3 | à faire |
-| [Q7](#q7) | RGPD et AI Act appliqués au comptage vidéo | Romuald | 3 | à faire |
-| [Q8](#q8) | Enjeux éthiques du comptage dans l'espace public | Romuald | 3 | à faire |
+| [Q1](#q1) | Modèles de détection : vitesse, précision, ressources | à fixer | 1 | à faire |
+| [Q2](#q2) | Évaluer un détecteur sur caméras fixes ; mAP ≠ comptage | à fixer | 1 | à faire |
+| [Q3](#q3) | Datasets, annotation, augmentation, adaptation de domaine | à fixer | 1 | à faire |
+| [Q4](#q4) | Architectures flux → inférence → base → front | à fixer | 2 | à faire |
+| [Q5](#q5) | MLOps : MLflow, CI/CD, versioning, tests | à fixer | 3 | à faire |
+| [Q6](#q6) | Dérive de données et de concept, ré-entraînement | à fixer | 3 | à faire |
+| [Q7](#q7) | RGPD et AI Act appliqués au comptage vidéo | à fixer | 3 | à faire |
+| [Q8](#q8) | Enjeux éthiques du comptage dans l'espace public | à fixer | 3 | à faire |
 
 ---
 
