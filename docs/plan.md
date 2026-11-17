@@ -1,7 +1,7 @@
 # Plan d'attaque — FlowView · Place Publique
 
 *Version 1 · 2026-11-17 · à mettre à jour à chaque fin de palier (et noter les écarts dans [journal.md](journal.md)).*
-*Légende : ✅ vérifié · 🔎 supposé / à vérifier · **R** = Romuald · **O** = Olivier · **R+O** = ensemble.*
+*Légende : ✅ vérifié · 🔎 supposé / à vérifier.*
 
 ## 1. Le cadre
 
@@ -40,43 +40,43 @@ Le domaine est fermé jusqu'au 12 décembre : en novembre, les places et les dé
 ## 3. Le déroulé, jour par jour
 
 ### Palier 1 · Un comptage mesuré (J1 → J5)
-| Jour | Quoi | Qui | Livrable |
-|---|---|---|---|
-| J1 | Choisir les jeux de données (licences), repérer 2 à 3 webcams d'une station ouverte et 2 à 3 des Arcs ; lire leurs conditions d'utilisation ; écrire le script de capture | R+O | `scripts/capture.py`, liste des sources dans `docs/sources.md` |
-| J1 | Structure du dépôt, configuration GitHub (branches, protection, PR), `.gitignore` des images | R | dépôt prêt, `README.md` v0 |
-| J2 | **Figer le jeu de référence** à partir des jeux de données : ≥ 100 images variées (jour, nuit, météo, affluence), pas de doublons quasi identiques | O | `data/reference/manifest.csv` (images hors Git, liste, source, licence et empreinte versionnées) |
-| J3 | Vérité terrain : compter à la main ≥ 50 images, par classe | R+O (25 chacun) | `data/reference/ground_truth.csv` |
-| J3 | Baseline : YOLO pré-entraîné COCO, sans fine-tuning, comptage par classe (`person`, et tester `skis` / `snowboard`) | O | `notebooks/01_baseline.ipynb` |
-| J4 | Mesure : MAE et biais par classe, 10 pires images analysées, seuil de confiance réglé **sur le jeu de référence** | O | tableau d'erreurs par classe |
-| J4 | Seuil d'acceptabilité **écrit et justifié par l'usage** (ex. erreur relative médiane ≤ 20 % sur `person`) | R+O | `docs/evaluation.md` |
-| J5 | Veille v1 (Q1 à Q3) ; point de validation du palier 1 avec le formateur | O (Q1, Q2, Q3) | `veille.md` v1 |
+| Jour | Quoi | Livrable |
+|---|---|---|
+| J1 | Choisir les jeux de données (licences), repérer 2 à 3 webcams d'une station ouverte et 2 à 3 des Arcs ; lire leurs conditions d'utilisation ; écrire le script de capture | `scripts/capture.py`, liste des sources dans `docs/sources.md` |
+| J1 | Structure du dépôt, configuration GitHub (branches, protection, PR), `.gitignore` des images | dépôt prêt, `README.md` v0 |
+| J2 | **Figer le jeu de référence** à partir des jeux de données : ≥ 100 images variées (jour, nuit, météo, affluence), pas de doublons quasi identiques | `data/reference/manifest.csv` (images hors Git, liste, source, licence et empreinte versionnées) |
+| J3 | Vérité terrain : compter à la main ≥ 50 images, par classe | `data/reference/ground_truth.csv` |
+| J3 | Baseline : YOLO pré-entraîné COCO, sans fine-tuning, comptage par classe (`person`, et tester `skis` / `snowboard`) | `notebooks/01_baseline.ipynb` |
+| J4 | Mesure : MAE et biais par classe, 10 pires images analysées, seuil de confiance réglé **sur le jeu de référence** | tableau d'erreurs par classe |
+| J4 | Seuil d'acceptabilité **écrit et justifié par l'usage** (ex. erreur relative médiane ≤ 20 % sur `person`) | `docs/evaluation.md` |
+| J5 | Veille v1 (Q1 à Q3) ; point de validation du palier 1 avec le formateur | `veille.md` v1 |
 
 **Critère de validation :** un notebook reproductible produit le tableau d'erreurs par classe, et le seuil d'acceptabilité est écrit avant d'avoir vu les résultats.
 
 ### Palier 2 · Un service de bout en bout (J6 → J10)
-| Jour | Quoi | Qui | Livrable |
-|---|---|---|---|
-| J6 | Service d'inférence : lit l'image, applique le modèle, renvoie décompte + image annotée **floutée** ; base SQLite (mesures, caméras, « pas de donnée ») | O | `app/inference/`, `app/db/` |
-| J6 | Planification (APScheduler), intervalle configurable, réessai, horodatage UTC ; **une caméra muette = « pas de donnée », jamais zéro** | R | `app/scheduler.py` |
-| J7 | Front Flask v1 sur les tokens de `design.md` : ajouter une caméra (URL, nom, emplacement, classes), dernière image annotée, chiffre ± et normale | R | `app/templates/`, `app/static/css/tokens.css` |
-| J8 | Graphiques Chart.js (journée vue de côté, normale de l'heure) + règle d'alerte (au-dessus de la normale pour cette heure) | R | tableau de bord |
-| J8 | Script de rejeu du jeu de référence comme un flux (horodatages cohérents) | O | `scripts/replay.py` |
-| J8 | Branchement sur 2 à 3 webcams de la station ouverte (test en conditions réelles) ; captures = jeu de validation terrain séparé | R+O | `data/terrain/manifest.csv`, mesure d'erreur terrain |
-| J9 | Fine-tuning **seulement si une classe manque** (sinon on l'écrit et on passe) ; comparaison avant / après dans MLflow | O | runs MLflow |
-| J9 | Maquette 3D (three.js) si tout le reste du palier tourne ; sinon après la soutenance | R | `app/static/js/maquette/` |
-| J10 | Veille v2 (Q4) ; répétition de la démo : ajout d'une webcam depuis l'interface, série ≥ 48 points en rejeu, coupure de source visible | R (Q4) | démo palier 2 |
+| Jour | Quoi | Livrable |
+|---|---|---|
+| J6 | Service d'inférence : lit l'image, applique le modèle, renvoie décompte + image annotée **floutée** ; base SQLite (mesures, caméras, « pas de donnée ») | `app/inference/`, `app/db/` |
+| J6 | Planification (APScheduler), intervalle configurable, réessai, horodatage UTC ; **une caméra muette = « pas de donnée », jamais zéro** | `app/scheduler.py` |
+| J7 | Front Flask v1 sur les tokens de `design.md` : ajouter une caméra (URL, nom, emplacement, classes), dernière image annotée, chiffre ± et normale | `app/templates/`, `app/static/css/tokens.css` |
+| J8 | Graphiques Chart.js (journée vue de côté, normale de l'heure) + règle d'alerte (au-dessus de la normale pour cette heure) | tableau de bord |
+| J8 | Script de rejeu du jeu de référence comme un flux (horodatages cohérents) | `scripts/replay.py` |
+| J8 | Branchement sur 2 à 3 webcams de la station ouverte (test en conditions réelles) ; captures = jeu de validation terrain séparé | `data/terrain/manifest.csv`, mesure d'erreur terrain |
+| J9 | Fine-tuning **seulement si une classe manque** (sinon on l'écrit et on passe) ; comparaison avant / après dans MLflow | runs MLflow |
+| J9 | Maquette 3D (three.js) si tout le reste du palier tourne ; sinon après la soutenance | `app/static/js/maquette/` |
+| J10 | Veille v2 (Q4) ; répétition de la démo : ajout d'une webcam depuis l'interface, série ≥ 48 points en rejeu, coupure de source visible | démo palier 2 |
 
 **Critère de validation :** ajout d'une webcam depuis l'interface, puis une série temporelle d'au moins 48 points ; on coupe la source, le système continue et le trou est visible.
 
 ### Palier 3 · Fiabiliser et cadrer (J11 → J13)
-| Jour | Quoi | Qui | Livrable |
-|---|---|---|---|
-| J11 | Tests unitaires : comptage sur une image de test, gestion des erreurs, routes de l'API | O | `tests/` |
-| J11 | Dockerfile + docker compose (**torch CPU**, petit modèle) ; démarrage depuis un clone vierge | R | `Dockerfile`, `docker-compose.yml` |
-| J12 | GitHub Actions : tests + construction de l'image ; CI verte | R | `.github/workflows/ci.yml` |
-| J12 | `conformite.md` : RGPD (base légale, minimisation, AIPD), AI Act, privacy by design (agrégats, aucune image stockée, flou), **licence du modèle (Ultralytics = AGPL-3.0) et alternative permissive** | R+O | `conformite.md` |
-| J13 | `architecture.md` : architecture de production (cloud ou edge), signaux de dérive, déclencheurs de ré-entraînement | O | `architecture.md` |
-| J13 | Veille v3 (Q5 à Q8) | R (Q7, Q8) · O (Q5, Q6) | `veille.md` complet |
+| Jour | Quoi | Livrable |
+|---|---|---|
+| J11 | Tests unitaires : comptage sur une image de test, gestion des erreurs, routes de l'API | `tests/` |
+| J11 | Dockerfile + docker compose (**torch CPU**, petit modèle) ; démarrage depuis un clone vierge | `Dockerfile`, `docker-compose.yml` |
+| J12 | GitHub Actions : tests + construction de l'image ; CI verte | `.github/workflows/ci.yml` |
+| J12 | `conformite.md` : RGPD (base légale, minimisation, AIPD), AI Act, privacy by design (agrégats, aucune image stockée, flou), **licence du modèle (Ultralytics = AGPL-3.0) et alternative permissive** | `conformite.md` |
+| J13 | `architecture.md` : architecture de production (cloud ou edge), signaux de dérive, déclencheurs de ré-entraînement | `architecture.md` |
+| J13 | Veille v3 (Q5 à Q8) | `veille.md` complet |
 
 **Critère de validation :** CI verte et `docker compose up` démarre l'application depuis un clone vierge.
 
@@ -86,14 +86,13 @@ Le domaine est fermé jusqu'au 12 décembre : en novembre, les places et les dé
 - Chacun répète une question sur un module qu'il n'a pas écrit.
 - **Pas de nouvelle fonctionnalité.**
 
-## 4. Répartition proposée (à discuter)
-| | Romuald | Olivier |
-|---|---|---|
-| Fil rouge | Produit : front Flask, planification, maquette 3D, Docker, CI | Données et modèle : jeu de référence, baseline, évaluation, inférence, fine-tuning, tests |
-| Veille | Q4 architecture, Q7 RGPD / AI Act, Q8 éthique | Q1 modèles, Q2 évaluation, Q3 datasets, Q5 MLOps, Q6 dérive |
-| Commun | Vérité terrain (25 images chacun), conformite.md, soutenance | idem |
+## 4. Qui fait quoi
+**Pas de répartition par personne** (décision de Romuald, fiche [0018](decisions/0018-pas-de-repartition.md)) : Romuald porte l'essentiel, voire la totalité, du projet.
 
-Le sujet demande au moins 2 questions chacun : 3 et 5 respecte la règle ; on peut rééquilibrer (par exemple Q5 à Romuald).
+Ce que le sujet impose quand même à chacun des deux membres (à garder en tête pour la note individuelle) :
+- **Veille** : chacun rédige et défend **au moins 2 questions**.
+- **Soutenance** : chacun doit pouvoir expliquer **n'importe quelle partie** du projet ; le jury interroge chacun sur un module qu'il n'a pas écrit.
+- **Note** : collective, **ajustée d'après l'historique Git** et les réponses individuelles.
 
 ## 5. Risques et parades
 | Risque | Parade |

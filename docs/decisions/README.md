@@ -29,6 +29,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0015](0015-maquette-3d-et-ecran-crm.md) | 2026-11-17 | La station devient une maquette 3D ; écran sur le patron « CRM 3D » | Acceptée |
 | [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Acceptée (à faire valider) |
 | [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée |
+| [0018](0018-pas-de-repartition.md) | 2026-11-17 | Pas de répartition par personne : Romuald porte l'essentiel du projet | Acceptée |
 
 ## Modèle
 
