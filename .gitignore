@@ -3,3 +3,33 @@ sujet/non_versionne/
 
 # Fichiers temporaires Office
 ~$*
+
+# Données : jamais d'image brute de webcam ni de jeu de données téléchargé dans Git
+data/raw/
+data/captures/
+data/reference/images/
+data/terrain/images/
+*.mp4
+
+# Expériences et modèles
+mlruns/
+mlartifacts/
+*.pt
+*.onnx
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets et environnement
+.env
+.env.*
+
+# Bases locales
+*.sqlite
+*.db
