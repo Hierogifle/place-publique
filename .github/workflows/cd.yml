@@ -24,13 +24,12 @@ jobs:
         run: |
           if [ -f Dockerfile ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; echo "No Dockerfile yet, nothing to publish."; fi
 
+      # Plain docker login (no third-party action to pin or trust).
       - name: Log in to ghcr.io
         if: steps.check.outputs.present == 'true'
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
 
       - name: Build and push
         if: steps.check.outputs.present == 'true'
