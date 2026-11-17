@@ -30,6 +30,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Acceptée (à faire valider) |
 | [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée |
 | [0018](0018-pas-de-repartition.md) | 2026-11-17 | Pas de répartition par personne : Romuald porte l'essentiel du projet | Acceptée |
+| [0019](0019-socle-periodique-puis-temps-reel.md) | 2026-11-17 | Socle périodique d'abord, mode « direct » avec suivi ensuite | Acceptée |
 
 ## Modèle
 
