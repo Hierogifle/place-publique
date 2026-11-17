@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowView · pistes de logo</title>
+<!-- Logo sketch board (logo-design, sketch phase). Low-fidelity: marks are code-drawn geometry,
+     to be reconstructed properly before any use. Black and white first, colour last. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f2efe9; --surface: #fbfaf7; --surface-2: #f5f2ec;
+    --ink: #2a2420; --muted: #6b625a; --line: #e3ded5;
+    --data: #1f3140; --dark: #1a1512; --dark-ink: #efe8dc;
+    --font-ui: "Inter", system-ui, sans-serif;
+    --font-voice: "Alegreya", Georgia, serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1512; --surface: #231d18; --surface-2: #2b241e;
+      --ink: #efe8dc; --muted: #b3a796; --line: #3a3029; --data: #b9c6cf;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--font-ui); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 40px 16px 64px; }
+  header h1 { font-weight: 600; font-size: 28px; letter-spacing: -.01em; margin: 0 0 6px; text-wrap: balance; }
+  header p { margin: 0; color: var(--muted); max-width: 70ch; }
+  .warn { margin-top: 14px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); max-width: 78ch; }
+  section { margin-top: 48px; }
+  section > h2 { font-weight: 600; font-size: 20px; margin: 0 0 4px; }
+  section > .idea { margin: 0 0 6px; max-width: 72ch; }
+  section > .why { margin: 0 0 18px; color: var(--muted); max-width: 72ch; font-size: 14px; }
+  .voice { font-family: var(--font-voice); font-weight: 500; font-size: 18px; }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .sk { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; }
+  .sk h3 { margin: 0 0 12px; font-size: 14px; font-weight: 600; display: flex; justify-content: space-between; gap: 8px; }
+  .sk h3 span { color: var(--muted); font-weight: 400; }
+  .big { display: grid; place-items: center; height: 150px; color: var(--ink); }
+  .big svg { width: 120px; height: 120px; }
+  .lockup { display: flex; align-items: center; gap: 10px; color: var(--ink); padding: 12px 0 14px; border-top: 1px solid var(--line); }
+  .lockup svg { width: 40px; height: 40px; flex: none; }
+  .wm { font-weight: 600; font-size: 27px; letter-spacing: -.02em; line-height: 1; position: relative; white-space: nowrap; }
+  .tests { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--line); padding-top: 12px; flex-wrap: wrap; }
+  .tests .lbl { font-size: 12px; color: var(--muted); }
+  .fav { width: 16px; height: 16px; color: var(--ink); }
+  .fav32 { width: 32px; height: 32px; color: var(--ink); }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink); }
+  .avatar svg { width: 30px; height: 30px; }
+  .rev { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; background: var(--dark); color: var(--dark-ink); }
+  .rev svg { width: 24px; height: 24px; }
+  .rev .wm { font-size: 17px; }
+  .colour { color: var(--data); }
+  .colour .wm { color: var(--ink); }
+  .pick { outline: 2px solid var(--ink); outline-offset: -2px; }
+  .badge { font-size: 12px; font-weight: 500; border: 1px solid var(--ink); border-radius: 999px; padding: 1px 8px; }
+  .notes { margin: 12px 0 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
+  .notes li { margin: 2px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; background: var(--surface-2); }
+  .tablewrap { overflow-x: auto; }
+  footer { margin-top: 48px; font-size: 13px; color: var(--muted); max-width: 80ch; }
+  .tittle { position: absolute; background: currentColor; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>FlowView · pistes de logo</h1>
+    <p>Esquisses en noir et blanc d'abord : un logo doit tenir sans couleur. Chaque piste est montrée en grand, à côté du nom, en icône d'onglet (16 et 32 px), en avatar rond et sur fond sombre.</p>
+    <p class="warn"><b>Esquisses basse fidélité.</b> Ces formes sont dessinées en code (géométrie simple), sans outil de génération ni passe de graphiste. Elles servent à choisir une <i>idée</i>. La piste retenue devra être reconstruite proprement (proportions, épaisseurs, équilibre optique) avant tout usage.</p>
+  </header>
+
+  <section>
+    <h2>Ce qu'on évite (le rayon des concurrents)</h2>
+    <div class="tablewrap"><table>
+      <tr><th>Concurrent</th><th>Leur logo (vu le 17/11/2026)</th><th>Conséquence pour nous</th></tr>
+      <tr><td>Wintics</td><td>Un « W » en dents de scie (trois pointes), violet</td><td>Pas de crête en zigzag régulier : une silhouette à <b>un seul sommet dominant</b></td></tr>
+      <tr><td>Viziosense</td><td>Nom en capitales et minuscules, le « o » devient un œil</td><td>Pas d'œil, pas d'objectif, pas de pupille</td></tr>
+      <tr><td>Safari AI</td><td>Un glyphe vert anguleux dans un cadre, à côté du nom</td><td>Pas de vert, pas de glyphe encadré</td></tr>
+      <tr><td>Couloir commun</td><td>Cadre de détection (Wintics), flou (Viziosense)</td><td>Ni coins de cadre, ni flou dans le logo</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Piste A · La crête et sa marge</h2>
+    <p class="idea">Une crête, et sous elle une seconde ligne plus pâle : la <b>fourchette</b>. Le logo dit notre promesse, le chiffre honnête, avec la signature de la DA, les crêtes. Une montagne mesurée avec sa marge d'erreur.</p>
+    <p class="why">Muses : les crêtes dans la brume (plans qui pâlissent), le guetteur à l'instrument. Émotion : en confiance. Différence : aucun concurrent ne montre l'incertitude, encore moins dans son logo.</p>
+    <div class="row" id="rowA"></div>
+  </section>
+
+  <section>
+    <h2>Piste B · Le refuge éclairé</h2>
+    <p class="idea">La masse de la montagne, et une seule petite fenêtre allumée : le refuge au petit matin, quelqu'un veille. C'est la « seule lumière qui apaise dans l'obscurité » des muses, en négatif dans la forme.</p>
+    <p class="why">Muses : la lumière dans les bois, le refuge, le guetteur. Émotion : serein. Attention : la fenêtre n'est jamais rouge (le rouge est réservé à l'alerte) ; elle est un vide dans la forme.</p>
+    <div class="row" id="rowB"></div>
+  </section>
+
+  <section>
+    <h2>Piste C · Le nom seul</h2>
+    <p class="idea">Pas de symbole : le nom en Inter demi-gras, serré à la main. Le point du « i » de View devient un petit carré : la fenêtre du refuge, le même signe que la piste B, en discret.</p>
+    <p class="why">Le plus sobre et le plus « respecté dans son métier ». Faiblesse : peu reconnaissable en icône d'onglet, il faut alors une initiale ou le carré seul.</p>
+    <div class="row" id="rowC"></div>
+  </section>
+
+  <section>
+    <h2>Pistes écartées (montrées pour mémoire)</h2>
+    <p class="why">Dessinées pour couvrir les trois familles, puis écartées au contrôle.</p>
+    <div class="row" id="rowX"></div>
+  </section>
+
+  <section>
+    <h2>Ma recommandation</h2>
+    <p class="idea"><b>Piste B, variante B1 (masse et fenêtre).</b> Elle porte l'émotion n°1 (serein : le refuge où quelqu'un veille) et la règle « une seule lumière », se lit tout de suite comme une montagne, et ne ressemble à aucun concurrent. Le point du « i » en carré (piste C) répète la fenêtre dans le nom.</p>
+    <p class="why">Pourquoi pas A2, que j'aimais sur le papier : en traits, la crête se lit comme une icône de graphique, la même que celle de notre interface. L'idée de la marge reste juste, mais elle vivra mieux dans l'écran (la fourchette) que dans le logo. Risque de B1 à vérifier : la montagne avec un chalet est un motif courant (location de chalets, immobilier de montagne).</p>
+  </section>
+
+  <footer>Esquisses du 17/11/2026, outil : code SVG (pas de générateur d'images). Police du nom : Inter (SIL OFL 1.1), à vectoriser pour le logo final. Logos concurrents décrits d'après leurs sites, non reproduits ici.</footer>
+</div>
+
+<script>
+// Marks are drawn in a 64 x 64 box and inherit currentColor (monochrome; opacity steps allowed).
+const R = "4,44 18,33 25,37 39,15 51,33 60,28";           // main ridge: one dominant summit
+const shift = (pts, dy) => pts.split(" ").map(p => { const [x, y] = p.split(","); return `${x},${+y + dy}`; }).join(" ");
+const rev = pts => pts.split(" ").reverse().join(" ");
+const line = (pts, w = 4.5, o = 1) => `<polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" opacity="${o}"/>`;
+
+const MARKS = {
+  A1: { name: "A1 · Ruban", note: "La bande entière est la marge.", svg:
+    `<polygon points="${R} ${rev(shift(R, 9))}" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>` },
+  A2: { name: "A2 · Deux lignes", note: "Se lit d'abord comme une icône « graphique en courbe » (très proche de l'icône Phosphor ChartLine de notre propre interface) : confusion avec un bouton.", svg:
+    line(R) + line(shift(R, 11), 4.5, .38) },
+  A3: { name: "A3 · Plans successifs", note: "Trois plans qui pâlissent : plus paysage, moins « mesure ».", svg:
+    `<polygon points="4,40 22,24 34,30 48,12 60,22 60,58 4,58" fill="currentColor" opacity=".3"/>
+     <polygon points="4,46 16,37 30,42 44,28 60,40 60,58 4,58" fill="currentColor" opacity=".6"/>
+     <polygon points="4,52 24,45 38,50 60,46 60,58 4,58" fill="currentColor"/>` },
+  B1: { name: "B1 · Masse et fenêtre", note: "La fenêtre est un vide : elle prend la couleur du fond. Elle reste visible en 32 px, devient un point en 16 px.", pick: true, svg:
+    `<path fill-rule="evenodd" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"
+       d="M4 54 L18 33 L25 37 L39 15 L51 33 L60 28 L60 54 Z M29 39 L29 48 L38 48 L38 39 Z"/>` },
+  B2: { name: "B2 · Crête et lumière", note: "La lumière flotte sous le sommet.", svg:
+    line(R) + `<rect x="36" y="27" width="6.5" height="6.5" fill="currentColor"/>` },
+  X1: { name: "X1 · Tour de guet", note: "Écartée : lue comme un pylône ou une antenne (couloir surveillance).", svg:
+    line("22,56 30,18", 3.5) + line("42,56 34,18", 3.5) + line("26.5,38 37.5,38 25,47 39,47 26.5,38", 2.5) +
+    `<rect x="25" y="9" width="14" height="9" fill="currentColor"/>` },
+  X2: { name: "X2 · Anneau gradué", note: "Écartée : lue comme une boussole ou une icône de réglages.", svg: (() => {
+    let t = ""; for (let i = 0; i < 36; i++) { const a = i / 36 * 2 * Math.PI, r1 = 27, r2 = i % 9 === 0 ? 21 : 24;
+      t += `<line x1="${32 + r1 * Math.sin(a)}" y1="${32 - r1 * Math.cos(a)}" x2="${32 + r2 * Math.sin(a)}" y2="${32 - r2 * Math.cos(a)}" stroke="currentColor" stroke-width="2"/>`; }
+    return t + line("13,42 24,34 30,37 40,25 51,41", 3.5); })() },
+  X3: { name: "X3 · Crête en zigzag", note: "Écartée : trop proche du « W » de Wintics.", svg:
+    line("6,46 18,18 30,46 42,18 54,46", 5) },
+};
+
+const svg = (k, cls = "") => `<svg class="${cls}" viewBox="0 0 64 64" role="img" aria-label="${MARKS[k].name}">${MARKS[k].svg}</svg>`;
+const wm = (size) => `<span class="wm" data-tittle${size ? ` style="font-size:${size}px"` : ""}>FlowV&#305;ew</span>`;
+
+function sketch(k) {
+  const m = MARKS[k];
+  return `<article class="sk${m.pick ? " pick" : ""}">
+    <h3>${m.name}${m.pick ? '<span class="badge">recommandée</span>' : ""}</h3>
+    <div class="big">${svg(k)}</div>
+    <div class="lockup">${svg(k)}${wm()}</div>
+    <div class="tests">
+      <span class="lbl">16</span>${svg(k, "fav")}
+      <span class="lbl">32</span>${svg(k, "fav32")}
+      <span class="avatar">${svg(k)}</span>
+      <span class="rev">${svg(k)}${wm(17)}</span>
+    </div>
+    <div class="lockup colour" style="border-top:0;padding-bottom:0">${svg(k)}${wm(20)}<span class="lbl" style="font-size:12px;color:var(--muted)">couleur : ardoise + encre</span></div>
+    <ul class="notes"><li>${m.note}</li></ul>
+  </article>`;
+}
+
+function wordOnly() {
+  return `<article class="sk">
+    <h3>C1 · Nom seul, point carré</h3>
+    <div class="big">${wm(46)}</div>
+    <div class="tests">
+      <span class="lbl">16</span><svg class="fav" viewBox="0 0 64 64" aria-label="Initiale"><text x="32" y="50" text-anchor="middle" font-family="Inter" font-weight="600" font-size="52" fill="currentColor">F</text></svg>
+      <span class="lbl">32</span><svg class="fav32" viewBox="0 0 64 64" aria-label="Initiale"><text x="32" y="50" text-anchor="middle" font-family="Inter" font-weight="600" font-size="52" fill="currentColor">F</text></svg>
+      <span class="rev">${wm(17)}</span>
+    </div>
+    <ul class="notes"><li>En icône d'onglet, il faut un second dessin (l'initiale) : c'est un point faible.</li></ul>
+  </article>`;
+}
+
+document.getElementById("rowA").innerHTML = ["A1", "A2", "A3"].map(sketch).join("");
+document.getElementById("rowB").innerHTML = ["B1", "B2"].map(sketch).join("");
+document.getElementById("rowC").innerHTML = wordOnly();
+document.getElementById("rowX").innerHTML = ["X1", "X2", "X3"].map(sketch).join("");
+
+// Replace the dot of the "i" with a small square: the word is set with a dotless i (U+0131)
+// and the square is positioned from measured glyph widths once the font is loaded.
+function placeTittles() {
+  const c = document.createElement("canvas").getContext("2d");
+  document.querySelectorAll("[data-tittle]").forEach(el => {
+    el.querySelectorAll(".tittle").forEach(t => t.remove());
+    const cs = getComputedStyle(el), size = parseFloat(cs.fontSize);
+    c.font = `${cs.fontWeight} ${size}px Inter`;
+    c.letterSpacing = cs.letterSpacing;
+    const before = c.measureText("FlowV").width, iw = c.measureText("ı").width;
+    const s = size * 0.17, t = document.createElement("span");
+    t.className = "tittle";
+    Object.assign(t.style, { width: s + "px", height: s + "px", left: (before + iw / 2 - s / 2) + "px", top: (size * 0.02) + "px" });
+    el.appendChild(t);
+  });
+}
+document.fonts.ready.then(placeTittles);
+</script>
+</body>
+</html>

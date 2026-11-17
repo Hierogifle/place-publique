@@ -92,7 +92,22 @@ Phosphor Regular, 18 px, une icône par concept.
 Dans l'app : image de caméra floutée, jamais enregistrée. Hors app : paysages de montagne libres, plans successifs et brume, légère désaturation, auteur crédité.
 
 ## Logo
-*(TBD — see logo-design)*
+*Logo v1 « le refuge éclairé » (piste B1), choisi par Romuald le 2026-11-17. Planche et règles : [stylescapes/logo.html](stylescapes/logo.html) ; pistes explorées : [stylescapes/logo-sketches.html](stylescapes/logo-sketches.html) ; détail : [design.md](design.md) § Logo.*
+
+**Idée :** la masse de la montagne (un sommet, un épaulement) et une seule fenêtre carrée découpée en creux : le refuge où quelqu'un veille. Le point du « i » de View est un carré, l'écho de la fenêtre.
+**Fichiers verrouillés (à placer, jamais à redessiner) :** `.agents/assets/logo/`
+- `logo-lockup.svg` (principal) · `logo-lockup-inverse.svg` · `logo-lockup-black.svg` · `logo-lockup-white.svg` · `logo-lockup-gray.svg`
+- `logo-icon.svg` · `logo-icon-inverse.svg` · `avatar.svg` · `app-icon.svg` · `favicon.svg` · `favicon.ico`
+- `raster/` : PNG (fond transparent) et JPEG de chaque variante, favicons 16 / 32 / 48 / 180 px
+**Couleurs :** montagne ardoise `#1F3140`, nom encre `#2A2420` ; inversé : `#E1E9EE` / `#EFE8DC`. Une couleur : encre, clair `#FBFAF7`, gris `#6B625A`.
+**Zone de protection :** une fenêtre (8 unités sur la grille de 64), incluse dans les fichiers. **Taille minimale :** bloc complet 96 px / 25 mm ; symbole seul 16 px.
+**Interdits :** recolorer (jamais en rouge d'alerte), remplir la fenêtre, encadrer ou mettre en pastille, rogner, déformer, ajouter effet ou slogan, recomposer le nom.
+
+**Contrôle SAD (2026-11-17) :**
+- **Simple :** ✅ un seul dessin de 16 px à 1 600 px ; tient en une couleur et en inversé ; en 16 px la fenêtre devient un point, la montagne reste lisible.
+- **Approprié :** ✅ serein (le refuge veille), respecté (aucune mascotte ni « IA »), une seule lumière.
+- **Distinct, rayon :** ✅ aucun concurrent direct n'utilise de montagne, de forme pleine ni de couleur chaude (Wintics : W en zigzag ; Viziosense : œil ; Safari AI : glyphe vert encadré).
+- **Distinct, ressemblances hors secteur :** **non évalué.** Google Lens, Pinterest et la base de marques de l'OMPI n'ont pas été lancés (il faut téléverser l'image). Une recherche par mots-clés n'a rien trouvé d'identique ; la montagne avec chalet reste un motif courant (location de chalets). À faire avant tout usage public hors école.
 
 ## Voice
 **Tone:** la voix du vieux gardien de refuge : calme, lente, précise ; elle conseille au conditionnel, ne commande jamais.
