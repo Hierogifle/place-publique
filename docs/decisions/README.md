@@ -13,7 +13,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | N° | Date | Décision | Statut |
 |---|---|---|---|
 | [0001](0001-sujet-et-guide-formateur.md) | 2026-11-17 | Sujet rangé dans `sujet/`, guide formateur gardé hors du dépôt public | Acceptée |
-| [0002](0002-branches-personnelles.md) | 2026-11-17 | Branches `Romuald` et `Olivier` créées | À revoir (workflow Git à définir) |
+| [0002](0002-branches-personnelles.md) | 2026-11-17 | Branches `Romuald` et `Olivier` créées | Remplacée par 0017 |
 | [0003](0003-station-les-arcs.md) | 2026-11-17 | Client de démonstration : Les Arcs plutôt que Brides-les-Bains | Acceptée |
 | [0004](0004-nom-de-marque-flowview.md) | 2026-11-17 | La marque est FlowView ; « Place Publique » = nom du projet | Acceptée |
 | [0005](0005-imagerie-unsplash-pexels.md) | 2026-11-17 | Images : photo libre Unsplash/Pexels, pas de générateur IA | Acceptée |
@@ -27,6 +27,8 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0013](0013-socle-fixe-et-marge.md) | 2026-11-17 | Socle fixe (patine, silence, une alerte, chiffre honnête, voix du sage) et marge de liberté | Acceptée |
 | [0014](0014-direction-artistique-piste-04.md) | 2026-11-17 | Direction artistique : piste 04 v2 « Les Crêtes, vues du refuge » | Acceptée (design.md validé) |
 | [0015](0015-maquette-3d-et-ecran-crm.md) | 2026-11-17 | La station devient une maquette 3D ; écran sur le patron « CRM 3D » | Acceptée |
+| [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Acceptée (à faire valider) |
+| [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée |
 
 ## Modèle
 

@@ -1,7 +1,7 @@
 # 0002 — Branches personnelles `Romuald` et `Olivier`
 
 - **Date :** 2026-11-17
-- **Statut :** À revoir — sera remplacée par la fiche sur le workflow Git
+- **Statut :** Remplacée par [0017](0017-workflow-git-et-github.md)
 - **Décideurs :** Romuald
 
 ## Contexte

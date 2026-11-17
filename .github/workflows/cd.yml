@@ -1,0 +1,40 @@
+# CD: every push to main publishes a fresh Docker image on GitHub Container Registry (ghcr.io).
+# The machine that runs the app then only needs `docker compose pull && docker compose up -d`
+# (see CONTRIBUTING.md, "Déploiement"). Deployment itself stays local, as the subject allows.
+name: CD
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: publish image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for a Dockerfile
+        id: check
+        run: |
+          if [ -f Dockerfile ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; echo "No Dockerfile yet, nothing to publish."; fi
+
+      # Plain docker login (no third-party action to pin or trust).
+      - name: Log in to ghcr.io
+        if: steps.check.outputs.present == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+
+      - name: Build and push
+        if: steps.check.outputs.present == 'true'
+        run: |
+          IMAGE="ghcr.io/${GITHUB_REPOSITORY,,}"
+          docker build -t "$IMAGE:latest" -t "$IMAGE:${GITHUB_SHA::7}" .
+          docker push "$IMAGE:latest"
+          docker push "$IMAGE:${GITHUB_SHA::7}"
