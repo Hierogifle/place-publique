@@ -1,0 +1,49 @@
+# Évaluation du comptage — seuil d'acceptabilité
+
+*Étape 1.3 du [palier 1](palier-1.md). **Ce document doit être validé et commité avant le premier lancement d'un modèle sur le jeu de référence.** L'horodatage Git prouve que le seuil n'a pas été ajusté aux résultats.*
+
+> **Statut : PROPOSÉ le 18/11/2026, en attente de validation par Romuald.** Fiche [0026](decisions/0026-seuil-d-acceptabilite.md).
+
+## 1. L'usage, d'où vient le seuil
+FlowView sert à l'exploitant à **décider** : ouvrir ou renforcer une remontée, envoyer du personnel, prévenir les pisteurs. Il ne sert pas à facturer à la personne près. L'écran montre :
+- un **niveau d'affluence** par zone (calme, habituel, chargé, très chargé), comparé à « d'habitude à cette heure » ;
+- une **alerte** quand une zone dépasse nettement sa normale.
+
+Ce qui compte donc :
+1. **Que l'erreur ne fasse pas sauter un niveau.** Une zone « chargée » ne doit pas apparaître « calme ».
+2. **Qu'il n'y ait pas de sous-comptage systématique dans les foules.** C'est là que l'alerte doit partir, et un biais vers le bas la ferait manquer (veille Q2).
+3. **Qu'une scène vide reste vide.** Une fausse foule la nuit détruirait la confiance, et le « chiffre honnête » est un engagement de la marque.
+
+Le sujet le dit lui-même : « compter 40 piétons au lieu de 50 suffit pour dimensionner un accueil, pas pour déclencher une alerte sécurité ». FlowView n'est **pas** un outil de sécurité : l'alerte informe un humain, elle ne commande rien (fiche [0019](decisions/0019-socle-periodique-puis-temps-reel.md), veille Q7).
+
+## 2. Classes
+| Classe | Rôle | Seuil ? |
+|---|---|---|
+| `person` | Ce qu'on compte : une personne, quel que soit son équipement | **Oui, classe principale** |
+| `skis`, `snowboard` (COCO) | Équipement. Un skieur reste une personne, compter ses skis n'apporte rien à la décision | Non : mesurés pour information (veille Q2), hors seuil |
+
+## 3. Le seuil proposé (classe `person`, jeu de référence, 240 images)
+
+| # | Mesure | Sur quelles images | Seuil | Pourquoi ce chiffre |
+|---|---|---|---|---|
+| S1 | **Erreur relative médiane** \|compté − vrai\| / vrai | Images en exploitation avec **au moins 5 personnes** | **≤ 20 %** | Valeur indicative du sujet. 20 % fait passer 50 personnes à 40 ou 60, ce qui reste dans le même niveau d'affluence si les niveaux sont espacés d'environ ×1,5 (à vérifier sur les comptages) |
+| S2 | **Erreur absolue moyenne (MAE)** | Images en exploitation avec **moins de 5 personnes** | **≤ 1,5 personne** | Pour peu de monde, l'erreur relative n'a pas de sens (1 au lieu de 2 = 50 %). À ces niveaux, une ou deux personnes d'écart ne changent aucune décision |
+| S3 | **Biais relatif moyen** (compté − vrai) / vrai, avec son signe | Images avec au moins 5 personnes | **entre −10 % et +10 %** | Un sous-comptage systématique ferait manquer les alertes ; un sur-comptage en créerait de fausses |
+| S4 | **Erreur relative médiane, affluence haute seule** | Strate « haute », au moins 5 personnes | **≤ 25 %** | C'est la strate où l'alerte se joue. On tolère un peu plus, car les foules serrées sont plus dures, mais on la mesure à part pour ne pas la noyer dans la moyenne |
+| S5 | **Fausses détections hors exploitation** | Images de nuit et de crépuscule (48) | **≤ 0,5 détection par image en moyenne** | Une scène vide doit rester presque vide. La vérité terrain compte le personnel réel (dameurs, pisteurs à pied) |
+
+**Règles d'application :**
+- Chaque mesure est donnée avec son **intervalle de confiance à 95 %** (bootstrap, 2 000 tirages). Le seuil est jugé sur la valeur mesurée ; l'intervalle est publié à côté pour qu'on sache s'il est serré ou non.
+- **Les images marquées « inexploitables »** (objectif givré, image noire) sont exclues des mesures S1 à S4. Elles sont comptées à part comme « pas de donnée », jamais comme zéro.
+- **Les personnes marquées « incertaines »** dans la vérité terrain donnent une fourchette. La mesure principale utilise les personnes certaines, et la fourchette est publiée.
+- **La baseline passe si S1, S2, S3 et S5 sont tenus.** S4 est **bloquant pour l'alerte** : si S4 échoue, l'alerte reste affichée comme « indicative » jusqu'à amélioration.
+- **Le jeu de contrôle** (Varet, Arpette, Aiguille Rouge) est mesuré avec les mêmes règles. Il **ne compte pas** dans la décision : il dit si le modèle tient sur des caméras non étudiées.
+
+## 4. Ce que la vérité terrain doit garantir pour que le seuil ait un sens
+La précision de la vérité terrain doit être **meilleure que le seuil**. L'étape 1.4 mesure deux écarts :
+- **Biais d'ancrage :** l'écart entre le comptage sans aide et le comptage corrigé après pré-annotation, sur 24 images. Critère : **≤ 1 personne en moyenne**.
+- **Si l'écart dépasse 10 % sur les images à 5 personnes ou plus,** S1 (20 %) n'est plus mesurable proprement : on revoit le protocole avant de conclure.
+
+## 5. Ce qui n'est pas jugé ici
+- **Le mAP et la précision / le rappel par cadre :** calculés et publiés pour la veille Q2, mais ce n'est pas le critère d'usage.
+- **Le flux (passages par minute) :** il viendra avec le mode direct et le suivi, avec son propre seuil (fiche 0019).

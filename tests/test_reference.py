@@ -75,3 +75,16 @@ def test_manifest_flags_bad_names_and_keeps_weather(tmp_path):
     rows, problems = manifest.build_manifest(plan_path, images, previous)
     assert len(rows) == 1 and rows[0]["weather"] == "beau"
     assert any("nom non conforme" in p for p in problems)
+
+
+def test_blind_set_is_seeded_and_balanced():
+    from flowview.reference import blind
+    rows = [{"slot_id": f"{c}-{i:02d}", "subset": "reference", "camera": c, "moment": m, "file": f"{c}-{i}.jpg"}
+            for c in ("A", "B", "C") for i, m in enumerate(["midi", "nuit"] * 10, 1)]
+    rows.append({"slot_id": "A-R01", "subset": "reference", "camera": "A", "moment": "midi", "file": "r.jpg"})
+    first = blind.draw_blind_set(rows, 8)
+    assert first == blind.draw_blind_set(rows, 8)
+    assert [r["camera"] for r in first].count("A") == 8
+    assert not any(r["slot_id"].endswith("R01") for r in first)
+    nights = {r["slot_id"] for r in rows if r["moment"] == "nuit"}
+    assert not nights & {r["slot_id"] for r in first}

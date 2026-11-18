@@ -116,3 +116,16 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 - **Résolution :** les images d'archive font **18 543 × 3 953 px**, contre 600 px de haut en direct. Sur ARC-02 (14/12/2025, 10 h 10), des dizaines de skieurs sont nettement visibles autour de la gare.
 - **Hypothèse :** la difficulté du comptage viendra moins de la taille des silhouettes que de leur nombre et de leur densité près des gares. Elle sera mesurée en 1.5.
 - **Collecte complète lancée :** 270 créneaux, soit 240 de référence et 30 de contrôle.
+
+### 2026-11-18 · Étapes 1.3 et 1.4 rédigées (en attente de validation)
+- **1.3 :** proposition de seuil dans [evaluation.md](evaluation.md) (→ [0026](decisions/0026-seuil-d-acceptabilite.md), proposée). Cinq mesures sur `person` : erreur relative médiane ≤ 20 % ; MAE ≤ 1,5 pour moins de 5 personnes ; biais entre −10 et +10 % ; affluence haute ≤ 25 % ; au plus 0,5 fausse détection par image la nuit. **Aucun modèle ne tourne sur le jeu de référence avant que ce seuil soit validé et commité.**
+- **1.4 :** guide de comptage dans [annotation.md](annotation.md) § 2 : qui compte, attributs `incertain` et `sur_remontee`, étiquette `inexploitable`, parcours par bandes, bords du 360°, ordre des séances. Tirage des 24 images à l'aveugle : `flowview.reference.blind` (graine 20261119, 8 par caméra, hors nuit), à lancer une fois le manifeste construit.
+
+### 2026-11-18 · Étape 1.2, collecte terminée et manifeste construit
+- **270 images collectées**, soit 240 de référence et 30 de contrôle. Pour 3 caméras sur 6, au moins une heure d'image s'écarte de la cible, au plus de 35 min.
+- **5 créneaux sans image** (ARC-09, MTB-01, MTB-02, MTB-07, GRZ-10) : leur journée manque dans l'archive, par exemple le 29/12/2025 (index du jour vide ou erreur HTTP). Ils sont remplacés par les réserves suivantes de la même caméra : ARC-R01, MTB-R02, MTB-R03, MTB-R04 (MTB-R01 était vide aussi) et GRZ-R01.
+- **Tailles réelles :** Arcabulle 18 543 × 3 953, Grizzly 12 000 × 2 441, Mont-Blanc 12 000 × 1 772 ; contrôle de 9 248 à 14 245 px de large. Environ 550 Mo, hors de Git.
+- **Couverture de la référence :** au moins 21 images par caméra et par niveau d'affluence ; matin 65, midi 63, après-midi 65 ; nuit 24, crépuscule 23 ✅.
+- **Calibration de la règle anti-doublons (prévue au protocole) :** avec le seuil provisoire de 10 bits, 13 paires étaient signalées. Elles étaient **toutes de jours différents**, à la même heure et par le même beau temps. Une caméra fixe garde la même structure d'image, et l'empreinte la retrouve d'un jour à l'autre. La paire la plus proche (GRZ-15 / GRZ-08, 3 bits) a été vérifiée à l'œil : skieurs et panneaux différents, donc pas un doublon. **Seuil fixé à 2 bits.** Il ne vise que le vrai cas à craindre : une caméra bloquée qui renvoie la même image plusieurs jours. Aucune empreinte SHA-256 identique, aucun quasi-doublon à 2 bits.
+- **Météo :** à noter pendant l'annotation, par une étiquette d'image dans CVAT. Le critère « au moins 10 images par classe de météo » sera donc contrôlé à la fin de l'étape 1.4. Si une classe manque, on puise dans les réserves déjà tirées.
+- **Critère de passage de 1.2 :** atteint pour la couverture et les doublons, avec la météo reportée en 1.4. **Le jeu est figé** : `data/reference/manifest.csv` est commité, avec les empreintes SHA-256.

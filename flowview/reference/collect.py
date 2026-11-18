@@ -36,7 +36,7 @@ def _get(url: str, timeout: int = 30) -> bytes:
 def closest_image(day_index: dict, target: datetime, tz: ZoneInfo, key: str) -> tuple[dict, datetime] | None:
     """Image of the day index whose local time is closest to the target (local, naive)."""
     best = None
-    for img in day_index.get("images", []):
+    for img in (day_index or {}).get("images", []):
         stamp = datetime.strptime(img["stamp"], "%Y%m%dT%H%M%SZ").replace(tzinfo=UTC)
         local = stamp.astimezone(tz).replace(tzinfo=None)
         if key not in img:
@@ -83,7 +83,7 @@ def collect(cfg: dict, plan: list[dict], images_dir: Path, log_path: Path, slot_
                     entry.update(status="ok", file=name)
                     sleep(arch["delay_seconds"])
         except (OSError, ValueError, KeyError) as exc:   # logged, the run goes on
-            entry["status"] = f"erreur : {type(exc).__name__}"
+            entry["status"] = f"erreur : {type(exc).__name__} {getattr(exc, 'code', '')}".strip()
             sleep(arch["delay_seconds"])
         log.append(entry)
         print(f"[{i + 1}/{len(todo)}] {entry['slot_id']} {entry['status']} {entry['file']}", flush=True)

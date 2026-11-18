@@ -37,6 +37,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0023](0023-tirage-stratifie-du-jeu-de-reference.md) | 2026-11-18 | Jeu de référence tiré au sort, par strates, avant de voir les images | Acceptée (quotas modifiés par 0025) |
 | [0024](0024-collecte-scriptee-adresses-du-lecteur.md) | 2026-11-18 | Collecte scriptée, limitée aux images que le lecteur officiel charge lui-même | Acceptée |
 | [0025](0025-pre-annotation-et-taille-du-jeu.md) | 2026-11-18 | 3 × 80 images + contrôle 3 × 10 ; pré-annotation corrigée dans CVAT, biais d'ancrage mesuré | Acceptée |
+| [0026](0026-seuil-d-acceptabilite.md) | 2026-11-18 | Seuil d'acceptabilité du comptage (S1 à S5), fixé avant toute mesure | Proposée |
 
 ## Modèle
 

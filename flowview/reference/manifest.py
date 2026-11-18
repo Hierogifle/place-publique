@@ -27,7 +27,7 @@ WEATHER = ("beau", "couvert", "neige-brouillard", "nuit")
 MANIFEST_FIELDS = ("slot_id", "subset", "camera", "crowd_level", "moment", "planned", "actual", "delta_min",
                    "file", "width", "height", "sha256", "dhash", "weather", "near_dup_of")
 DHASH_W, DHASH_H = 16, 8      # 128 bits; wide grid because the images are panoramas
-NEAR_DUP_MAX_BITS = 10        # to calibrate on the first real images
+NEAR_DUP_MAX_BITS = 2         # calibrated 18/11/2026: fixed cameras give 3+ bits between different days
 
 
 def parse_name(name: str) -> tuple[str, datetime] | None:
