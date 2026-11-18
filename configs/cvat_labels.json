@@ -1,0 +1,52 @@
+[
+  {
+    "name": "person",
+    "type": "rectangle",
+    "color": "#1f3140",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "sur_remontee",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "meteo",
+    "type": "tag",
+    "color": "#6b625a",
+    "attributes": [
+      {
+        "name": "valeur",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "beau",
+        "values": [
+          "beau",
+          "couvert",
+          "neige-brouillard",
+          "nuit"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "inexploitable",
+    "type": "tag",
+    "color": "#c8342a",
+    "attributes": []
+  }
+]

@@ -1,7 +1,7 @@
 # 0021 — Images des webcams : usage pédagogique sans autorisation, avec garde-fous
 
 - **Date :** 2026-11-18
-- **Statut :** Acceptée
+- **Statut :** Acceptée, garde-fou n° 2 modifié par [0024](0024-collecte-scriptee-adresses-du-lecteur.md)
 - **Décideurs :** Romuald
 
 ## Contexte

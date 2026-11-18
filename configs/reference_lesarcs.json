@@ -1,0 +1,146 @@
+{
+  "client": "lesarcs",
+  "description": "Reference set sampling plan for Les Arcs, season 2025-2026 (step 1.2, ADR 0022, 0023, 0024).",
+  "seed": 20261118,
+  "season": {
+    "start": "2025-12-13",
+    "end": "2026-04-25"
+  },
+  "cameras": [
+    {
+      "code": "ARC",
+      "id": "arcabulle",
+      "name": "Arcabulle",
+      "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle",
+      "archive_path": "les-arcs_arcabulle",
+      "archive_cam": "les-arcs_arcabulle"
+    },
+    {
+      "code": "MTB",
+      "id": "mont-blanc",
+      "name": "Mont-Blanc (TSD)",
+      "viewer": "https://app.webcam-hd.com/lesarcs/mont-blanc",
+      "archive_path": "les_arcs_tsd-mont-blanc",
+      "archive_cam": "les-arcs_tsd-mont-blanc"
+    },
+    {
+      "code": "GRZ",
+      "id": "grizzly",
+      "name": "Grizzly (Peisey-Vallandry)",
+      "viewer": "https://app.webcam-hd.com/lesarcs/grizzly",
+      "archive_path": "peisey-vallandry_grizzly",
+      "archive_cam": "peisey-vallandry_grizzly"
+    }
+  ],
+  "control_cameras": [
+    {
+      "code": "VAR",
+      "id": "varet",
+      "name": "Varet",
+      "viewer": "https://app.webcam-hd.com/lesarcs/varet",
+      "archive_path": "les_arcs_catex",
+      "archive_cam": "les-arcs_catex"
+    },
+    {
+      "code": "ARP",
+      "id": "arpette",
+      "name": "Arpette",
+      "viewer": "https://app.webcam-hd.com/lesarcs/arpette",
+      "archive_path": "les-arcs_arpette",
+      "archive_cam": "les-arcs_arpette"
+    },
+    {
+      "code": "AIG",
+      "id": "aiguille-rouge",
+      "name": "Aiguille Rouge",
+      "viewer": "https://app.webcam-hd.com/lesarcs/aiguille-rouge",
+      "archive_path": "les_arcs_aiguille",
+      "archive_cam": "les-arcs_aiguille"
+    }
+  ],
+  "holidays": [
+    [
+      "2025-12-20",
+      "2026-01-04"
+    ],
+    [
+      "2026-02-07",
+      "2026-03-08"
+    ],
+    [
+      "2026-04-04",
+      "2026-04-25"
+    ]
+  ],
+  "high_periods": [
+    [
+      "2025-12-27",
+      "2026-01-03"
+    ],
+    [
+      "2026-02-14",
+      "2026-03-01"
+    ]
+  ],
+  "moments": {
+    "matin": [
+      "09:00",
+      "11:00"
+    ],
+    "midi": [
+      "11:00",
+      "14:00"
+    ],
+    "apres-midi": [
+      "14:00",
+      "16:30"
+    ]
+  },
+  "off_hours": {
+    "nuit": [
+      [
+        "22:00",
+        "23:55"
+      ],
+      [
+        "00:00",
+        "05:00"
+      ]
+    ],
+    "crepuscule": [
+      [
+        "07:30",
+        "08:45"
+      ],
+      [
+        "17:00",
+        "18:30"
+      ]
+    ]
+  },
+  "quotas_per_camera": {
+    "haute": 22,
+    "moyenne": 21,
+    "basse": 21,
+    "nuit": 8,
+    "crepuscule": 8
+  },
+  "reserve_per_camera": 15,
+  "control_quotas_per_camera": {
+    "haute": 4,
+    "moyenne": 3,
+    "basse": 3,
+    "nuit": 0,
+    "crepuscule": 0
+  },
+  "control_reserve_per_camera": 5,
+  "time_step_minutes": 5,
+  "archive": {
+    "note": "Day index loaded by the official viewer itself (ADR 0024); only plan slots are fetched.",
+    "day_index": "https://app.webcam-hd.com/api/webcam/{archive_path}/day/{date}?cam={archive_cam}",
+    "image_key": "url_mega",
+    "timezone": "Europe/Paris",
+    "max_gap_minutes": 45,
+    "delay_seconds": 5
+  }
+}

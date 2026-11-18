@@ -59,3 +59,82 @@ Les 6 webcams vues ce matin en plein jour (images publiques du site), les 3 live
 - **Vidéo :** après la baseline sur images (le suivi dépend du détecteur). Sources repérées dans [sources.md](sources.md) § 3 bis : MOT17 / MOT20 pour mesurer le suivi, extraits Pexels pour notre contexte.
 
 **Étape suivante : 1.2, figer le jeu de référence.** Il faut d'abord écrire la grille des strates (caméra × moment × météo × affluence) et la règle anti-doublons, avant de choisir la moindre image.
+
+---
+
+## Étape 1.2 · Figer le jeu de référence : protocole (écrit le 18/11/2026, avant tout choix d'image)
+
+**Hypothèse :** 150 images tirées au hasard dans des strates définies à l'avance représentent la saison. Elles permettent de mesurer l'erreur de comptage sans biais de sélection : personne ne choisit de « belles » images.
+
+**Le tirage** (`configs/reference_lesarcs.json` → `data/reference/sampling_plan.csv`, graine 20261118, reproductible) :
+- **Période :** saison 2025-2026, du 13/12/2025 au 25/04/2026 🔎 (clôture annoncée le 25 ou le 26/04 selon les sources).
+- **3 caméras × 50 images**, plus 10 images de réserve par caméra :
+
+| Strate | Par caméra | Définition (indicateur de calendrier, contrôlé ensuite par les comptages) |
+|---|---|---|
+| Affluence haute | 14 | Deux zones scolaires en vacances en même temps : 27/12 → 03/01 et 14/02 → 01/03 |
+| Affluence moyenne | 13 | Autres jours de vacances (toutes zones) et week-ends hors vacances |
+| Affluence basse | 13 | Jours de semaine hors vacances |
+| Nuit (hors exploitation) | 5 | 22 h → 5 h : scène vide, pour mesurer les **fausses détections** |
+| Crépuscule (hors exploitation) | 5 | 7 h 30 → 8 h 45 et 17 h → 18 h 30 : faible lumière |
+
+- **Moments :** matin (9 h → 11 h), midi (11 h → 14 h), après-midi (14 h → 16 h 30), répartis à parts égales dans chaque niveau d'affluence. L'heure est tirée au hasard dans la plage, au pas de 5 min.
+- **Une seule image par jour et par caméra :** deux images d'une même journée se ressemblent trop.
+- **Vacances scolaires 2025-2026 :** jeu de données officiel du ministère (data.education.gouv.fr), consulté le 18/11/2026 ✅. Noël : 20/12 → 04/01, toutes zones. Hiver : A 07/02 → 22/02, B 14/02 → 01/03, C 21/02 → 08/03. Printemps : A 04/04 → 19/04, B 11/04 → 26/04, C 18/04 → 03/05.
+
+**La collecte (à la main, dans le lecteur officiel, fiche 0021) :**
+1. Pour chaque ligne du plan : ouvrir la caméra à la date indiquée et prendre l'image **la plus proche de l'heure cible**.
+2. L'enregistrer dans `data/reference/images/` sous le nom `<slot_id>_<AAAAMMJJ>-<HHMM>.jpg`, avec l'heure réelle de l'image. Exemple : `ARC-04_20251227-1230.jpg`.
+3. **Image absente** (caméra en panne, givrée, archive vide) : noter le créneau comme absent et prendre la **réserve suivante de la même caméra**.
+4. Renseigner la **météo** dans le manifeste : `beau`, `couvert`, `neige-brouillard` ou `nuit`.
+5. Lancer `python -m flowview.reference.manifest data/reference/sampling_plan.csv data/reference/images data/reference/manifest.csv`. Le script calcule les empreintes (SHA-256, empreinte de ressemblance), signale les noms non conformes et les **quasi-doublons**, puis affiche la couverture par strate.
+
+**Règle anti-doublons :** deux images d'une même caméra dont les empreintes de ressemblance diffèrent de 10 bits ou moins sur 128 sont des quasi-doublons. La seconde est remplacée par une réserve. Les images de nuit sont exemptées, puisqu'elles se ressemblent par nature. Le seuil de 10 bits est à calibrer sur les premières images 🔎.
+
+**Critère de passage :**
+- les 150 créneaux sont couverts (réserves comprises) ;
+- au moins 10 images par strate (caméra × affluence, moment, météo) ;
+- aucun quasi-doublon ;
+- `manifest.csv` est commité.
+
+**À partir de ce commit, le jeu ne bouge plus.**
+
+**L'image témoin du 14/02/2026 à 12 h 05** (choisie par Romuald) **n'entre pas** dans le jeu, puisqu'elle a été choisie à la main. Elle peut servir d'exemple dans le guide de comptage (étape 1.4).
+
+**Note :** les créneaux « crépuscule » ont une plage horaire fixe. Fin décembre, 18 h est déjà la nuit. La strate se lira donc comme « hors exploitation, lumière faible ou nulle », et la météo réelle sera notée à la main.
+
+### 2026-11-18 · Étape 1.2, plan révisé avant collecte
+Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui (→ [0025](decisions/0025-pre-annotation-et-taille-du-jeu.md)), avec une collecte scriptée (→ [0024](decisions/0024-collecte-scriptee-adresses-du-lecteur.md)). Le plan est régénéré, même graine, **aucune image encore collectée** :
+- **Référence : 3 × 80**. Par caméra : haute 22, moyenne 21, basse 21, nuit 8, crépuscule 8, plus 15 de réserve.
+- **Contrôle : 3 × 10** sur Varet, Arpette et Aiguille Rouge (haute 4, moyenne 3, basse 3), plus 5 de réserve chacune. Il est rapporté à part et n'entre pas dans le critère de passage.
+- **Critère de passage de 1.2 mis à jour :** les 240 créneaux de référence sont couverts, avec au moins 10 images par strate et aucun quasi-doublon.
+- **Étape 1.4 :** pré-annotation par un modèle plus fort que la baseline, correction dans CVAT, et 24 images comptées d'abord à l'aveugle pour mesurer le biais d'ancrage (critère : écart moyen ≤ 1 personne).
+
+### 2026-11-18 · Étape 1.2, collecte
+- **Adresses :** Romuald a ouvert le 14/02/2026 dans le lecteur. Le lecteur charge un index du jour qui liste des images à adresse publique simple (fiche 0024, vérification).
+- **Script :** `flowview/reference/collect.py`, avec 10 tests ; il ne demande que les créneaux du plan et attend 5 s entre deux requêtes.
+- **Résolution :** les images d'archive font **18 543 × 3 953 px**, contre 600 px de haut en direct. Sur ARC-02 (14/12/2025, 10 h 10), des dizaines de skieurs sont nettement visibles autour de la gare.
+- **Hypothèse :** la difficulté du comptage viendra moins de la taille des silhouettes que de leur nombre et de leur densité près des gares. Elle sera mesurée en 1.5.
+- **Collecte complète lancée :** 270 créneaux, soit 240 de référence et 30 de contrôle.
+
+### 2026-11-18 · Étapes 1.3 et 1.4 rédigées (en attente de validation)
+- **1.3 :** proposition de seuil dans [evaluation.md](evaluation.md) (→ [0026](decisions/0026-seuil-d-acceptabilite.md), proposée). Cinq mesures sur `person` : erreur relative médiane ≤ 20 % ; MAE ≤ 1,5 pour moins de 5 personnes ; biais entre −10 et +10 % ; affluence haute ≤ 25 % ; au plus 0,5 fausse détection par image la nuit. **Aucun modèle ne tourne sur le jeu de référence avant que ce seuil soit validé et commité.**
+- **1.4 :** guide de comptage dans [annotation.md](annotation.md) § 2 : qui compte, attributs `incertain` et `sur_remontee`, étiquette `inexploitable`, parcours par bandes, bords du 360°, ordre des séances. Tirage des 24 images à l'aveugle : `flowview.reference.blind` (graine 20261119, 8 par caméra, hors nuit), à lancer une fois le manifeste construit.
+
+### 2026-11-18 · Étape 1.2, collecte terminée et manifeste construit
+- **270 images collectées**, soit 240 de référence et 30 de contrôle. Pour 3 caméras sur 6, au moins une heure d'image s'écarte de la cible, au plus de 35 min.
+- **5 créneaux sans image** (ARC-09, MTB-01, MTB-02, MTB-07, GRZ-10) : leur journée manque dans l'archive, par exemple le 29/12/2025 (index du jour vide ou erreur HTTP). Ils sont remplacés par les réserves suivantes de la même caméra : ARC-R01, MTB-R02, MTB-R03, MTB-R04 (MTB-R01 était vide aussi) et GRZ-R01.
+- **Tailles réelles :** Arcabulle 18 543 × 3 953, Grizzly 12 000 × 2 441, Mont-Blanc 12 000 × 1 772 ; contrôle de 9 248 à 14 245 px de large. Environ 550 Mo, hors de Git.
+- **Couverture de la référence :** au moins 21 images par caméra et par niveau d'affluence ; matin 65, midi 63, après-midi 65 ; nuit 24, crépuscule 23 ✅.
+- **Calibration de la règle anti-doublons (prévue au protocole) :** avec le seuil provisoire de 10 bits, 13 paires étaient signalées. Elles étaient **toutes de jours différents**, à la même heure et par le même beau temps. Une caméra fixe garde la même structure d'image, et l'empreinte la retrouve d'un jour à l'autre. La paire la plus proche (GRZ-15 / GRZ-08, 3 bits) a été vérifiée à l'œil : skieurs et panneaux différents, donc pas un doublon. **Seuil fixé à 2 bits.** Il ne vise que le vrai cas à craindre : une caméra bloquée qui renvoie la même image plusieurs jours. Aucune empreinte SHA-256 identique, aucun quasi-doublon à 2 bits.
+- **Météo :** à noter pendant l'annotation, par une étiquette d'image dans CVAT. Le critère « au moins 10 images par classe de météo » sera donc contrôlé à la fin de l'étape 1.4. Si une classe manque, on puise dans les réserves déjà tirées.
+- **Critère de passage de 1.2 :** atteint pour la couverture et les doublons, avec la météo reportée en 1.4. **Le jeu est figé** : `data/reference/manifest.csv` est commité, avec les empreintes SHA-256.
+
+### 2026-11-18 · Étapes 1.3 et 1.4 validées
+- **Seuil S1 à S5** ([evaluation.md](evaluation.md), fiche 0026) et **guide de comptage** ([annotation.md](annotation.md)) **validés par Romuald**. Ils sont commités **avant tout lancement de modèle** sur le jeu de référence : ce commit sert de date de pré-enregistrement.
+- **Critère de passage de 1.3 :** atteint.
+
+### 2026-11-18 · Étape 1.4, séance A préparée
+- **24 images tirées au sort** (`data/reference/blind_set.csv`, graine 20261119, 8 par caméra, hors nuit), copiées dans `data/reference/sessions/A_aveugle/`. Les dossiers de séance et d'annotations sont ajoutés au `.gitignore`.
+- **Étiquettes CVAT :** `configs/cvat_labels.json`.
+- **Mode d'emploi :** [annotation.md](annotation.md) § 3. **Aucun modèle n'a encore tourné sur le jeu de référence.**
