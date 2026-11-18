@@ -1,7 +1,7 @@
 # 0026 — Seuil d'acceptabilité du comptage, fixé avant toute mesure
 
 - **Date :** 2026-11-18
-- **Statut :** Acceptée (validée par Romuald le 2026-11-18, commitée avant tout lancement de modèle)
+- **Statut :** Acceptée (validée par Romuald le 2026-11-18, commitée avant tout lancement de modèle), complétée par [0027](0027-huit-classes-et-seuils-par-classe.md)
 - **Décideurs :** Romuald
 
 ## Contexte
