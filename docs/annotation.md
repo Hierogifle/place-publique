@@ -54,3 +54,15 @@ docker exec -it cvat_server bash -ic "python3 ~/manage.py createsuperuser"
 
 ### 2.5 Exemple
 L'image témoin du 14/02/2026 à 12 h 05 (hors jeu de référence, fiche 0023) sert d'exemple pour se faire la main avant la séance A. Elle n'entre dans aucune mesure.
+
+## 3. Séance A, sans aide : mode d'emploi
+**Images :** les 24 de `data/reference/blind_set.csv` (graine 20261119, 8 par caméra, hors nuit), copiées dans `data/reference/sessions/A_aveugle/` (hors de Git).
+
+**Dans CVAT** (<http://localhost:8080>) :
+1. **Projets → +** : nom `FlowView — référence`. Dans « Constructeur », onglet **Raw**, coller le contenu de `configs/cvat_labels.json`, puis valider. On obtient le label `person`, avec les cases `incertain` et `sur_remontee`, et les étiquettes d'image `meteo` et `inexploitable`.
+2. **Tâches → +** : nom `A — sans aide (24)`, projet `FlowView — référence`. Ajouter les 24 fichiers du dossier `A_aveugle`.
+3. **Configuration avancée :** **Qualité d'image : 100**, pour voir les silhouettes lointaines sans compression. Laisser les autres réglages par défaut.
+4. **Annoter** en suivant le guide (§ 2) : zoom à 100 %, bandes de gauche à droite, une étiquette `meteo` par image.
+5. **Aucune pré-annotation** dans cette tâche. Ne pas ouvrir la tâche pré-annotée sur ces images avant le lendemain.
+6. **Noter le temps passé** par image (approximatif). Il servira à estimer la durée des séances suivantes.
+7. **À la fin :** Actions → Exporter les annotations → **COCO 1.0**, dans `data/reference/annotations/A_aveugle/`.

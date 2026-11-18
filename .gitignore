@@ -8,6 +8,8 @@ sujet/non_versionne/
 data/raw/
 data/captures/
 data/reference/images/
+data/reference/sessions/
+data/reference/annotations/
 data/terrain/images/
 *.mp4
 

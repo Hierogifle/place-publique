@@ -133,3 +133,8 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 ### 2026-11-18 · Étapes 1.3 et 1.4 validées
 - **Seuil S1 à S5** ([evaluation.md](evaluation.md), fiche 0026) et **guide de comptage** ([annotation.md](annotation.md)) **validés par Romuald**. Ils sont commités **avant tout lancement de modèle** sur le jeu de référence : ce commit sert de date de pré-enregistrement.
 - **Critère de passage de 1.3 :** atteint.
+
+### 2026-11-18 · Étape 1.4, séance A préparée
+- **24 images tirées au sort** (`data/reference/blind_set.csv`, graine 20261119, 8 par caméra, hors nuit), copiées dans `data/reference/sessions/A_aveugle/`. Les dossiers de séance et d'annotations sont ajoutés au `.gitignore`.
+- **Étiquettes CVAT :** `configs/cvat_labels.json`.
+- **Mode d'emploi :** [annotation.md](annotation.md) § 3. **Aucun modèle n'a encore tourné sur le jeu de référence.**
