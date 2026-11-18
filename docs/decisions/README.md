@@ -32,9 +32,11 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0018](0018-pas-de-repartition.md) | 2026-11-17 | Pas de répartition par personne : Romuald porte l'essentiel du projet | Acceptée |
 | [0019](0019-socle-periodique-puis-temps-reel.md) | 2026-11-17 | Socle périodique d'abord, mode « direct » avec suivi ensuite | Acceptée |
 | [0020](0020-logo-refuge-eclaire.md) | 2026-11-17 | Logo « le refuge éclairé » (montagne et fenêtre unique) | Acceptée |
-| [0021](0021-webcams-usage-pedagogique-sans-autorisation.md) | 2026-11-18 | Images des webcams : usage pédagogique sans autorisation, avec garde-fous | Acceptée |
+| [0021](0021-webcams-usage-pedagogique-sans-autorisation.md) | 2026-11-18 | Images des webcams : usage pédagogique sans autorisation, avec garde-fous | Acceptée (garde-fou 2 modifié par 0024) |
 | [0022](0022-jeu-de-reference-archive-des-arcs.md) | 2026-11-18 | Jeu de référence tiré de l'archive des Arcs (3 webcams) ; la vidéo vient après | Acceptée |
-| [0023](0023-tirage-stratifie-du-jeu-de-reference.md) | 2026-11-18 | Jeu de référence tiré au sort, par strates, avant de voir les images | Acceptée |
+| [0023](0023-tirage-stratifie-du-jeu-de-reference.md) | 2026-11-18 | Jeu de référence tiré au sort, par strates, avant de voir les images | Acceptée (quotas modifiés par 0025) |
+| [0024](0024-collecte-scriptee-adresses-du-lecteur.md) | 2026-11-18 | Collecte scriptée, limitée aux images que le lecteur officiel charge lui-même | Acceptée |
+| [0025](0025-pre-annotation-et-taille-du-jeu.md) | 2026-11-18 | 3 × 80 images + contrôle 3 × 10 ; pré-annotation corrigée dans CVAT, biais d'ancrage mesuré | Acceptée |
 
 ## Modèle
 

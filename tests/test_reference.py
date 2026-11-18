@@ -16,16 +16,20 @@ def test_plan_is_deterministic():
 
 def test_plan_quotas_and_one_image_per_day_per_camera():
     slots = sampling.build_plan(CFG)
-    per_cam = sum(CFG["quotas_per_camera"].values())
-    for cam in CFG["cameras"]:
-        main = [s for s in slots if s.camera == cam["id"] and not s.is_reserve]
-        reserve = [s for s in slots if s.camera == cam["id"] and s.is_reserve]
-        assert len(main) == per_cam
-        assert len(reserve) == CFG["reserve_per_camera"]
-        days = [s.date for s in main + reserve]
-        assert len(days) == len(set(days))
-        for lvl in sampling.CROWD_LEVELS:
-            assert sum(s.crowd_level == lvl for s in main) == CFG["quotas_per_camera"][lvl]
+    groups = (("reference", CFG["cameras"], CFG["quotas_per_camera"], CFG["reserve_per_camera"]),
+              ("control", CFG["control_cameras"], CFG["control_quotas_per_camera"],
+               CFG["control_reserve_per_camera"]))
+    for subset, cams, quotas, n_reserve in groups:
+        for cam in cams:
+            main = [s for s in slots if s.camera == cam["id"] and not s.is_reserve]
+            reserve = [s for s in slots if s.camera == cam["id"] and s.is_reserve]
+            assert all(s.subset == subset for s in main + reserve)
+            assert len(main) == sum(quotas.values())
+            assert len(reserve) == n_reserve
+            days = [s.date for s in main + reserve]
+            assert len(days) == len(set(days))
+            for lvl in sampling.CROWD_LEVELS:
+                assert sum(s.crowd_level == lvl for s in main) == quotas[lvl]
 
 
 def test_plan_stays_in_season_and_time_windows():

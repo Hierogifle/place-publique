@@ -1,181 +1,331 @@
-slot_id,camera,camera_name,date,weekday,time_target,crowd_level,moment,is_reserve,viewer
-ARC-01,arcabulle,Arcabulle,2025-12-16,mar,04:00,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-02,arcabulle,Arcabulle,2025-12-24,mer,12:00,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-03,arcabulle,Arcabulle,2025-12-26,ven,18:25,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-04,arcabulle,Arcabulle,2025-12-27,sam,12:25,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-05,arcabulle,Arcabulle,2025-12-28,dim,10:15,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-06,arcabulle,Arcabulle,2025-12-29,lun,09:45,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-07,arcabulle,Arcabulle,2026-01-02,ven,13:10,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-08,arcabulle,Arcabulle,2026-01-03,sam,16:25,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-09,arcabulle,Arcabulle,2026-01-04,dim,09:20,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-10,arcabulle,Arcabulle,2026-01-07,mer,10:35,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-11,arcabulle,Arcabulle,2026-01-09,ven,15:05,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-12,arcabulle,Arcabulle,2026-01-16,ven,07:30,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-13,arcabulle,Arcabulle,2026-01-18,dim,10:05,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-14,arcabulle,Arcabulle,2026-01-21,mer,10:50,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-15,arcabulle,Arcabulle,2026-01-22,jeu,14:05,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-16,arcabulle,Arcabulle,2026-01-24,sam,14:20,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-17,arcabulle,Arcabulle,2026-01-27,mar,11:30,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-18,arcabulle,Arcabulle,2026-01-30,ven,12:30,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-19,arcabulle,Arcabulle,2026-02-02,lun,14:45,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-20,arcabulle,Arcabulle,2026-02-03,mar,17:45,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-21,arcabulle,Arcabulle,2026-02-13,ven,15:00,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-22,arcabulle,Arcabulle,2026-02-16,lun,13:05,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-23,arcabulle,Arcabulle,2026-02-17,mar,10:20,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-24,arcabulle,Arcabulle,2026-02-18,mer,14:25,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-25,arcabulle,Arcabulle,2026-02-19,jeu,15:40,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-26,arcabulle,Arcabulle,2026-02-20,ven,00:55,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-27,arcabulle,Arcabulle,2026-02-23,lun,15:25,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-28,arcabulle,Arcabulle,2026-02-25,mer,04:00,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-29,arcabulle,Arcabulle,2026-02-26,jeu,13:50,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-30,arcabulle,Arcabulle,2026-02-27,ven,10:15,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-31,arcabulle,Arcabulle,2026-02-28,sam,13:50,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-32,arcabulle,Arcabulle,2026-03-01,dim,10:45,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-33,arcabulle,Arcabulle,2026-03-02,lun,17:40,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-34,arcabulle,Arcabulle,2026-03-04,mer,09:15,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-35,arcabulle,Arcabulle,2026-03-08,dim,09:15,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-36,arcabulle,Arcabulle,2026-03-10,mar,00:55,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-37,arcabulle,Arcabulle,2026-03-15,dim,13:05,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-38,arcabulle,Arcabulle,2026-03-19,jeu,13:30,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-39,arcabulle,Arcabulle,2026-03-21,sam,04:10,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-40,arcabulle,Arcabulle,2026-03-23,lun,17:30,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-41,arcabulle,Arcabulle,2026-03-24,mar,10:35,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-42,arcabulle,Arcabulle,2026-03-26,jeu,12:55,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-43,arcabulle,Arcabulle,2026-03-28,sam,11:00,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-44,arcabulle,Arcabulle,2026-03-29,dim,16:20,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-45,arcabulle,Arcabulle,2026-03-31,mar,10:55,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-46,arcabulle,Arcabulle,2026-04-01,mer,10:45,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-47,arcabulle,Arcabulle,2026-04-03,ven,14:50,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-48,arcabulle,Arcabulle,2026-04-19,dim,16:00,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-49,arcabulle,Arcabulle,2026-04-22,mer,13:05,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-50,arcabulle,Arcabulle,2026-04-24,ven,10:45,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R01,arcabulle,Arcabulle,2025-12-15,lun,12:55,basse,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R02,arcabulle,Arcabulle,2026-01-01,jeu,16:15,haute,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R03,arcabulle,Arcabulle,2026-01-19,lun,11:35,basse,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R04,arcabulle,Arcabulle,2026-02-01,dim,14:35,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R05,arcabulle,Arcabulle,2026-02-05,jeu,09:10,basse,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R06,arcabulle,Arcabulle,2026-02-10,mar,13:45,moyenne,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R07,arcabulle,Arcabulle,2026-02-14,sam,15:00,haute,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R08,arcabulle,Arcabulle,2026-03-05,jeu,14:35,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R09,arcabulle,Arcabulle,2026-04-08,mer,16:10,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-ARC-R10,arcabulle,Arcabulle,2026-04-17,ven,11:50,moyenne,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
-MTB-01,mont-blanc,Mont-Blanc (TSD),2025-12-13,sam,11:30,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-02,mont-blanc,Mont-Blanc (TSD),2025-12-14,dim,09:00,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-03,mont-blanc,Mont-Blanc (TSD),2025-12-18,jeu,23:15,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-04,mont-blanc,Mont-Blanc (TSD),2025-12-21,dim,09:55,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-05,mont-blanc,Mont-Blanc (TSD),2025-12-22,lun,13:35,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-06,mont-blanc,Mont-Blanc (TSD),2025-12-23,mar,15:20,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-07,mont-blanc,Mont-Blanc (TSD),2025-12-27,sam,08:35,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-08,mont-blanc,Mont-Blanc (TSD),2025-12-29,lun,09:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-09,mont-blanc,Mont-Blanc (TSD),2025-12-30,mar,14:15,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-10,mont-blanc,Mont-Blanc (TSD),2026-01-01,jeu,11:35,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-11,mont-blanc,Mont-Blanc (TSD),2026-01-02,ven,13:50,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-12,mont-blanc,Mont-Blanc (TSD),2026-01-03,sam,10:40,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-13,mont-blanc,Mont-Blanc (TSD),2026-01-05,lun,14:35,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-14,mont-blanc,Mont-Blanc (TSD),2026-01-08,jeu,10:40,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-15,mont-blanc,Mont-Blanc (TSD),2026-01-09,ven,10:55,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-16,mont-blanc,Mont-Blanc (TSD),2026-01-10,sam,10:00,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-17,mont-blanc,Mont-Blanc (TSD),2026-01-12,lun,08:15,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-18,mont-blanc,Mont-Blanc (TSD),2026-01-15,jeu,10:05,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-19,mont-blanc,Mont-Blanc (TSD),2026-01-22,jeu,15:40,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-20,mont-blanc,Mont-Blanc (TSD),2026-01-25,dim,13:40,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-21,mont-blanc,Mont-Blanc (TSD),2026-01-28,mer,10:20,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-22,mont-blanc,Mont-Blanc (TSD),2026-01-30,ven,12:25,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-23,mont-blanc,Mont-Blanc (TSD),2026-01-31,sam,22:25,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-24,mont-blanc,Mont-Blanc (TSD),2026-02-05,jeu,00:00,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-25,mont-blanc,Mont-Blanc (TSD),2026-02-08,dim,08:10,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-26,mont-blanc,Mont-Blanc (TSD),2026-02-09,lun,02:15,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-27,mont-blanc,Mont-Blanc (TSD),2026-02-13,ven,10:35,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-28,mont-blanc,Mont-Blanc (TSD),2026-02-15,dim,09:35,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-29,mont-blanc,Mont-Blanc (TSD),2026-02-16,lun,10:00,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-30,mont-blanc,Mont-Blanc (TSD),2026-02-18,mer,16:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-31,mont-blanc,Mont-Blanc (TSD),2026-02-20,ven,15:50,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-32,mont-blanc,Mont-Blanc (TSD),2026-02-23,lun,13:00,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-33,mont-blanc,Mont-Blanc (TSD),2026-02-24,mar,14:35,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-34,mont-blanc,Mont-Blanc (TSD),2026-02-25,mer,09:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-35,mont-blanc,Mont-Blanc (TSD),2026-02-26,jeu,12:55,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-36,mont-blanc,Mont-Blanc (TSD),2026-02-28,sam,11:20,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-37,mont-blanc,Mont-Blanc (TSD),2026-03-08,dim,15:10,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-38,mont-blanc,Mont-Blanc (TSD),2026-03-11,mer,09:25,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-39,mont-blanc,Mont-Blanc (TSD),2026-03-13,ven,04:30,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-40,mont-blanc,Mont-Blanc (TSD),2026-03-16,lun,14:00,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-41,mont-blanc,Mont-Blanc (TSD),2026-03-17,mar,13:35,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-42,mont-blanc,Mont-Blanc (TSD),2026-03-18,mer,13:50,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-43,mont-blanc,Mont-Blanc (TSD),2026-03-21,sam,13:50,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-44,mont-blanc,Mont-Blanc (TSD),2026-03-22,dim,07:50,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-45,mont-blanc,Mont-Blanc (TSD),2026-03-27,ven,13:00,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-46,mont-blanc,Mont-Blanc (TSD),2026-03-30,lun,17:25,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-47,mont-blanc,Mont-Blanc (TSD),2026-04-01,mer,16:15,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-48,mont-blanc,Mont-Blanc (TSD),2026-04-06,lun,09:20,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-49,mont-blanc,Mont-Blanc (TSD),2026-04-10,ven,14:10,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-50,mont-blanc,Mont-Blanc (TSD),2026-04-24,ven,14:30,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R01,mont-blanc,Mont-Blanc (TSD),2026-01-24,sam,11:55,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R02,mont-blanc,Mont-Blanc (TSD),2026-02-12,jeu,14:15,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R03,mont-blanc,Mont-Blanc (TSD),2026-02-21,sam,11:45,haute,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R04,mont-blanc,Mont-Blanc (TSD),2026-03-05,jeu,10:15,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R05,mont-blanc,Mont-Blanc (TSD),2026-03-23,lun,13:50,basse,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R06,mont-blanc,Mont-Blanc (TSD),2026-03-24,mar,09:05,basse,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R07,mont-blanc,Mont-Blanc (TSD),2026-03-25,mer,10:50,basse,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R08,mont-blanc,Mont-Blanc (TSD),2026-04-14,mar,13:25,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R09,mont-blanc,Mont-Blanc (TSD),2026-04-15,mer,15:55,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-MTB-R10,mont-blanc,Mont-Blanc (TSD),2026-04-22,mer,09:45,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
-GRZ-01,grizzly,Grizzly (Peisey-Vallandry),2025-12-13,sam,11:00,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-02,grizzly,Grizzly (Peisey-Vallandry),2025-12-21,dim,14:40,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-03,grizzly,Grizzly (Peisey-Vallandry),2025-12-25,jeu,10:10,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-04,grizzly,Grizzly (Peisey-Vallandry),2025-12-26,ven,13:55,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-05,grizzly,Grizzly (Peisey-Vallandry),2025-12-27,sam,09:35,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-06,grizzly,Grizzly (Peisey-Vallandry),2025-12-28,dim,13:25,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-07,grizzly,Grizzly (Peisey-Vallandry),2026-01-01,jeu,16:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-08,grizzly,Grizzly (Peisey-Vallandry),2026-01-03,sam,15:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-09,grizzly,Grizzly (Peisey-Vallandry),2026-01-05,lun,03:45,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-10,grizzly,Grizzly (Peisey-Vallandry),2026-01-09,ven,17:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-11,grizzly,Grizzly (Peisey-Vallandry),2026-01-12,lun,10:15,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-12,grizzly,Grizzly (Peisey-Vallandry),2026-01-13,mar,11:35,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-13,grizzly,Grizzly (Peisey-Vallandry),2026-01-16,ven,14:05,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-14,grizzly,Grizzly (Peisey-Vallandry),2026-01-17,sam,14:35,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-15,grizzly,Grizzly (Peisey-Vallandry),2026-01-19,lun,12:30,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-16,grizzly,Grizzly (Peisey-Vallandry),2026-01-21,mer,02:10,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-17,grizzly,Grizzly (Peisey-Vallandry),2026-01-25,dim,17:05,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-18,grizzly,Grizzly (Peisey-Vallandry),2026-01-26,lun,09:20,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-19,grizzly,Grizzly (Peisey-Vallandry),2026-01-27,mar,10:30,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-20,grizzly,Grizzly (Peisey-Vallandry),2026-02-01,dim,03:00,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-21,grizzly,Grizzly (Peisey-Vallandry),2026-02-04,mer,13:15,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-22,grizzly,Grizzly (Peisey-Vallandry),2026-02-07,sam,10:30,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-23,grizzly,Grizzly (Peisey-Vallandry),2026-02-12,jeu,10:50,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-24,grizzly,Grizzly (Peisey-Vallandry),2026-02-14,sam,10:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-25,grizzly,Grizzly (Peisey-Vallandry),2026-02-15,dim,12:30,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-26,grizzly,Grizzly (Peisey-Vallandry),2026-02-16,lun,15:30,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-27,grizzly,Grizzly (Peisey-Vallandry),2026-02-17,mar,10:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-28,grizzly,Grizzly (Peisey-Vallandry),2026-02-18,mer,10:10,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-29,grizzly,Grizzly (Peisey-Vallandry),2026-02-19,jeu,04:15,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-30,grizzly,Grizzly (Peisey-Vallandry),2026-02-20,ven,10:40,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-31,grizzly,Grizzly (Peisey-Vallandry),2026-02-21,sam,14:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-32,grizzly,Grizzly (Peisey-Vallandry),2026-02-22,dim,11:55,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-33,grizzly,Grizzly (Peisey-Vallandry),2026-02-24,mar,12:25,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-34,grizzly,Grizzly (Peisey-Vallandry),2026-02-27,ven,13:50,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-35,grizzly,Grizzly (Peisey-Vallandry),2026-03-11,mer,09:45,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-36,grizzly,Grizzly (Peisey-Vallandry),2026-03-12,jeu,14:30,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-37,grizzly,Grizzly (Peisey-Vallandry),2026-03-17,mar,10:00,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-38,grizzly,Grizzly (Peisey-Vallandry),2026-03-18,mer,17:45,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-39,grizzly,Grizzly (Peisey-Vallandry),2026-03-21,sam,10:45,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-40,grizzly,Grizzly (Peisey-Vallandry),2026-03-26,jeu,16:05,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-41,grizzly,Grizzly (Peisey-Vallandry),2026-03-27,ven,08:10,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-42,grizzly,Grizzly (Peisey-Vallandry),2026-03-29,dim,12:10,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-43,grizzly,Grizzly (Peisey-Vallandry),2026-04-01,mer,15:05,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-44,grizzly,Grizzly (Peisey-Vallandry),2026-04-02,jeu,13:10,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-45,grizzly,Grizzly (Peisey-Vallandry),2026-04-07,mar,11:40,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-46,grizzly,Grizzly (Peisey-Vallandry),2026-04-09,jeu,14:25,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-47,grizzly,Grizzly (Peisey-Vallandry),2026-04-18,sam,22:20,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-48,grizzly,Grizzly (Peisey-Vallandry),2026-04-20,lun,09:55,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-49,grizzly,Grizzly (Peisey-Vallandry),2026-04-24,ven,18:25,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-50,grizzly,Grizzly (Peisey-Vallandry),2026-04-25,sam,14:35,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R01,grizzly,Grizzly (Peisey-Vallandry),2025-12-14,dim,14:40,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R02,grizzly,Grizzly (Peisey-Vallandry),2025-12-22,lun,12:25,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R03,grizzly,Grizzly (Peisey-Vallandry),2025-12-30,mar,11:15,haute,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R04,grizzly,Grizzly (Peisey-Vallandry),2026-01-14,mer,11:45,basse,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R05,grizzly,Grizzly (Peisey-Vallandry),2026-01-24,sam,09:55,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R06,grizzly,Grizzly (Peisey-Vallandry),2026-03-02,lun,11:00,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R07,grizzly,Grizzly (Peisey-Vallandry),2026-03-31,mar,15:45,basse,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R08,grizzly,Grizzly (Peisey-Vallandry),2026-04-06,lun,13:50,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R09,grizzly,Grizzly (Peisey-Vallandry),2026-04-12,dim,15:05,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
-GRZ-R10,grizzly,Grizzly (Peisey-Vallandry),2026-04-21,mar,13:25,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+slot_id,subset,camera,camera_name,date,weekday,time_target,crowd_level,moment,is_reserve,viewer
+ARC-01,reference,arcabulle,Arcabulle,2025-12-13,sam,18:00,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-02,reference,arcabulle,Arcabulle,2025-12-14,dim,10:20,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-03,reference,arcabulle,Arcabulle,2025-12-16,mar,10:45,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-04,reference,arcabulle,Arcabulle,2025-12-18,jeu,14:40,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-05,reference,arcabulle,Arcabulle,2025-12-22,lun,10:25,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-06,reference,arcabulle,Arcabulle,2025-12-26,ven,08:00,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-07,reference,arcabulle,Arcabulle,2025-12-27,sam,13:20,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-08,reference,arcabulle,Arcabulle,2025-12-28,dim,15:50,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-09,reference,arcabulle,Arcabulle,2025-12-29,lun,13:55,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-10,reference,arcabulle,Arcabulle,2025-12-30,mar,10:20,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-11,reference,arcabulle,Arcabulle,2025-12-31,mer,10:20,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-12,reference,arcabulle,Arcabulle,2026-01-02,ven,13:30,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-13,reference,arcabulle,Arcabulle,2026-01-03,sam,14:00,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-14,reference,arcabulle,Arcabulle,2026-01-04,dim,13:20,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-15,reference,arcabulle,Arcabulle,2026-01-09,ven,15:35,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-16,reference,arcabulle,Arcabulle,2026-01-12,lun,12:40,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-17,reference,arcabulle,Arcabulle,2026-01-13,mar,14:20,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-18,reference,arcabulle,Arcabulle,2026-01-14,mer,12:15,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-19,reference,arcabulle,Arcabulle,2026-01-15,jeu,02:05,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-20,reference,arcabulle,Arcabulle,2026-01-16,ven,23:35,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-21,reference,arcabulle,Arcabulle,2026-01-17,sam,23:30,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-22,reference,arcabulle,Arcabulle,2026-01-21,mer,10:25,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-23,reference,arcabulle,Arcabulle,2026-01-23,ven,10:50,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-24,reference,arcabulle,Arcabulle,2026-01-25,dim,10:00,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-25,reference,arcabulle,Arcabulle,2026-01-27,mar,09:50,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-26,reference,arcabulle,Arcabulle,2026-01-28,mer,09:25,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-27,reference,arcabulle,Arcabulle,2026-01-29,jeu,17:30,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-28,reference,arcabulle,Arcabulle,2026-02-01,dim,15:10,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-29,reference,arcabulle,Arcabulle,2026-02-02,lun,16:15,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-30,reference,arcabulle,Arcabulle,2026-02-03,mar,11:50,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-31,reference,arcabulle,Arcabulle,2026-02-04,mer,23:30,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-32,reference,arcabulle,Arcabulle,2026-02-05,jeu,11:50,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-33,reference,arcabulle,Arcabulle,2026-02-06,ven,12:05,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-34,reference,arcabulle,Arcabulle,2026-02-11,mer,01:55,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-35,reference,arcabulle,Arcabulle,2026-02-12,jeu,08:20,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-36,reference,arcabulle,Arcabulle,2026-02-13,ven,16:25,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-37,reference,arcabulle,Arcabulle,2026-02-14,sam,13:15,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-38,reference,arcabulle,Arcabulle,2026-02-15,dim,09:35,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-39,reference,arcabulle,Arcabulle,2026-02-16,lun,09:35,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-40,reference,arcabulle,Arcabulle,2026-02-17,mar,14:45,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-41,reference,arcabulle,Arcabulle,2026-02-18,mer,14:25,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-42,reference,arcabulle,Arcabulle,2026-02-19,jeu,09:45,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-43,reference,arcabulle,Arcabulle,2026-02-20,ven,15:35,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-44,reference,arcabulle,Arcabulle,2026-02-21,sam,09:20,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-45,reference,arcabulle,Arcabulle,2026-02-22,dim,11:20,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-46,reference,arcabulle,Arcabulle,2026-02-23,lun,10:25,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-47,reference,arcabulle,Arcabulle,2026-02-24,mar,11:55,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-48,reference,arcabulle,Arcabulle,2026-02-25,mer,14:10,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-49,reference,arcabulle,Arcabulle,2026-02-26,jeu,11:40,haute,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-50,reference,arcabulle,Arcabulle,2026-02-27,ven,10:10,haute,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-51,reference,arcabulle,Arcabulle,2026-02-28,sam,15:10,haute,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-52,reference,arcabulle,Arcabulle,2026-03-02,lun,14:55,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-53,reference,arcabulle,Arcabulle,2026-03-03,mar,11:10,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-54,reference,arcabulle,Arcabulle,2026-03-04,mer,11:00,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-55,reference,arcabulle,Arcabulle,2026-03-06,ven,15:20,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-56,reference,arcabulle,Arcabulle,2026-03-07,sam,13:45,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-57,reference,arcabulle,Arcabulle,2026-03-09,lun,09:05,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-58,reference,arcabulle,Arcabulle,2026-03-11,mer,18:10,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-59,reference,arcabulle,Arcabulle,2026-03-12,jeu,16:05,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-60,reference,arcabulle,Arcabulle,2026-03-16,lun,07:30,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-61,reference,arcabulle,Arcabulle,2026-03-17,mar,14:25,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-62,reference,arcabulle,Arcabulle,2026-03-18,mer,12:50,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-63,reference,arcabulle,Arcabulle,2026-03-19,jeu,18:10,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-64,reference,arcabulle,Arcabulle,2026-03-21,sam,09:15,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-65,reference,arcabulle,Arcabulle,2026-03-22,dim,16:20,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-66,reference,arcabulle,Arcabulle,2026-03-24,mar,09:50,basse,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-67,reference,arcabulle,Arcabulle,2026-03-28,sam,09:35,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-68,reference,arcabulle,Arcabulle,2026-03-30,lun,13:55,basse,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-69,reference,arcabulle,Arcabulle,2026-03-31,mar,15:20,basse,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-70,reference,arcabulle,Arcabulle,2026-04-01,mer,00:40,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-71,reference,arcabulle,Arcabulle,2026-04-02,jeu,03:05,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-72,reference,arcabulle,Arcabulle,2026-04-04,sam,13:45,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-73,reference,arcabulle,Arcabulle,2026-04-06,lun,11:35,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-74,reference,arcabulle,Arcabulle,2026-04-11,sam,08:25,hors,crepuscule,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-75,reference,arcabulle,Arcabulle,2026-04-13,lun,10:25,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-76,reference,arcabulle,Arcabulle,2026-04-17,ven,16:15,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-77,reference,arcabulle,Arcabulle,2026-04-18,sam,12:00,moyenne,midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-78,reference,arcabulle,Arcabulle,2026-04-19,dim,15:40,moyenne,apres-midi,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-79,reference,arcabulle,Arcabulle,2026-04-20,lun,02:25,hors,nuit,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-80,reference,arcabulle,Arcabulle,2026-04-23,jeu,09:20,moyenne,matin,0,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R01,reference,arcabulle,Arcabulle,2025-12-17,mer,09:55,basse,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R02,reference,arcabulle,Arcabulle,2025-12-19,ven,09:45,basse,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R03,reference,arcabulle,Arcabulle,2025-12-23,mar,09:20,moyenne,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R04,reference,arcabulle,Arcabulle,2025-12-25,jeu,13:40,moyenne,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R05,reference,arcabulle,Arcabulle,2026-01-01,jeu,12:35,haute,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R06,reference,arcabulle,Arcabulle,2026-01-18,dim,13:45,moyenne,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R07,reference,arcabulle,Arcabulle,2026-01-20,mar,11:20,basse,midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R08,reference,arcabulle,Arcabulle,2026-01-24,sam,09:35,moyenne,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R09,reference,arcabulle,Arcabulle,2026-01-30,ven,10:40,basse,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R10,reference,arcabulle,Arcabulle,2026-03-08,dim,10:00,moyenne,matin,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R11,reference,arcabulle,Arcabulle,2026-03-25,mer,16:25,basse,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R12,reference,arcabulle,Arcabulle,2026-04-05,dim,14:25,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R13,reference,arcabulle,Arcabulle,2026-04-08,mer,15:25,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R14,reference,arcabulle,Arcabulle,2026-04-10,ven,16:15,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+ARC-R15,reference,arcabulle,Arcabulle,2026-04-15,mer,15:40,moyenne,apres-midi,1,https://app.webcam-hd.com/lesarcs/arcabulle
+MTB-01,reference,mont-blanc,Mont-Blanc (TSD),2025-12-13,sam,14:40,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-02,reference,mont-blanc,Mont-Blanc (TSD),2025-12-15,lun,08:25,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-03,reference,mont-blanc,Mont-Blanc (TSD),2025-12-22,lun,10:35,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-04,reference,mont-blanc,Mont-Blanc (TSD),2025-12-25,jeu,14:40,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-05,reference,mont-blanc,Mont-Blanc (TSD),2025-12-27,sam,11:35,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-06,reference,mont-blanc,Mont-Blanc (TSD),2025-12-28,dim,11:40,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-07,reference,mont-blanc,Mont-Blanc (TSD),2025-12-29,lun,10:50,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-08,reference,mont-blanc,Mont-Blanc (TSD),2025-12-30,mar,13:00,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-09,reference,mont-blanc,Mont-Blanc (TSD),2025-12-31,mer,14:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-10,reference,mont-blanc,Mont-Blanc (TSD),2026-01-01,jeu,09:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-11,reference,mont-blanc,Mont-Blanc (TSD),2026-01-02,ven,15:30,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-12,reference,mont-blanc,Mont-Blanc (TSD),2026-01-03,sam,10:55,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-13,reference,mont-blanc,Mont-Blanc (TSD),2026-01-04,dim,08:15,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-14,reference,mont-blanc,Mont-Blanc (TSD),2026-01-05,lun,10:35,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-15,reference,mont-blanc,Mont-Blanc (TSD),2026-01-06,mar,16:10,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-16,reference,mont-blanc,Mont-Blanc (TSD),2026-01-08,jeu,15:00,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-17,reference,mont-blanc,Mont-Blanc (TSD),2026-01-12,lun,10:35,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-18,reference,mont-blanc,Mont-Blanc (TSD),2026-01-13,mar,15:10,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-19,reference,mont-blanc,Mont-Blanc (TSD),2026-01-17,sam,02:30,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-20,reference,mont-blanc,Mont-Blanc (TSD),2026-01-18,dim,23:25,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-21,reference,mont-blanc,Mont-Blanc (TSD),2026-01-19,lun,09:05,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-22,reference,mont-blanc,Mont-Blanc (TSD),2026-01-20,mar,11:45,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-23,reference,mont-blanc,Mont-Blanc (TSD),2026-01-21,mer,17:10,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-24,reference,mont-blanc,Mont-Blanc (TSD),2026-01-22,jeu,02:10,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-25,reference,mont-blanc,Mont-Blanc (TSD),2026-01-26,lun,15:15,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-26,reference,mont-blanc,Mont-Blanc (TSD),2026-01-27,mar,11:30,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-27,reference,mont-blanc,Mont-Blanc (TSD),2026-01-29,jeu,15:55,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-28,reference,mont-blanc,Mont-Blanc (TSD),2026-02-01,dim,10:25,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-29,reference,mont-blanc,Mont-Blanc (TSD),2026-02-02,lun,03:20,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-30,reference,mont-blanc,Mont-Blanc (TSD),2026-02-03,mar,13:15,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-31,reference,mont-blanc,Mont-Blanc (TSD),2026-02-04,mer,10:50,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-32,reference,mont-blanc,Mont-Blanc (TSD),2026-02-05,jeu,17:50,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-33,reference,mont-blanc,Mont-Blanc (TSD),2026-02-06,ven,10:00,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-34,reference,mont-blanc,Mont-Blanc (TSD),2026-02-07,sam,10:10,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-35,reference,mont-blanc,Mont-Blanc (TSD),2026-02-08,dim,13:15,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-36,reference,mont-blanc,Mont-Blanc (TSD),2026-02-09,lun,10:10,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-37,reference,mont-blanc,Mont-Blanc (TSD),2026-02-11,mer,16:10,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-38,reference,mont-blanc,Mont-Blanc (TSD),2026-02-14,sam,10:40,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-39,reference,mont-blanc,Mont-Blanc (TSD),2026-02-15,dim,09:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-40,reference,mont-blanc,Mont-Blanc (TSD),2026-02-16,lun,14:45,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-41,reference,mont-blanc,Mont-Blanc (TSD),2026-02-17,mar,15:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-42,reference,mont-blanc,Mont-Blanc (TSD),2026-02-18,mer,13:50,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-43,reference,mont-blanc,Mont-Blanc (TSD),2026-02-19,jeu,15:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-44,reference,mont-blanc,Mont-Blanc (TSD),2026-02-21,sam,11:35,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-45,reference,mont-blanc,Mont-Blanc (TSD),2026-02-22,dim,10:00,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-46,reference,mont-blanc,Mont-Blanc (TSD),2026-02-23,lun,13:10,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-47,reference,mont-blanc,Mont-Blanc (TSD),2026-02-24,mar,16:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-48,reference,mont-blanc,Mont-Blanc (TSD),2026-02-25,mer,10:40,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-49,reference,mont-blanc,Mont-Blanc (TSD),2026-02-26,jeu,23:50,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-50,reference,mont-blanc,Mont-Blanc (TSD),2026-02-27,ven,12:10,haute,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-51,reference,mont-blanc,Mont-Blanc (TSD),2026-02-28,sam,15:05,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-52,reference,mont-blanc,Mont-Blanc (TSD),2026-03-01,dim,10:25,haute,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-53,reference,mont-blanc,Mont-Blanc (TSD),2026-03-02,lun,11:40,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-54,reference,mont-blanc,Mont-Blanc (TSD),2026-03-04,mer,08:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-55,reference,mont-blanc,Mont-Blanc (TSD),2026-03-05,jeu,14:05,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-56,reference,mont-blanc,Mont-Blanc (TSD),2026-03-06,ven,12:20,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-57,reference,mont-blanc,Mont-Blanc (TSD),2026-03-08,dim,10:55,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-58,reference,mont-blanc,Mont-Blanc (TSD),2026-03-11,mer,14:35,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-59,reference,mont-blanc,Mont-Blanc (TSD),2026-03-12,jeu,10:05,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-60,reference,mont-blanc,Mont-Blanc (TSD),2026-03-15,dim,13:55,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-61,reference,mont-blanc,Mont-Blanc (TSD),2026-03-16,lun,09:40,basse,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-62,reference,mont-blanc,Mont-Blanc (TSD),2026-03-18,mer,11:05,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-63,reference,mont-blanc,Mont-Blanc (TSD),2026-03-19,jeu,18:15,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-64,reference,mont-blanc,Mont-Blanc (TSD),2026-03-24,mar,11:25,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-65,reference,mont-blanc,Mont-Blanc (TSD),2026-03-26,jeu,16:00,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-66,reference,mont-blanc,Mont-Blanc (TSD),2026-03-30,lun,11:35,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-67,reference,mont-blanc,Mont-Blanc (TSD),2026-04-02,jeu,01:55,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-68,reference,mont-blanc,Mont-Blanc (TSD),2026-04-03,ven,12:40,basse,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-69,reference,mont-blanc,Mont-Blanc (TSD),2026-04-05,dim,17:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-70,reference,mont-blanc,Mont-Blanc (TSD),2026-04-07,mar,10:35,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-71,reference,mont-blanc,Mont-Blanc (TSD),2026-04-09,jeu,11:15,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-72,reference,mont-blanc,Mont-Blanc (TSD),2026-04-12,dim,14:45,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-73,reference,mont-blanc,Mont-Blanc (TSD),2026-04-14,mar,14:25,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-74,reference,mont-blanc,Mont-Blanc (TSD),2026-04-15,mer,01:30,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-75,reference,mont-blanc,Mont-Blanc (TSD),2026-04-17,ven,18:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-76,reference,mont-blanc,Mont-Blanc (TSD),2026-04-18,sam,22:10,hors,nuit,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-77,reference,mont-blanc,Mont-Blanc (TSD),2026-04-19,dim,12:45,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-78,reference,mont-blanc,Mont-Blanc (TSD),2026-04-21,mar,15:15,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-79,reference,mont-blanc,Mont-Blanc (TSD),2026-04-22,mer,13:50,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-80,reference,mont-blanc,Mont-Blanc (TSD),2026-04-25,sam,10:00,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R01,reference,mont-blanc,Mont-Blanc (TSD),2025-12-16,mar,11:10,basse,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R02,reference,mont-blanc,Mont-Blanc (TSD),2026-01-10,sam,12:05,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R03,reference,mont-blanc,Mont-Blanc (TSD),2026-01-14,mer,15:05,basse,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R04,reference,mont-blanc,Mont-Blanc (TSD),2026-01-25,dim,16:25,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R05,reference,mont-blanc,Mont-Blanc (TSD),2026-02-12,jeu,10:15,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R06,reference,mont-blanc,Mont-Blanc (TSD),2026-03-03,mar,10:20,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R07,reference,mont-blanc,Mont-Blanc (TSD),2026-03-10,mar,11:15,basse,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R08,reference,mont-blanc,Mont-Blanc (TSD),2026-03-13,ven,15:00,basse,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R09,reference,mont-blanc,Mont-Blanc (TSD),2026-03-25,mer,13:25,basse,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R10,reference,mont-blanc,Mont-Blanc (TSD),2026-03-31,mar,11:05,basse,midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R11,reference,mont-blanc,Mont-Blanc (TSD),2026-04-01,mer,10:00,basse,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R12,reference,mont-blanc,Mont-Blanc (TSD),2026-04-04,sam,14:45,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R13,reference,mont-blanc,Mont-Blanc (TSD),2026-04-11,sam,10:45,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R14,reference,mont-blanc,Mont-Blanc (TSD),2026-04-20,lun,10:15,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+MTB-R15,reference,mont-blanc,Mont-Blanc (TSD),2026-04-23,jeu,09:35,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/mont-blanc
+GRZ-01,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-13,sam,11:00,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-02,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-14,dim,13:55,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-03,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-19,ven,17:05,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-04,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-21,dim,09:35,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-05,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-24,mer,15:00,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-06,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-25,jeu,09:50,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-07,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-26,ven,17:40,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-08,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-27,sam,10:20,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-09,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-28,dim,12:45,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-10,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-29,lun,10:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-11,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-30,mar,11:15,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-12,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-31,mer,13:10,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-13,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-01,jeu,12:25,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-14,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-02,ven,09:35,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-15,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-03,sam,10:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-16,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-04,dim,16:00,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-17,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-05,lun,17:55,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-18,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-06,mar,09:15,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-19,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-08,jeu,10:30,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-20,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-10,sam,23:35,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-21,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-11,dim,12:25,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-22,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-13,mar,10:40,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-23,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-15,jeu,10:45,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-24,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-16,ven,17:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-25,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-20,mar,14:45,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-26,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-21,mer,10:35,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-27,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-22,jeu,09:40,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-28,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-26,lun,08:10,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-29,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-27,mar,13:10,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-30,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-28,mer,14:55,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-31,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-29,jeu,11:35,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-32,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-30,ven,15:30,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-33,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-31,sam,10:55,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-34,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-01,dim,00:05,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-35,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-04,mer,16:25,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-36,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-11,mer,13:20,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-37,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-12,jeu,14:50,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-38,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-13,ven,22:10,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-39,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-14,sam,16:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-40,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-15,dim,15:45,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-41,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-17,mar,09:10,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-42,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-18,mer,10:00,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-43,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-19,jeu,15:30,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-44,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-20,ven,14:45,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-45,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-21,sam,14:10,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-46,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-23,lun,13:00,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-47,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-24,mar,12:20,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-48,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-25,mer,14:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-49,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-26,jeu,12:40,haute,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-50,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-27,ven,09:00,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-51,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-28,sam,10:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-52,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-01,dim,15:35,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-53,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-02,lun,13:15,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-54,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-03,mar,14:20,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-55,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-04,mer,12:20,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-56,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-06,ven,15:55,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-57,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-07,sam,09:00,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-58,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-09,lun,13:55,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-59,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-10,mar,13:25,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-60,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-12,jeu,17:20,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-61,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-15,dim,01:30,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-62,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-16,lun,15:25,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-63,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-23,lun,12:55,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-64,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-24,mar,02:25,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-65,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-25,mer,23:30,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-66,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-26,jeu,13:25,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-67,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-28,sam,01:55,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-68,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-31,mar,13:50,basse,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-69,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-01,mer,09:15,basse,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-70,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-02,jeu,14:05,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-71,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-03,ven,14:10,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-72,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-04,sam,02:50,hors,nuit,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-73,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-07,mar,09:05,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-74,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-11,sam,12:20,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-75,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-13,lun,17:00,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-76,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-15,mer,15:15,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-77,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-17,ven,14:10,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-78,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-19,dim,09:50,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-79,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-20,lun,10:15,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-80,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-21,mar,18:25,hors,crepuscule,0,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R01,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-16,mar,14:35,basse,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R02,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-22,lun,10:55,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R03,reference,grizzly,Grizzly (Peisey-Vallandry),2025-12-23,mar,15:40,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R04,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-07,mer,11:25,basse,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R05,reference,grizzly,Grizzly (Peisey-Vallandry),2026-01-24,sam,10:10,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R06,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-03,mar,10:30,basse,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R07,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-09,lun,13:50,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R08,reference,grizzly,Grizzly (Peisey-Vallandry),2026-02-22,dim,15:00,haute,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R09,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-13,ven,12:35,basse,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R10,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-21,sam,10:25,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R11,reference,grizzly,Grizzly (Peisey-Vallandry),2026-03-22,dim,14:50,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R12,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-08,mer,15:05,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R13,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-09,jeu,11:30,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R14,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-16,jeu,12:35,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/grizzly
+GRZ-R15,reference,grizzly,Grizzly (Peisey-Vallandry),2026-04-22,mer,09:10,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/grizzly
+VAR-01,control,varet,Varet,2025-12-27,sam,13:20,haute,midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-02,control,varet,Varet,2026-01-02,ven,09:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-03,control,varet,Varet,2026-01-19,lun,11:25,basse,midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-04,control,varet,Varet,2026-01-23,ven,09:05,basse,matin,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-05,control,varet,Varet,2026-02-06,ven,14:55,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-06,control,varet,Varet,2026-02-09,lun,10:20,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-07,control,varet,Varet,2026-02-27,ven,15:45,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-08,control,varet,Varet,2026-02-28,sam,10:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-09,control,varet,Varet,2026-04-19,dim,15:10,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-10,control,varet,Varet,2026-04-25,sam,11:20,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/varet
+VAR-R01,control,varet,Varet,2026-01-01,jeu,10:45,haute,matin,1,https://www.lesarcs.com/fr/webcams/varet
+VAR-R02,control,varet,Varet,2026-01-31,sam,10:25,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/varet
+VAR-R03,control,varet,Varet,2026-02-10,mar,14:25,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/varet
+VAR-R04,control,varet,Varet,2026-02-14,sam,09:35,haute,matin,1,https://www.lesarcs.com/fr/webcams/varet
+VAR-R05,control,varet,Varet,2026-03-12,jeu,10:40,basse,matin,1,https://www.lesarcs.com/fr/webcams/varet
+ARP-01,control,arpette,Arpette,2025-12-18,jeu,10:10,basse,matin,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-02,control,arpette,Arpette,2025-12-21,dim,10:35,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-03,control,arpette,Arpette,2026-01-01,jeu,11:15,haute,midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-04,control,arpette,Arpette,2026-01-17,sam,14:45,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-05,control,arpette,Arpette,2026-02-03,mar,11:40,basse,midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-06,control,arpette,Arpette,2026-02-15,dim,15:30,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-07,control,arpette,Arpette,2026-02-16,lun,10:30,haute,matin,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-08,control,arpette,Arpette,2026-02-24,mar,10:40,haute,matin,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-09,control,arpette,Arpette,2026-03-07,sam,12:50,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-10,control,arpette,Arpette,2026-03-24,mar,14:55,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/arpette
+ARP-R01,control,arpette,Arpette,2026-01-11,dim,15:45,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/arpette
+ARP-R02,control,arpette,Arpette,2026-01-12,lun,12:40,basse,midi,1,https://www.lesarcs.com/fr/webcams/arpette
+ARP-R03,control,arpette,Arpette,2026-01-31,sam,14:45,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/arpette
+ARP-R04,control,arpette,Arpette,2026-02-14,sam,16:25,haute,apres-midi,1,https://www.lesarcs.com/fr/webcams/arpette
+ARP-R05,control,arpette,Arpette,2026-04-10,ven,11:45,moyenne,midi,1,https://www.lesarcs.com/fr/webcams/arpette
+AIG-01,control,aiguille-rouge,Aiguille Rouge,2026-01-01,jeu,12:45,haute,midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-02,control,aiguille-rouge,Aiguille Rouge,2026-01-04,dim,15:55,moyenne,apres-midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-03,control,aiguille-rouge,Aiguille Rouge,2026-01-27,mar,09:35,basse,matin,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-04,control,aiguille-rouge,Aiguille Rouge,2026-02-11,mer,09:50,moyenne,matin,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-05,control,aiguille-rouge,Aiguille Rouge,2026-02-16,lun,10:25,haute,matin,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-06,control,aiguille-rouge,Aiguille Rouge,2026-02-17,mar,10:05,haute,matin,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-07,control,aiguille-rouge,Aiguille Rouge,2026-02-28,sam,15:00,haute,apres-midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-08,control,aiguille-rouge,Aiguille Rouge,2026-03-06,ven,11:45,moyenne,midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-09,control,aiguille-rouge,Aiguille Rouge,2026-03-11,mer,12:40,basse,midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-10,control,aiguille-rouge,Aiguille Rouge,2026-03-18,mer,14:35,basse,apres-midi,0,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-R01,control,aiguille-rouge,Aiguille Rouge,2025-12-20,sam,14:25,moyenne,apres-midi,1,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-R02,control,aiguille-rouge,Aiguille Rouge,2026-02-02,lun,10:10,basse,matin,1,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-R03,control,aiguille-rouge,Aiguille Rouge,2026-02-20,ven,12:55,haute,midi,1,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-R04,control,aiguille-rouge,Aiguille Rouge,2026-02-24,mar,09:20,haute,matin,1,https://www.lesarcs.com/fr/webcams/aiguille-rouge
+AIG-R05,control,aiguille-rouge,Aiguille Rouge,2026-04-24,ven,10:45,moyenne,matin,1,https://www.lesarcs.com/fr/webcams/aiguille-rouge

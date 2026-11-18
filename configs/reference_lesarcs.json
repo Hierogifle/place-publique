@@ -1,32 +1,126 @@
 {
   "client": "lesarcs",
-  "description": "Reference set sampling plan for Les Arcs, season 2025-2026 (step 1.2, ADR 0022).",
+  "description": "Reference set sampling plan for Les Arcs, season 2025-2026 (step 1.2, ADR 0022, 0023, 0024).",
   "seed": 20261118,
-  "season": {"start": "2025-12-13", "end": "2026-04-25"},
+  "season": {
+    "start": "2025-12-13",
+    "end": "2026-04-25"
+  },
   "cameras": [
-    {"code": "ARC", "id": "arcabulle", "name": "Arcabulle", "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle"},
-    {"code": "MTB", "id": "mont-blanc", "name": "Mont-Blanc (TSD)", "viewer": "https://www.lesarcs.com/fr/webcams/mont-blanc"},
-    {"code": "GRZ", "id": "grizzly", "name": "Grizzly (Peisey-Vallandry)", "viewer": "https://www.lesarcs.com/fr/webcams/grizzly"}
+    {
+      "code": "ARC",
+      "id": "arcabulle",
+      "name": "Arcabulle",
+      "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle"
+    },
+    {
+      "code": "MTB",
+      "id": "mont-blanc",
+      "name": "Mont-Blanc (TSD)",
+      "viewer": "https://www.lesarcs.com/fr/webcams/mont-blanc"
+    },
+    {
+      "code": "GRZ",
+      "id": "grizzly",
+      "name": "Grizzly (Peisey-Vallandry)",
+      "viewer": "https://www.lesarcs.com/fr/webcams/grizzly"
+    }
+  ],
+  "control_cameras": [
+    {
+      "code": "VAR",
+      "id": "varet",
+      "name": "Varet",
+      "viewer": "https://www.lesarcs.com/fr/webcams/varet"
+    },
+    {
+      "code": "ARP",
+      "id": "arpette",
+      "name": "Arpette",
+      "viewer": "https://www.lesarcs.com/fr/webcams/arpette"
+    },
+    {
+      "code": "AIG",
+      "id": "aiguille-rouge",
+      "name": "Aiguille Rouge",
+      "viewer": "https://www.lesarcs.com/fr/webcams/aiguille-rouge"
+    }
   ],
   "holidays": [
-    ["2025-12-20", "2026-01-04"],
-    ["2026-02-07", "2026-03-08"],
-    ["2026-04-04", "2026-04-25"]
+    [
+      "2025-12-20",
+      "2026-01-04"
+    ],
+    [
+      "2026-02-07",
+      "2026-03-08"
+    ],
+    [
+      "2026-04-04",
+      "2026-04-25"
+    ]
   ],
   "high_periods": [
-    ["2025-12-27", "2026-01-03"],
-    ["2026-02-14", "2026-03-01"]
+    [
+      "2025-12-27",
+      "2026-01-03"
+    ],
+    [
+      "2026-02-14",
+      "2026-03-01"
+    ]
   ],
   "moments": {
-    "matin": ["09:00", "11:00"],
-    "midi": ["11:00", "14:00"],
-    "apres-midi": ["14:00", "16:30"]
+    "matin": [
+      "09:00",
+      "11:00"
+    ],
+    "midi": [
+      "11:00",
+      "14:00"
+    ],
+    "apres-midi": [
+      "14:00",
+      "16:30"
+    ]
   },
   "off_hours": {
-    "nuit": [["22:00", "23:55"], ["00:00", "05:00"]],
-    "crepuscule": [["07:30", "08:45"], ["17:00", "18:30"]]
+    "nuit": [
+      [
+        "22:00",
+        "23:55"
+      ],
+      [
+        "00:00",
+        "05:00"
+      ]
+    ],
+    "crepuscule": [
+      [
+        "07:30",
+        "08:45"
+      ],
+      [
+        "17:00",
+        "18:30"
+      ]
+    ]
   },
-  "quotas_per_camera": {"haute": 14, "moyenne": 13, "basse": 13, "nuit": 5, "crepuscule": 5},
-  "reserve_per_camera": 10,
+  "quotas_per_camera": {
+    "haute": 22,
+    "moyenne": 21,
+    "basse": 21,
+    "nuit": 8,
+    "crepuscule": 8
+  },
+  "reserve_per_camera": 15,
+  "control_quotas_per_camera": {
+    "haute": 4,
+    "moyenne": 3,
+    "basse": 3,
+    "nuit": 0,
+    "crepuscule": 0
+  },
+  "control_reserve_per_camera": 5,
   "time_step_minutes": 5
 }

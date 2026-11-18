@@ -102,3 +102,10 @@ Les 6 webcams vues ce matin en plein jour (images publiques du site), les 3 live
 **L'image témoin du 14/02/2026 à 12 h 05** (choisie par Romuald) **n'entre pas** dans le jeu, puisqu'elle a été choisie à la main. Elle peut servir d'exemple dans le guide de comptage (étape 1.4).
 
 **Note :** les créneaux « crépuscule » ont une plage horaire fixe. Fin décembre, 18 h est déjà la nuit. La strate se lira donc comme « hors exploitation, lumière faible ou nulle », et la météo réelle sera notée à la main.
+
+### 2026-11-18 · Étape 1.2, plan révisé avant collecte
+Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui (→ [0025](decisions/0025-pre-annotation-et-taille-du-jeu.md)), avec une collecte scriptée (→ [0024](decisions/0024-collecte-scriptee-adresses-du-lecteur.md)). Le plan est régénéré, même graine, **aucune image encore collectée** :
+- **Référence : 3 × 80**. Par caméra : haute 22, moyenne 21, basse 21, nuit 8, crépuscule 8, plus 15 de réserve.
+- **Contrôle : 3 × 10** sur Varet, Arpette et Aiguille Rouge (haute 4, moyenne 3, basse 3), plus 5 de réserve chacune. Il est rapporté à part et n'entre pas dans le critère de passage.
+- **Critère de passage de 1.2 mis à jour :** les 240 créneaux de référence sont couverts, avec au moins 10 images par strate et aucun quasi-doublon.
+- **Étape 1.4 :** pré-annotation par un modèle plus fort que la baseline, correction dans CVAT, et 24 images comptées d'abord à l'aveugle pour mesurer le biais d'ancrage (critère : écart moyen ≤ 1 personne).

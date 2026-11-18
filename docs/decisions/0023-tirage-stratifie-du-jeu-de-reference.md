@@ -1,7 +1,7 @@
 # 0023 — Jeu de référence tiré au sort, par strates, avant de voir les images
 
 - **Date :** 2026-11-18
-- **Statut :** Acceptée
+- **Statut :** Acceptée, quotas modifiés par [0025](0025-pre-annotation-et-taille-du-jeu.md)
 - **Décideurs :** Romuald
 
 ## Contexte

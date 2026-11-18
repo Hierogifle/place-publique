@@ -2,8 +2,9 @@
 
 The plan is drawn *before* any image is looked at, so that nobody picks "nice" images by hand.
 Each slot is a (camera, date, target time) with its strata: expected crowd level (a calendar
-proxy: school holidays, weekends) and moment of the day. Images are then collected by hand from
-the official webcam viewer, as close as possible to the target time.
+proxy: school holidays, weekends) and moment of the day. Two subsets:
+  - reference: the cameras the error is measured on (and the acceptability threshold set on);
+  - control:   a few images from other cameras, to check that the model holds on unseen views.
 
 Usage:
     python -m flowview.reference.sampling configs/reference_lesarcs.json data/reference/sampling_plan.csv
@@ -20,13 +21,15 @@ from pathlib import Path
 
 CROWD_LEVELS = ("haute", "moyenne", "basse")
 OFF_HOURS = ("nuit", "crepuscule")
-PLAN_FIELDS = ("slot_id", "camera", "camera_name", "date", "weekday", "time_target",
+WEEKDAYS = ("lun", "mar", "mer", "jeu", "ven", "sam", "dim")
+PLAN_FIELDS = ("slot_id", "subset", "camera", "camera_name", "date", "weekday", "time_target",
                "crowd_level", "moment", "is_reserve", "viewer")
 
 
 @dataclass(frozen=True)
 class Slot:
     slot_id: str
+    subset: str          # reference / control
     camera: str
     camera_name: str
     date: str
@@ -84,52 +87,57 @@ def random_time(rng: random.Random, windows: list[list[str]], step: int) -> str:
     return f"{m0 // 60:02d}:{m0 % 60:02d}"
 
 
-def build_plan(cfg: dict) -> list[Slot]:
-    rng = random.Random(cfg["seed"])
+def _sample_camera(rng: random.Random, cfg: dict, cam: dict, quotas: dict, n_reserve: int,
+                   subset: str) -> list[Slot]:
     days = season_days(cfg)
-    by_level = {lvl: [d for d in days if crowd_level(d, cfg) == lvl] for lvl in CROWD_LEVELS}
     moments = list(cfg["moments"])
     step = cfg["time_step_minutes"]
-    weekdays = ["lun", "mar", "mer", "jeu", "ven", "sam", "dim"]
-    slots: list[Slot] = []
+    used: set[date] = set()
+    drafts: list[tuple[date, str, str]] = []          # (day, crowd level, moment)
 
-    for cam in cfg["cameras"]:
-        used: set[date] = set()
-        drafts: list[tuple[date, str, str]] = []      # (day, crowd level, moment)
+    def slot(slot_id: str, d: date, lvl: str, m: str, reserve: bool) -> Slot:
+        windows = cfg["off_hours"][m] if m in OFF_HOURS else [cfg["moments"][m]]
+        return Slot(slot_id, subset, cam["id"], cam["name"], d.isoformat(), WEEKDAYS[d.weekday()],
+                    random_time(rng, windows, step), lvl, m, reserve, cam["viewer"])
 
-        # Opening hours: one image per day at most, moments spread evenly within each crowd level.
-        for lvl in CROWD_LEVELS:
-            k = cfg["quotas_per_camera"][lvl]
-            pool = [d for d in by_level[lvl] if d not in used]
-            picked = sorted(rng.sample(pool, k))
-            order = (moments * (k // len(moments) + 1))[:k]
-            rng.shuffle(order)
-            for d, m in zip(picked, order):
-                used.add(d)
-                drafts.append((d, lvl, m))
+    # Opening hours: one image per day at most, moments spread evenly within each crowd level.
+    for lvl in CROWD_LEVELS:
+        k = quotas[lvl]
+        pool = [d for d in days if crowd_level(d, cfg) == lvl and d not in used]
+        if k > len(pool):
+            raise ValueError(f"{cam['id']}: {k} images asked for level {lvl}, only {len(pool)} days")
+        order = (moments * (k // len(moments) + 1))[:k]
+        rng.shuffle(order)
+        for d, m in zip(sorted(rng.sample(pool, k)), order):
+            used.add(d)
+            drafts.append((d, lvl, m))
 
-        # Off hours (night, twilight): empty or dark scenes, to measure false positives.
-        for moment in OFF_HOURS:
-            k = cfg["quotas_per_camera"][moment]
-            pool = [d for d in days if d not in used]
-            for d in sorted(rng.sample(pool, k)):
-                used.add(d)
-                drafts.append((d, "hors", moment))
-
-        drafts.sort()
-        for i, (d, lvl, m) in enumerate(drafts, 1):
-            windows = cfg["off_hours"][m] if m in OFF_HOURS else [cfg["moments"][m]]
-            slots.append(Slot(f"{cam['code']}-{i:02d}", cam["id"], cam["name"], d.isoformat(),
-                              weekdays[d.weekday()], random_time(rng, windows, step), lvl, m, False,
-                              cam["viewer"]))
-
-        # Reserve: replaces a missing image or a near-duplicate, used in order, same camera.
+    # Off hours (night, twilight): empty or dark scenes, to measure false positives.
+    for m in OFF_HOURS:
         pool = [d for d in days if d not in used]
-        for i, d in enumerate(sorted(rng.sample(pool, cfg["reserve_per_camera"])), 1):
-            m = rng.choice(moments)
-            slots.append(Slot(f"{cam['code']}-R{i:02d}", cam["id"], cam["name"], d.isoformat(),
-                              weekdays[d.weekday()], random_time(rng, [cfg["moments"][m]], step),
-                              crowd_level(d, cfg), m, True, cam["viewer"]))
+        for d in sorted(rng.sample(pool, quotas.get(m, 0))):
+            used.add(d)
+            drafts.append((d, "hors", m))
+
+    drafts.sort()
+    slots = [slot(f"{cam['code']}-{i:02d}", d, lvl, m, False) for i, (d, lvl, m) in enumerate(drafts, 1)]
+
+    # Reserve: replaces a missing image or a near-duplicate, used in order, same camera.
+    pool = [d for d in days if d not in used]
+    for i, d in enumerate(sorted(rng.sample(pool, n_reserve)), 1):
+        slots.append(slot(f"{cam['code']}-R{i:02d}", d, crowd_level(d, cfg), rng.choice(moments), True))
+    return slots
+
+
+def build_plan(cfg: dict) -> list[Slot]:
+    rng = random.Random(cfg["seed"])
+    slots: list[Slot] = []
+    for cam in cfg["cameras"]:
+        slots += _sample_camera(rng, cfg, cam, cfg["quotas_per_camera"], cfg["reserve_per_camera"],
+                                "reference")
+    for cam in cfg.get("control_cameras", []):
+        slots += _sample_camera(rng, cfg, cam, cfg["control_quotas_per_camera"],
+                                cfg["control_reserve_per_camera"], "control")
     return slots
 
 
@@ -151,9 +159,11 @@ def main(argv: list[str]) -> int:
     cfg = json.loads(Path(argv[1]).read_text(encoding="utf-8"))
     slots = build_plan(cfg)
     write_plan(slots, Path(argv[2]))
-    main_slots = [s for s in slots if not s.is_reserve]
-    print(f"{datetime.now():%Y-%m-%d %H:%M} plan written: {len(main_slots)} slots + "
-          f"{len(slots) - len(main_slots)} reserve -> {argv[2]}")
+    for subset in ("reference", "control"):
+        main_n = sum(s.subset == subset and not s.is_reserve for s in slots)
+        res_n = sum(s.subset == subset and s.is_reserve for s in slots)
+        print(f"{subset}: {main_n} slots + {res_n} reserve")
+    print(f"{datetime.now():%Y-%m-%d %H:%M} plan written -> {argv[2]}")
     return 0
 
 

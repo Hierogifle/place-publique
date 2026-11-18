@@ -24,7 +24,7 @@ from PIL import Image
 
 NAME_RE = re.compile(r"^(?P<slot>[A-Z]{2,4}-R?\d{2})_(?P<date>\d{8})-(?P<hm>\d{4})\.(?:jpe?g|png)$", re.IGNORECASE)
 WEATHER = ("beau", "couvert", "neige-brouillard", "nuit")
-MANIFEST_FIELDS = ("slot_id", "camera", "crowd_level", "moment", "planned", "actual", "delta_min",
+MANIFEST_FIELDS = ("slot_id", "subset", "camera", "crowd_level", "moment", "planned", "actual", "delta_min",
                    "file", "width", "height", "sha256", "dhash", "weather", "near_dup_of")
 DHASH_W, DHASH_H = 16, 8      # 128 bits; wide grid because the images are panoramas
 NEAR_DUP_MAX_BITS = 10        # to calibrate on the first real images
@@ -89,7 +89,7 @@ def build_manifest(plan_path: Path, images_dir: Path, previous: list[dict]) -> t
             width, height = img.size
             dh = dhash(img)
         rows.append({
-            "slot_id": slot_id, "camera": p["camera"], "crowd_level": p["crowd_level"],
+            "slot_id": slot_id, "subset": p.get("subset", "reference"), "camera": p["camera"], "crowd_level": p["crowd_level"],
             "moment": p["moment"], "planned": planned.isoformat(timespec="minutes"),
             "actual": actual.isoformat(timespec="minutes"),
             "delta_min": round((actual - planned).total_seconds() / 60),
@@ -111,8 +111,15 @@ def build_manifest(plan_path: Path, images_dir: Path, previous: list[dict]) -> t
 
 
 def coverage(rows: list[dict], plan: list[dict], min_per_stratum: int = 10) -> list[str]:
-    """Human-readable coverage report; lines starting with 'MANQUE' fail the step 1.2 criterion."""
+    """Human-readable coverage report; lines starting with 'MANQUE' fail the step 1.2 criterion.
+
+    The criterion applies to the reference subset only; the control subset is reported apart.
+    """
     out = []
+    control_plan = [p for p in plan if p.get("subset") == "control"]
+    control_rows = [r for r in rows if r.get("subset") == "control"]
+    plan = [p for p in plan if p.get("subset", "reference") == "reference"]
+    rows = [r for r in rows if r.get("subset", "reference") == "reference"]
     cams = sorted({p["camera"] for p in plan})
     main_slots = {p["slot_id"] for p in plan if p["is_reserve"] == "0"}
     got = {r["slot_id"] for r in rows}
@@ -131,6 +138,12 @@ def coverage(rows: list[dict], plan: list[dict], min_per_stratum: int = 10) -> l
         for v in need:
             if c.get(v, 0) < min_per_stratum:
                 out.append(f"MANQUE {field} / {v} : {c.get(v, 0)} < {min_per_stratum}")
+    if control_plan:
+        c_main = {p["slot_id"] for p in control_plan if p["is_reserve"] == "0"}
+        c = Counter(r["camera"] for r in control_rows)
+        out.append(f"contrôle : {len(control_rows)} images (créneaux couverts : "
+                   f"{len(c_main & {r['slot_id'] for r in control_rows})}/{len(c_main)}) "
+                   + "  ".join(f"{k}={v}" for k, v in sorted(c.items())))
     missing = sorted(main_slots - got)
     if missing:
         out.append(f"créneaux principaux sans image ({len(missing)}) : " + ", ".join(missing[:20])
