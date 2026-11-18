@@ -1,7 +1,7 @@
 # 0002 — Branches personnelles `Romuald` et `Olivier`
 
 - **Date :** 2026-11-17
-- **Statut :** Remplacée par [0017](0017-workflow-git-et-github.md)
+- **Statut :** Rétablie par [0028](0028-chacun-sa-branche-puis-branches-de-feature.md) (0017 l'avait remplacée par erreur)
 - **Décideurs :** Romuald
 
 ## Contexte
@@ -15,4 +15,4 @@ Aucune discutée à ce moment-là : c'était une demande directe pour démarrer.
 
 ## Conséquences
 - Une branche par personne vieillit mal : elles divergent, et les fusions deviennent pénibles.
-- Proposition en attente : `main` protégée (déploiement), `dev` (intégration), branches `feature/*` courtes par tâche, fusion par pull request. L'auteur de chaque commit reste visible, donc la contribution individuelle reste prouvée.
+- Proposition de Claude, en attente (jamais validée par Romuald ; voir 0028) : `main` protégée (déploiement), `dev` (intégration), branches `feature/*` courtes par tâche, fusion par pull request. L'auteur de chaque commit reste visible, donc la contribution individuelle reste prouvée.
