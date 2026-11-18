@@ -25,23 +25,44 @@ docker exec -it cvat_server bash -ic "python3 ~/manage.py createsuperuser"
 
 > Validé par Romuald le 18/11/2026. Ces règles s'appliquent **à l'identique** au comptage sans aide et à la correction après pré-annotation.
 
-### 2.1 Qui compte
-| Cas | On annote ? | Comment |
+### 2.1 Les 8 classes et leurs attributs
+*Mise à jour du 18/11/2026 (fiche [0027](decisions/0027-huit-classes-et-seuils-par-classe.md)) : 8 classes au lieu de `person` seule. Étiquettes à coller dans CVAT : `configs/cvat_labels.json`.*
+
+**Personnes : la classe dit ce que fait la personne, pas ce qu'elle porte.**
+| Classe | Quand | Exemples |
 |---|---|---|
-| Personne visible (skieur, piéton, enfant, moniteur, perchman) | **Oui** | Un cadre par personne, ajusté au corps visible, skis exclus |
-| Personne partiellement cachée (par une autre, un poteau, un bâtiment) | **Oui**, dès qu'on reconnaît une personne (tête ou buste visible) | Cadre sur la partie visible |
-| Personne sur un siège de télésiège, dans une cabine, sur un téléski | **Oui** | Attribut `sur_remontee` coché |
-| Conducteur visible d'une dameuse ou d'une motoneige | **Oui** | Le véhicule seul ne compte pas |
-| Silhouette douteuse (poteau, ombre, sac, très lointaine) | **Oui, en incertaine** | Attribut `incertain` coché : elle compte dans la fourchette, pas dans le chiffre principal |
-| Reflet dans une vitre, affiche, statue, mannequin | **Non** | — |
-| Ombre d'une personne | **Non** | La personne seule |
+| `skieur` | Skis **aux pieds** | Skieur sur la piste, à l'arrêt skis aux pieds, assis sur un télésiège avec ses skis |
+| `snowboardeur` | Snowboard **aux pieds** (ou attaché à un pied) | Snowboardeur sur la piste, sur le télésiège |
+| `pieton` | **À pied**, sans matériel de glisse aux pieds | Marche en chaussures de ski, skis portés à la main, raquettes, tenue de ville en terrasse ou au village |
+
+| Attribut (personnes) | Valeur | Quand le changer |
+|---|---|---|
+| `tenue` | `ski` par défaut / `ville` | Mettre `ville` pour une tenue de ville : manteau, jean, pas de combinaison |
+| `sur_remontee` | coché / non | La personne est sur un siège, dans une cabine ou sur un téléski |
+| `incertain` | coché / non | Doute sur la présence (poteau, ombre, silhouette très lointaine) **ou** sur la classe. Pour du matériel de glisse dont on ne sait pas si ce sont des skis ou un snowboard : `skieur` + `incertain` |
+
+**Véhicules, engins et animaux**
+| Classe | Quand | Attribut |
+|---|---|---|
+| `voiture` | Voiture de tourisme | `incertain` |
+| `camion` | Utilitaire, camionnette, camion | `incertain` |
+| `bus` | Navette, car, bus | `incertain` |
+| `engin_neige` | Dameuse, motoneige, quad | `type` (dameuse, motoneige, quad, autre) et `incertain`. **Son conducteur visible est annoté en plus**, comme `pieton` |
+| `animal` | Chien surtout | `incertain` |
+
+**Ce qu'on n'annote jamais :** reflets dans une vitre, affiches, statues, mannequins, ombres. Pas d'âge, pas de genre, aucune caractéristique de la personne au-delà de son activité et de sa tenue.
+
+**Étiquettes d'image (une par image) :**
+- `meteo` : beau, couvert, neige-brouillard ou nuit ;
+- `lieu` : piste, gare-remontee, front-de-neige-terrasse ou route-village. Si plusieurs lieux sont visibles, on prend celui qui occupe le plus l'image ;
+- `inexploitable` : objectif givré ou couvert, image noire ou corrompue. Dans ce cas, aucun cadre.
 
 ### 2.2 Comment parcourir une image
 1. **Zoom à 100 %** ; les panoramas font environ 18 500 × 4 000 px.
 2. **Balayer de gauche à droite, par bandes**, sans sauter de zone : terrasses, files, gares, pistes, et le ciel (télésièges).
 3. **Bords du panorama 360° :** le bord gauche et le bord droit montrent le même endroit. Une personne coupée en deux n'est comptée **qu'une fois, sur le bord gauche**.
-4. **Image inexploitable** (objectif givré ou couvert, image noire, image corrompue) : on met l'étiquette d'image `inexploitable` et on n'annote rien. Elle sera comptée comme « pas de donnée », jamais comme zéro.
-5. **Météo :** une étiquette d'image dans CVAT (`beau`, `couvert`, `neige-brouillard`, `nuit`), reportée ensuite dans la colonne `weather` du manifeste.
+4. **Image inexploitable** : étiquette `inexploitable`, aucun cadre. Elle sera comptée comme « pas de donnée », jamais comme zéro.
+5. **Étiquettes d'image :** `meteo` et `lieu` sur chaque image. La météo est reportée ensuite dans la colonne `weather` du manifeste.
 
 ### 2.3 Ordre des séances (pour mesurer le biais d'ancrage, fiche 0025)
 1. **Séance A, sans aide :** les **24 images tirées au sort** (8 par caméra, `data/reference/blind_set.csv`), dans une tâche CVAT **sans aucun cadre pré-calculé**.
@@ -50,7 +71,7 @@ docker exec -it cvat_server bash -ic "python3 ~/manage.py createsuperuser"
 
 ### 2.4 Exports
 - **CVAT :** export au format COCO, dans `data/reference/annotations/` (hors de Git, comme les images).
-- **Versionné :** `data/reference/ground_truth.csv`, avec par image le nombre de personnes certaines, d'incertaines et de personnes sur une remontée, et l'étiquette inexploitable.
+- **Versionné :** `data/reference/ground_truth.csv`. Par image : le nombre d'objets certains et incertains **par classe**, les personnes sur une remontée, la répartition des tenues, la météo, le lieu et l'étiquette inexploitable.
 
 ### 2.5 Exemple
 L'image témoin du 14/02/2026 à 12 h 05 (hors jeu de référence, fiche 0023) sert d'exemple pour se faire la main avant la séance A. Elle n'entre dans aucune mesure.
@@ -59,7 +80,7 @@ L'image témoin du 14/02/2026 à 12 h 05 (hors jeu de référence, fiche 0023) s
 **Images :** les 24 de `data/reference/blind_set.csv` (graine 20261119, 8 par caméra, hors nuit), copiées dans `data/reference/sessions/A_aveugle/` (hors de Git).
 
 **Dans CVAT** (<http://localhost:8080>) :
-1. **Projets → +** : nom `FlowView — référence`. Dans « Constructeur », onglet **Raw**, coller le contenu de `configs/cvat_labels.json`, puis valider. On obtient le label `person`, avec les cases `incertain` et `sur_remontee`, et les étiquettes d'image `meteo` et `inexploitable`.
+1. **Projets → +** : nom `FlowView — référence`. Dans « Constructeur », onglet **Raw**, coller le contenu de `configs/cvat_labels.json`, puis valider. On obtient les 8 classes (§ 2.1) avec leurs attributs, et les étiquettes d'image `meteo`, `lieu` et `inexploitable`. **Si le projet existe déjà avec l'ancien label `person` et sans annotation, remplacer le contenu Raw par le nouveau.**
 2. **Tâches → +** : nom `A — sans aide (24)`, projet `FlowView — référence`. Ajouter les 24 fichiers du dossier `A_aveugle`.
 3. **Configuration avancée :** **Qualité d'image : 100**, pour voir les silhouettes lointaines sans compression. Laisser les autres réglages par défaut.
 4. **Annoter** en suivant le guide (§ 2) : zoom à 100 %, bandes de gauche à droite, une étiquette `meteo` par image.

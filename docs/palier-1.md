@@ -138,3 +138,9 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 - **24 images tirées au sort** (`data/reference/blind_set.csv`, graine 20261119, 8 par caméra, hors nuit), copiées dans `data/reference/sessions/A_aveugle/`. Les dossiers de séance et d'annotations sont ajoutés au `.gitignore`.
 - **Étiquettes CVAT :** `configs/cvat_labels.json`.
 - **Mode d'emploi :** [annotation.md](annotation.md) § 3. **Aucun modèle n'a encore tourné sur le jeu de référence.**
+
+### 2026-11-18 · Classes : 8 au lieu de `person` seule (avant tout modèle)
+- **Constat de Romuald :** une seule classe ne suffit pas. Le sujet demande d'ailleurs 2 à 10 classes, et les scènes sont variées (télésièges, routes, villages, engins, tenues).
+- **Décision** (→ [0027](decisions/0027-huit-classes-et-seuils-par-classe.md)) : skieur, snowboardeur, piéton, voiture, camion, bus, engin de neige, animal. Attributs `tenue`, `sur_remontee`, `incertain`, `type` (engins) ; étiquettes d'image `meteo`, `lieu`, `inexploitable`. Pas de classe d'âge ni de genre.
+- **Seuils S6 et S7 ajoutés** ([evaluation.md](evaluation.md) § 3 bis). Ils sont validés et commités **avant tout lancement de modèle**, comme S1 à S5.
+- **Séance A :** si le projet CVAT a été créé avec l'ancien label, remplacer son contenu par `configs/cvat_labels.json` avant d'annoter.

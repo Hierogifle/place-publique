@@ -1,6 +1,6 @@
 [
   {
-    "name": "person",
+    "name": "skieur",
     "type": "rectangle",
     "color": "#1f3140",
     "attributes": [
@@ -15,6 +15,178 @@
       },
       {
         "name": "sur_remontee",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "tenue",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "ski",
+        "values": [
+          "ski",
+          "ville"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "snowboardeur",
+    "type": "rectangle",
+    "color": "#4b6273",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "sur_remontee",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "tenue",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "ski",
+        "values": [
+          "ski",
+          "ville"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "pieton",
+    "type": "rectangle",
+    "color": "#8a6d3b",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "sur_remontee",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "tenue",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "ski",
+        "values": [
+          "ski",
+          "ville"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "voiture",
+    "type": "rectangle",
+    "color": "#5b8c5a",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "camion",
+    "type": "rectangle",
+    "color": "#3f6e3e",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bus",
+    "type": "rectangle",
+    "color": "#2c4f2b",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "engin_neige",
+    "type": "rectangle",
+    "color": "#b07d2b",
+    "attributes": [
+      {
+        "name": "incertain",
+        "mutable": false,
+        "input_type": "checkbox",
+        "default_value": "false",
+        "values": [
+          "false"
+        ]
+      },
+      {
+        "name": "type",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "dameuse",
+        "values": [
+          "dameuse",
+          "motoneige",
+          "quad",
+          "autre"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "animal",
+    "type": "rectangle",
+    "color": "#7a4f8a",
+    "attributes": [
+      {
+        "name": "incertain",
         "mutable": false,
         "input_type": "checkbox",
         "default_value": "false",
@@ -39,6 +211,25 @@
           "couvert",
           "neige-brouillard",
           "nuit"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "lieu",
+    "type": "tag",
+    "color": "#9a8f84",
+    "attributes": [
+      {
+        "name": "valeur",
+        "mutable": false,
+        "input_type": "select",
+        "default_value": "piste",
+        "values": [
+          "piste",
+          "gare-remontee",
+          "front-de-neige-terrasse",
+          "route-village"
         ]
       }
     ]
