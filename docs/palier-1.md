@@ -59,3 +59,46 @@ Les 6 webcams vues ce matin en plein jour (images publiques du site), les 3 live
 - **Vidéo :** après la baseline sur images (le suivi dépend du détecteur). Sources repérées dans [sources.md](sources.md) § 3 bis : MOT17 / MOT20 pour mesurer le suivi, extraits Pexels pour notre contexte.
 
 **Étape suivante : 1.2, figer le jeu de référence.** Il faut d'abord écrire la grille des strates (caméra × moment × météo × affluence) et la règle anti-doublons, avant de choisir la moindre image.
+
+---
+
+## Étape 1.2 · Figer le jeu de référence : protocole (écrit le 18/11/2026, avant tout choix d'image)
+
+**Hypothèse :** 150 images tirées au hasard dans des strates définies à l'avance représentent la saison. Elles permettent de mesurer l'erreur de comptage sans biais de sélection : personne ne choisit de « belles » images.
+
+**Le tirage** (`configs/reference_lesarcs.json` → `data/reference/sampling_plan.csv`, graine 20261118, reproductible) :
+- **Période :** saison 2025-2026, du 13/12/2025 au 25/04/2026 🔎 (clôture annoncée le 25 ou le 26/04 selon les sources).
+- **3 caméras × 50 images**, plus 10 images de réserve par caméra :
+
+| Strate | Par caméra | Définition (indicateur de calendrier, contrôlé ensuite par les comptages) |
+|---|---|---|
+| Affluence haute | 14 | Deux zones scolaires en vacances en même temps : 27/12 → 03/01 et 14/02 → 01/03 |
+| Affluence moyenne | 13 | Autres jours de vacances (toutes zones) et week-ends hors vacances |
+| Affluence basse | 13 | Jours de semaine hors vacances |
+| Nuit (hors exploitation) | 5 | 22 h → 5 h : scène vide, pour mesurer les **fausses détections** |
+| Crépuscule (hors exploitation) | 5 | 7 h 30 → 8 h 45 et 17 h → 18 h 30 : faible lumière |
+
+- **Moments :** matin (9 h → 11 h), midi (11 h → 14 h), après-midi (14 h → 16 h 30), répartis à parts égales dans chaque niveau d'affluence. L'heure est tirée au hasard dans la plage, au pas de 5 min.
+- **Une seule image par jour et par caméra :** deux images d'une même journée se ressemblent trop.
+- **Vacances scolaires 2025-2026 :** jeu de données officiel du ministère (data.education.gouv.fr), consulté le 18/11/2026 ✅. Noël : 20/12 → 04/01, toutes zones. Hiver : A 07/02 → 22/02, B 14/02 → 01/03, C 21/02 → 08/03. Printemps : A 04/04 → 19/04, B 11/04 → 26/04, C 18/04 → 03/05.
+
+**La collecte (à la main, dans le lecteur officiel, fiche 0021) :**
+1. Pour chaque ligne du plan : ouvrir la caméra à la date indiquée et prendre l'image **la plus proche de l'heure cible**.
+2. L'enregistrer dans `data/reference/images/` sous le nom `<slot_id>_<AAAAMMJJ>-<HHMM>.jpg`, avec l'heure réelle de l'image. Exemple : `ARC-04_20251227-1230.jpg`.
+3. **Image absente** (caméra en panne, givrée, archive vide) : noter le créneau comme absent et prendre la **réserve suivante de la même caméra**.
+4. Renseigner la **météo** dans le manifeste : `beau`, `couvert`, `neige-brouillard` ou `nuit`.
+5. Lancer `python -m flowview.reference.manifest data/reference/sampling_plan.csv data/reference/images data/reference/manifest.csv`. Le script calcule les empreintes (SHA-256, empreinte de ressemblance), signale les noms non conformes et les **quasi-doublons**, puis affiche la couverture par strate.
+
+**Règle anti-doublons :** deux images d'une même caméra dont les empreintes de ressemblance diffèrent de 10 bits ou moins sur 128 sont des quasi-doublons. La seconde est remplacée par une réserve. Les images de nuit sont exemptées, puisqu'elles se ressemblent par nature. Le seuil de 10 bits est à calibrer sur les premières images 🔎.
+
+**Critère de passage :**
+- les 150 créneaux sont couverts (réserves comprises) ;
+- au moins 10 images par strate (caméra × affluence, moment, météo) ;
+- aucun quasi-doublon ;
+- `manifest.csv` est commité.
+
+**À partir de ce commit, le jeu ne bouge plus.**
+
+**L'image témoin du 14/02/2026 à 12 h 05** (choisie par Romuald) **n'entre pas** dans le jeu, puisqu'elle a été choisie à la main. Elle peut servir d'exemple dans le guide de comptage (étape 1.4).
+
+**Note :** les créneaux « crépuscule » ont une plage horaire fixe. Fin décembre, 18 h est déjà la nuit. La strate se lira donc comme « hors exploitation, lumière faible ou nulle », et la météo réelle sera notée à la main.

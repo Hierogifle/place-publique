@@ -1,0 +1,32 @@
+{
+  "client": "lesarcs",
+  "description": "Reference set sampling plan for Les Arcs, season 2025-2026 (step 1.2, ADR 0022).",
+  "seed": 20261118,
+  "season": {"start": "2025-12-13", "end": "2026-04-25"},
+  "cameras": [
+    {"code": "ARC", "id": "arcabulle", "name": "Arcabulle", "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle"},
+    {"code": "MTB", "id": "mont-blanc", "name": "Mont-Blanc (TSD)", "viewer": "https://www.lesarcs.com/fr/webcams/mont-blanc"},
+    {"code": "GRZ", "id": "grizzly", "name": "Grizzly (Peisey-Vallandry)", "viewer": "https://www.lesarcs.com/fr/webcams/grizzly"}
+  ],
+  "holidays": [
+    ["2025-12-20", "2026-01-04"],
+    ["2026-02-07", "2026-03-08"],
+    ["2026-04-04", "2026-04-25"]
+  ],
+  "high_periods": [
+    ["2025-12-27", "2026-01-03"],
+    ["2026-02-14", "2026-03-01"]
+  ],
+  "moments": {
+    "matin": ["09:00", "11:00"],
+    "midi": ["11:00", "14:00"],
+    "apres-midi": ["14:00", "16:30"]
+  },
+  "off_hours": {
+    "nuit": [["22:00", "23:55"], ["00:00", "05:00"]],
+    "crepuscule": [["07:30", "08:45"], ["17:00", "18:30"]]
+  },
+  "quotas_per_camera": {"haute": 14, "moyenne": 13, "basse": 13, "nuit": 5, "crepuscule": 5},
+  "reserve_per_camera": 10,
+  "time_step_minutes": 5
+}

@@ -34,6 +34,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0020](0020-logo-refuge-eclaire.md) | 2026-11-17 | Logo « le refuge éclairé » (montagne et fenêtre unique) | Acceptée |
 | [0021](0021-webcams-usage-pedagogique-sans-autorisation.md) | 2026-11-18 | Images des webcams : usage pédagogique sans autorisation, avec garde-fous | Acceptée |
 | [0022](0022-jeu-de-reference-archive-des-arcs.md) | 2026-11-18 | Jeu de référence tiré de l'archive des Arcs (3 webcams) ; la vidéo vient après | Acceptée |
+| [0023](0023-tirage-stratifie-du-jeu-de-reference.md) | 2026-11-18 | Jeu de référence tiré au sort, par strates, avant de voir les images | Acceptée |
 
 ## Modèle
 
