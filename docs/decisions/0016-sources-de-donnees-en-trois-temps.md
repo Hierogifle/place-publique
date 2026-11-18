@@ -1,7 +1,7 @@
 # 0016 — Sources de données en trois temps : jeux d'images, station ouverte, puis Les Arcs
 
 - **Date :** 2026-11-17
-- **Statut :** Acceptée (à faire valider par le formateur pour le jeu de référence)
+- **Statut :** Remplacée par [0022](0022-jeu-de-reference-archive-des-arcs.md)
 - **Décideurs :** Romuald
 - **Complète :** [0003](0003-station-les-arcs.md)
 
