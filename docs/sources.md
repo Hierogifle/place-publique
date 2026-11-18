@@ -25,8 +25,14 @@ Page officielle : <https://www.lesarcs.com/fr/livecams-et-webcams>, avec une **v
 
 Les livecams sont diffusées sur YouTube. Lire un live YouTube avec un outil tiers est probablement contraire aux conditions de YouTube 🔎 : la question est à trancher avant le mode direct.
 
+**Archive (relevé du 18/11/2026) ✅ :**
+- Les 6 webcams ont une archive quotidienne dans le lecteur officiel webcam-hd, avec environ une image toutes les 30 à 35 minutes.
+- Chaque image existe en trois tailles. **En `mega`, c'est le panorama 360° complet en 18 543 × 3 953 px**, environ 3 à 5 Mo.
+- Les skieurs y sont nettement visibles, ce qui réduit fortement le risque des petites silhouettes.
+- Collecte : fiche [0024](decisions/0024-collecte-scriptee-adresses-du-lecteur.md).
+
 **Remarques techniques :**
-- Ce sont des **panoramas de 600 px de haut** : les skieurs y feront quelques pixels. C'est un argument fort pour tester la baseline en 1280 px et par tuiles (étape 1.5).
+- **En direct**, ce sont des panoramas de 600 px de haut. **Dans l'archive**, ils font 18 543 × 3 953 px. Le jeu de référence utilise l'archive. En production, il faudra soit la haute résolution, soit accepter des silhouettes minuscules : à mesurer (étape 1.5 et palier 2).
 - Une image toutes les ~10 min suffit au socle périodique (fiche 0019).
 
 **Droits :**

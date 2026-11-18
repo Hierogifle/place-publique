@@ -11,19 +11,25 @@
       "code": "ARC",
       "id": "arcabulle",
       "name": "Arcabulle",
-      "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle"
+      "viewer": "https://app.webcam-hd.com/lesarcs/arcabulle",
+      "archive_path": "les-arcs_arcabulle",
+      "archive_cam": "les-arcs_arcabulle"
     },
     {
       "code": "MTB",
       "id": "mont-blanc",
       "name": "Mont-Blanc (TSD)",
-      "viewer": "https://www.lesarcs.com/fr/webcams/mont-blanc"
+      "viewer": "https://app.webcam-hd.com/lesarcs/mont-blanc",
+      "archive_path": "les_arcs_tsd-mont-blanc",
+      "archive_cam": "les-arcs_tsd-mont-blanc"
     },
     {
       "code": "GRZ",
       "id": "grizzly",
       "name": "Grizzly (Peisey-Vallandry)",
-      "viewer": "https://www.lesarcs.com/fr/webcams/grizzly"
+      "viewer": "https://app.webcam-hd.com/lesarcs/grizzly",
+      "archive_path": "peisey-vallandry_grizzly",
+      "archive_cam": "peisey-vallandry_grizzly"
     }
   ],
   "control_cameras": [
@@ -31,19 +37,25 @@
       "code": "VAR",
       "id": "varet",
       "name": "Varet",
-      "viewer": "https://www.lesarcs.com/fr/webcams/varet"
+      "viewer": "https://app.webcam-hd.com/lesarcs/varet",
+      "archive_path": "les_arcs_catex",
+      "archive_cam": "les-arcs_catex"
     },
     {
       "code": "ARP",
       "id": "arpette",
       "name": "Arpette",
-      "viewer": "https://www.lesarcs.com/fr/webcams/arpette"
+      "viewer": "https://app.webcam-hd.com/lesarcs/arpette",
+      "archive_path": "les-arcs_arpette",
+      "archive_cam": "les-arcs_arpette"
     },
     {
       "code": "AIG",
       "id": "aiguille-rouge",
       "name": "Aiguille Rouge",
-      "viewer": "https://www.lesarcs.com/fr/webcams/aiguille-rouge"
+      "viewer": "https://app.webcam-hd.com/lesarcs/aiguille-rouge",
+      "archive_path": "les_arcs_aiguille",
+      "archive_cam": "les-arcs_aiguille"
     }
   ],
   "holidays": [
@@ -122,5 +134,13 @@
     "crepuscule": 0
   },
   "control_reserve_per_camera": 5,
-  "time_step_minutes": 5
+  "time_step_minutes": 5,
+  "archive": {
+    "note": "Day index loaded by the official viewer itself (ADR 0024); only plan slots are fetched.",
+    "day_index": "https://app.webcam-hd.com/api/webcam/{archive_path}/day/{date}?cam={archive_cam}",
+    "image_key": "url_mega",
+    "timezone": "Europe/Paris",
+    "max_gap_minutes": 45,
+    "delay_seconds": 5
+  }
 }

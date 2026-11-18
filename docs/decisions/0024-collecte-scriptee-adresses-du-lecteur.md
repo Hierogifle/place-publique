@@ -25,3 +25,10 @@ Les autres garde-fous de la fiche 0021 restent : rien dans Git, rien de publié 
 ## Conséquences
 - Le script vit dans le dépôt (`flowview/reference/collect.py`). Il est lisible, journalisé, et on peut le relancer.
 - Si l'adresse de l'image n'est pas simple (jeton, signature, protection), on revient à la collecte manuelle.
+
+## Vérification (18/11/2026)
+- **Ce que charge le lecteur :** quand on choisit une date, il charge un index du jour, `app.webcam-hd.com/api/webcam/<caméra>/day/<date>`. Cet index liste les images de la journée avec des **adresses publiques simples**, sans jeton ni signature.
+- **Rythme de l'archive :** environ une image toutes les 30 à 35 minutes ✅.
+- **Trois tailles :** `small`, `1080` et `mega`. En `mega`, le panorama fait **18 543 × 3 953 px** ✅, au lieu des 600 px de hauteur de l'image en direct.
+- **Identifiants des 6 caméras :** relevés en ouvrant leur page dans le lecteur (navigation normale). Ils sont notés dans `configs/reference_lesarcs.json`.
+- **Script :** `flowview/reference/collect.py`. Il récupère un index par créneau, puis l'image la plus proche de l'heure cible, à ± 45 min au plus ; au-delà, le créneau est noté absent. Il attend 5 s entre deux requêtes. Chaque essai est noté dans `data/reference/collect_log.csv`.

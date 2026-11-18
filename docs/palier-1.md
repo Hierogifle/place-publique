@@ -109,3 +109,10 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 - **Contrôle : 3 × 10** sur Varet, Arpette et Aiguille Rouge (haute 4, moyenne 3, basse 3), plus 5 de réserve chacune. Il est rapporté à part et n'entre pas dans le critère de passage.
 - **Critère de passage de 1.2 mis à jour :** les 240 créneaux de référence sont couverts, avec au moins 10 images par strate et aucun quasi-doublon.
 - **Étape 1.4 :** pré-annotation par un modèle plus fort que la baseline, correction dans CVAT, et 24 images comptées d'abord à l'aveugle pour mesurer le biais d'ancrage (critère : écart moyen ≤ 1 personne).
+
+### 2026-11-18 · Étape 1.2, collecte
+- **Adresses :** Romuald a ouvert le 14/02/2026 dans le lecteur. Le lecteur charge un index du jour qui liste des images à adresse publique simple (fiche 0024, vérification).
+- **Script :** `flowview/reference/collect.py`, avec 10 tests ; il ne demande que les créneaux du plan et attend 5 s entre deux requêtes.
+- **Résolution :** les images d'archive font **18 543 × 3 953 px**, contre 600 px de haut en direct. Sur ARC-02 (14/12/2025, 10 h 10), des dizaines de skieurs sont nettement visibles autour de la gare.
+- **Hypothèse :** la difficulté du comptage viendra moins de la taille des silhouettes que de leur nombre et de leur densité près des gares. Elle sera mesurée en 1.5.
+- **Collecte complète lancée :** 270 créneaux, soit 240 de référence et 30 de contrôle.
