@@ -2,7 +2,7 @@
 
 *Étape 1.3 du [palier 1](palier-1.md). **Ce document doit être validé et commité avant le premier lancement d'un modèle sur le jeu de référence.** L'horodatage Git prouve que le seuil n'a pas été ajusté aux résultats.*
 
-> **Statut : PROPOSÉ le 18/11/2026, en attente de validation par Romuald.** Fiche [0026](decisions/0026-seuil-d-acceptabilite.md).
+> **Statut : VALIDÉ par Romuald le 18/11/2026, avant tout lancement de modèle sur le jeu de référence.** Fiche [0026](decisions/0026-seuil-d-acceptabilite.md).
 
 ## 1. L'usage, d'où vient le seuil
 FlowView sert à l'exploitant à **décider** : ouvrir ou renforcer une remontée, envoyer du personnel, prévenir les pisteurs. Il ne sert pas à facturer à la personne près. L'écran montre :

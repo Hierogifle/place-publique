@@ -23,7 +23,7 @@ docker exec -it cvat_server bash -ic "python3 ~/manage.py createsuperuser"
 
 ## 2. Guide de comptage (étape 1.4) — à lire avant la première image
 
-> Proposé le 18/11/2026, à valider par Romuald. Ces règles s'appliquent **à l'identique** au comptage sans aide et à la correction après pré-annotation.
+> Validé par Romuald le 18/11/2026. Ces règles s'appliquent **à l'identique** au comptage sans aide et à la correction après pré-annotation.
 
 ### 2.1 Qui compte
 | Cas | On annote ? | Comment |

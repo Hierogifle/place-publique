@@ -129,3 +129,7 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 - **Calibration de la règle anti-doublons (prévue au protocole) :** avec le seuil provisoire de 10 bits, 13 paires étaient signalées. Elles étaient **toutes de jours différents**, à la même heure et par le même beau temps. Une caméra fixe garde la même structure d'image, et l'empreinte la retrouve d'un jour à l'autre. La paire la plus proche (GRZ-15 / GRZ-08, 3 bits) a été vérifiée à l'œil : skieurs et panneaux différents, donc pas un doublon. **Seuil fixé à 2 bits.** Il ne vise que le vrai cas à craindre : une caméra bloquée qui renvoie la même image plusieurs jours. Aucune empreinte SHA-256 identique, aucun quasi-doublon à 2 bits.
 - **Météo :** à noter pendant l'annotation, par une étiquette d'image dans CVAT. Le critère « au moins 10 images par classe de météo » sera donc contrôlé à la fin de l'étape 1.4. Si une classe manque, on puise dans les réserves déjà tirées.
 - **Critère de passage de 1.2 :** atteint pour la couverture et les doublons, avec la météo reportée en 1.4. **Le jeu est figé** : `data/reference/manifest.csv` est commité, avec les empreintes SHA-256.
+
+### 2026-11-18 · Étapes 1.3 et 1.4 validées
+- **Seuil S1 à S5** ([evaluation.md](evaluation.md), fiche 0026) et **guide de comptage** ([annotation.md](annotation.md)) **validés par Romuald**. Ils sont commités **avant tout lancement de modèle** sur le jeu de référence : ce commit sert de date de pré-enregistrement.
+- **Critère de passage de 1.3 :** atteint.

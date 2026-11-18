@@ -1,13 +1,13 @@
 # 0026 — Seuil d'acceptabilité du comptage, fixé avant toute mesure
 
 - **Date :** 2026-11-18
-- **Statut :** Proposée (à valider par Romuald, puis commitée **avant** le premier lancement d'un modèle)
+- **Statut :** Acceptée (validée par Romuald le 2026-11-18, commitée avant tout lancement de modèle)
 - **Décideurs :** Romuald
 
 ## Contexte
 Le sujet exige un seuil d'acceptabilité par classe, écrit et justifié par l'usage du client, avec une valeur indicative : erreur relative médiane ≤ 20 % sur les classes principales. Le protocole du [palier 1](../palier-1.md) impose de l'écrire **avant** de voir les résultats.
 
-## Décision (proposée)
+## Décision
 Détail et justification dans [evaluation.md](../evaluation.md). Une seule classe principale, `person` ; `skis` et `snowboard` sont mesurés pour information, hors seuil.
 
 | # | Mesure | Seuil |
