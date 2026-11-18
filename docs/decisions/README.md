@@ -13,7 +13,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | N° | Date | Décision | Statut |
 |---|---|---|---|
 | [0001](0001-sujet-et-guide-formateur.md) | 2026-11-17 | Sujet rangé dans `sujet/`, guide formateur gardé hors du dépôt public | Acceptée |
-| [0002](0002-branches-personnelles.md) | 2026-11-17 | Branches `Romuald` et `Olivier` créées | Remplacée par 0017 |
+| [0002](0002-branches-personnelles.md) | 2026-11-17 | Branches `Romuald` et `Olivier` créées | Rétablie par 0028 |
 | [0003](0003-station-les-arcs.md) | 2026-11-17 | Client de démonstration : Les Arcs plutôt que Brides-les-Bains | Acceptée |
 | [0004](0004-nom-de-marque-flowview.md) | 2026-11-17 | La marque est FlowView ; « Place Publique » = nom du projet | Acceptée |
 | [0005](0005-imagerie-unsplash-pexels.md) | 2026-11-17 | Images : photo libre Unsplash/Pexels, pas de générateur IA | Acceptée |
@@ -28,7 +28,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0014](0014-direction-artistique-piste-04.md) | 2026-11-17 | Direction artistique : piste 04 v2 « Les Crêtes, vues du refuge » | Acceptée (design.md validé) |
 | [0015](0015-maquette-3d-et-ecran-crm.md) | 2026-11-17 | La station devient une maquette 3D ; écran sur le patron « CRM 3D » | Acceptée |
 | [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Remplacée par 0022 |
-| [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée |
+| [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée ; branches remplacées par 0028 |
 | [0018](0018-pas-de-repartition.md) | 2026-11-17 | Pas de répartition par personne : Romuald porte l'essentiel du projet | Acceptée |
 | [0019](0019-socle-periodique-puis-temps-reel.md) | 2026-11-17 | Socle périodique d'abord, mode « direct » avec suivi ensuite | Acceptée |
 | [0020](0020-logo-refuge-eclaire.md) | 2026-11-17 | Logo « le refuge éclairé » (montagne et fenêtre unique) | Acceptée |
@@ -39,6 +39,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0025](0025-pre-annotation-et-taille-du-jeu.md) | 2026-11-18 | 3 × 80 images + contrôle 3 × 10 ; pré-annotation corrigée dans CVAT, biais d'ancrage mesuré | Acceptée |
 | [0026](0026-seuil-d-acceptabilite.md) | 2026-11-18 | Seuil d'acceptabilité du comptage (S1 à S5), fixé avant toute mesure | Acceptée (complétée par 0027) |
 | [0027](0027-huit-classes-et-seuils-par-classe.md) | 2026-11-18 | Huit classes comptées (skieur, snowboardeur, piéton, voiture, camion, bus, engin de neige, animal) et un seuil par classe | Acceptée |
+| [0028](0028-chacun-sa-branche-puis-branches-de-feature.md) | 2026-11-18 | Chacun sa branche (`Romuald`, `Olivier`) pendant le développement, branches de feature ensuite ; corrige 0017 | Acceptée |
 
 ## Modèle
 

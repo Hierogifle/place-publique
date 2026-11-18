@@ -15,32 +15,50 @@ Ce guide explique comment on avance sur le dépôt sans se marcher dessus, et co
 | **CD** (déploiement continu) | À chaque push sur `main`, GitHub publie une nouvelle image Docker de l'application |
 
 ## Les branches
-```
-main      ← ce qui marche et qu'on peut montrer (protégée, déployée)
-  └─ dev  ← l'intégration : on y rassemble le travail des deux (protégée)
-      ├─ feature/capture-webcams   ← une branche courte par tâche
-      ├─ feature/baseline-yolo
-      ├─ fix/pas-de-donnee
-      └─ docs/veille-q1
-```
-- **On ne pousse jamais directement sur `main` ni sur `dev`** : tout passe par une pull request.
-- **Une branche = une tâche du plan** (`docs/plan.md`), de quelques heures à deux jours. Préfixes : `feature/`, `fix/`, `docs/`, `chore/` (configuration, outillage).
-- Les branches personnelles `Romuald` et `Olivier` ne servent plus (voir `docs/decisions/0017`).
+On travaille en **deux temps** (fiche [0028](docs/decisions/0028-chacun-sa-branche-puis-branches-de-feature.md)).
 
-## Le cycle d'une tâche
+### Maintenant, pendant le développement de l'application : chacun sa branche
+```
+main          ← ce qui marche et qu'on peut montrer (protégée, déployée)
+  └─ dev      ← l'application se construit ici (protégée)
+      ├─ Romuald   ← la branche de Romuald
+      └─ Olivier   ← la branche d'Olivier
+```
+- **Chacun travaille sur sa branche**, `Romuald` ou `Olivier`, tranquillement et à son rythme.
+- Quand un travail est prêt, on ouvre une **PR de sa branche vers `dev`**.
+- **On ne pousse jamais directement sur `main` ni sur `dev`** : tout passe par une pull request.
+
+### Plus tard, une fois l'application développée : branches de feature
+```
+dev
+  ├─ feature/capture-webcams   ← une branche courte par fonctionnalité
+  ├─ fix/pas-de-donnee
+  └─ docs/veille-q1
+```
+- Une branche courte par fonctionnalité ou correction, créée depuis `dev`. Préfixes : `feature/`, `fix/`, `docs/`, `chore/` (configuration, outillage).
+- On bascule dans ce mode quand on le décide ensemble. Ce n'est pas encore le cas.
+
+## Le cycle de travail (maintenant)
+Une seule fois au départ, ou quand sa branche est en retard sur `dev` :
 ```bash
-git switch dev
-git pull                                   # récupérer le travail de l'autre
-git switch -c feature/ma-tache             # créer sa branche
+git fetch origin
+git switch Olivier                         # ou Romuald
+git merge origin/dev                       # récupérer ce qui est déjà dans dev
+git push
+```
+Ensuite, au quotidien :
+```bash
+git switch Olivier                         # ou Romuald
 # ... travailler, puis :
 git add <fichiers>
 git commit -m "feat: compter les personnes par classe"
-git push -u origin feature/ma-tache        # GitHub affiche le lien pour ouvrir la PR
+git push
 ```
-1. Ouvrir la PR **vers `dev`** (le modèle de PR s'affiche tout seul).
+1. Quand un travail est prêt : ouvrir une PR **`Olivier` → `dev`** (ou `Romuald` → `dev`) ; le modèle de PR s'affiche tout seul.
 2. La CI tourne ; l'autre relit et commente.
-3. Quand c'est vert et relu : **Merge**, puis supprimer la branche.
-4. En fin de palier : une PR **`dev` → `main`**. Elle déclenche le déploiement.
+3. Quand c'est vert et relu : **Merge**. **On ne supprime pas** sa branche personnelle.
+4. Après chaque fusion dans `dev`, chacun récupère `dev` sur sa branche (`git merge origin/dev`) pour ne pas trop s'en éloigner.
+5. En fin de palier : une PR **`dev` → `main`**. Elle déclenche le déploiement.
 
 ## Les messages de commit
 `type: ce que fait le commit`, au présent, en français :
