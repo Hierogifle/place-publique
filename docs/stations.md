@@ -32,6 +32,8 @@
 | Horaires des remontées | Non publiés dans les sources trouvées ; varient selon les secteurs et la période | 🔎 à demander à l'exploitant (Skiinfo : +33 4 79 07 12 57) |
 
 ### Les webcams
+Sur lesarcs.com : **9 caméras, 6 webcams (images fixes) et 3 livecams (vidéo YouTube)** ✅ (relevé du 18/11/2026). Les positions exactes, tirées de la vue carte, sont dans [sources.md](sources.md) § 1. Les 3 caméras d'Arc 1950 (Place Manoir, Horloge, Clocher) sont sur un autre site (arc1950.com) et ne font pas partie de ces 9.
+
 | Caméra | Où | Format | Usage possible |
 |---|---|---|---|
 | Vagère (Arc 1800) | Départ de télésiège | Live YouTube, 1280 × 720, horodaté | **Départ de remontée, distance moyenne** : la meilleure candidate pour une file ✅ (vue le 17/11) |
@@ -41,7 +43,7 @@
 | Place Manoir, Horloge, Clocher (Arc 1950) | **Place du village** | Sur le site d'Arc 1950 (lecteur JS) | **Comptage piétons sur une place** : à tester 🔎 |
 | Livecam Arc 2000, Livecam Varet | — | Live YouTube | À regarder |
 
-**Conditions d'utilisation des webcams : non lues à ce jour** (lesarcs.com, trinum, webcam-hd, arc1950.com). À faire avant toute capture. Récupérer un live YouTube avec un outil tiers est probablement contraire aux conditions de YouTube 🔎. Ne jamais versionner d'image brute.
+**Conditions d'utilisation :** mentions légales de lesarcs.com lues le 17/11 (reproduction interdite sans accord) ; usage pédagogique décidé avec garde-fous (fiche [0021](decisions/0021-webcams-usage-pedagogique-sans-autorisation.md)). Trinum, webcam-hd et arc1950.com : non lues 🔎. Récupérer un live YouTube avec un outil tiers est probablement contraire aux conditions de YouTube 🔎. Ne jamais versionner d'image brute.
 
 ### Ce que ça change pour FlowView (hypothèses à valider avec un exploitant)
 - **Le samedi est le jour des arrivées et des départs** des locations à la semaine 🔎 : affluence au funiculaire et aux départs le matin, pistes plus calmes. La normale doit être calculée **par jour de la semaine**, pas seulement par heure.

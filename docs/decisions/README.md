@@ -27,11 +27,13 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0013](0013-socle-fixe-et-marge.md) | 2026-11-17 | Socle fixe (patine, silence, une alerte, chiffre honnête, voix du sage) et marge de liberté | Acceptée |
 | [0014](0014-direction-artistique-piste-04.md) | 2026-11-17 | Direction artistique : piste 04 v2 « Les Crêtes, vues du refuge » | Acceptée (design.md validé) |
 | [0015](0015-maquette-3d-et-ecran-crm.md) | 2026-11-17 | La station devient une maquette 3D ; écran sur le patron « CRM 3D » | Acceptée |
-| [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Acceptée (à faire valider) |
+| [0016](0016-sources-de-donnees-en-trois-temps.md) | 2026-11-17 | Données en trois temps : jeux d'images, station déjà ouverte, puis Les Arcs | Remplacée par 0022 |
 | [0017](0017-workflow-git-et-github.md) | 2026-11-17 | Workflow Git : main et dev protégées, branches de tâche, PR, CI et CD Docker | Acceptée |
 | [0018](0018-pas-de-repartition.md) | 2026-11-17 | Pas de répartition par personne : Romuald porte l'essentiel du projet | Acceptée |
 | [0019](0019-socle-periodique-puis-temps-reel.md) | 2026-11-17 | Socle périodique d'abord, mode « direct » avec suivi ensuite | Acceptée |
 | [0020](0020-logo-refuge-eclaire.md) | 2026-11-17 | Logo « le refuge éclairé » (montagne et fenêtre unique) | Acceptée |
+| [0021](0021-webcams-usage-pedagogique-sans-autorisation.md) | 2026-11-18 | Images des webcams : usage pédagogique sans autorisation, avec garde-fous | Acceptée |
+| [0022](0022-jeu-de-reference-archive-des-arcs.md) | 2026-11-18 | Jeu de référence tiré de l'archive des Arcs (3 webcams) ; la vidéo vient après | Acceptée |
 
 ## Modèle
 
