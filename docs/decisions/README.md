@@ -39,6 +39,7 @@ Chaque choix structurant du projet est consigné ici **au moment où il est pris
 | [0025](0025-pre-annotation-et-taille-du-jeu.md) | 2026-11-18 | 3 × 80 images + contrôle 3 × 10 ; pré-annotation corrigée dans CVAT, biais d'ancrage mesuré | Acceptée |
 | [0026](0026-seuil-d-acceptabilite.md) | 2026-11-18 | Seuil d'acceptabilité du comptage (S1 à S5), fixé avant toute mesure | Acceptée (complétée par 0027) |
 | [0027](0027-huit-classes-et-seuils-par-classe.md) | 2026-11-18 | Huit classes comptées (skieur, snowboardeur, piéton, voiture, camion, bus, engin de neige, animal) et un seuil par classe | Acceptée |
+| [0028](0028-zones-de-comptage-et-points.md) | 2026-11-19 | On compte dans des zones dessinées par caméra ; la séance A se fait par points | Acceptée |
 | [0028](0028-chacun-sa-branche-puis-branches-de-feature.md) | 2026-11-18 | Chacun sa branche (`Romuald`, `Olivier`) pendant le développement, branches de feature ensuite ; corrige 0017 | Acceptée |
 
 ## Modèle

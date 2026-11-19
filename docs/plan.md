@@ -92,6 +92,7 @@ Objectif final du projet, atteint pas à pas : chaque étape a une hypothèse, u
 | Montée en charge : autant de caméras que la carte le permet, à la cadence la plus haute | Courbe caméras × images/s |
 | Repli CPU dans Docker (cadence réduite) ; profil GPU séparé | `docker compose` qui démarre partout |
 | Section « mode direct » dans l'AIPD de `conformite.md` | `conformite.md` |
+| Livecams en mouvement : caler un chronomètre sur le cycle de la caméra pour savoir quelle zone est filmée (idée I-09) ; mesurer d'abord la période et sa dérive | Correspondance phase du cycle → zone |
 
 ### J14 → J15 · Finalisation et soutenance
 - README final (lancer le projet depuis un clone vierge), documentation, captures.

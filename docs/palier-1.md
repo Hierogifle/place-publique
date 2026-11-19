@@ -144,3 +144,14 @@ Romuald veut plus d'images, pré-annotées par un modèle et corrigées par lui 
 - **Décision** (→ [0027](decisions/0027-huit-classes-et-seuils-par-classe.md)) : skieur, snowboardeur, piéton, voiture, camion, bus, engin de neige, animal. Attributs `tenue`, `sur_remontee`, `incertain`, `type` (engins) ; étiquettes d'image `meteo`, `lieu`, `inexploitable`. Pas de classe d'âge ni de genre.
 - **Seuils S6 et S7 ajoutés** ([evaluation.md](evaluation.md) § 3 bis). Ils sont validés et commités **avant tout lancement de modèle**, comme S1 à S5.
 - **Séance A :** si le projet CVAT a été créé avec l'ancien label, remplacer son contenu par `configs/cvat_labels.json` avant d'annoter.
+
+### 2026-11-18 · Séance A, tâche CVAT vérifiée
+Projet « FlowView - référence » : 8 classes, attributs et 3 étiquettes d'image conformes à `configs/cvat_labels.json`. Tâche « A - sans aide (24) » : les 24 images de `blind_set.csv`, en pleine résolution (Arcabulle 18 543 × 3 953), qualité 100, un seul job, aucune annotation. Le comptage sans aide peut commencer.
+
+### 2026-11-19 · Séance A : zones et points (avant tout modèle)
+- **Constat :** 69 cadres pour la première image (ARC-03), soit 8 à 12 heures pour la séance au même rythme.
+- **Décision** (→ [0028](decisions/0028-zones-de-comptage-et-points.md)) : on compte dans des **zones dessinées par Romuald** dans CVAT (Arcabulle 3 zones, Grizzly 2, Mont-Blanc 1, soit 39 à 58 % de l'image), par **points**. Arrivée et télésiège sont regroupés : sur un instantané, des sièges vides peuvent précéder des sièges pleins hors champ.
+- **Alignement des panoramas :** décalage nul sur 64 images d'Arcabulle ; vérifié à l'œil sur Mont-Blanc et Grizzly. Les zones fixes sont donc valides toute la saison.
+- **Outil :** `flowview.zones` (test d'appartenance à une zone, découpes à l'extérieur grisé), 15 tests au total.
+- **ARC-03 recompté par zone :** 58 dans ARC-Z1, 9 dans ARC-Z3, 2 hors zone. 45 découpes prêtes pour les 23 autres images.
+- **Pour plus tard, mode direct :** idée I-09, un chronomètre sur le cycle des livecams pour savoir quelle zone est filmée.

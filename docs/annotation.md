@@ -87,3 +87,16 @@ L'image témoin du 14/02/2026 à 12 h 05 (hors jeu de référence, fiche 0023) s
 5. **Aucune pré-annotation** dans cette tâche. Ne pas ouvrir la tâche pré-annotée sur ces images avant le lendemain.
 6. **Noter le temps passé** par image (approximatif). Il servira à estimer la durée des séances suivantes.
 7. **À la fin :** Actions → Exporter les annotations → **COCO 1.0**, dans `data/reference/annotations/A_aveugle/`.
+
+## 4. Séance A révisée : zones et points (19/11/2026)
+*Fiche [0028](decisions/0028-zones-de-comptage-et-points.md).*
+
+**Pourquoi :** la première image a demandé 69 cadres. Au même rythme, la séance prendrait 8 à 12 heures.
+
+**Ce qui change :**
+- **On ne compte que dans les zones** dessinées par Romuald (`configs/zones_lesarcs.json`).
+- **Un point par objet** au lieu d'un cadre : outil **Points** dans CVAT. Le point se place **aux pieds** de la personne (ou au bas de l'objet). Mêmes classes et mêmes attributs qu'avant.
+- **Images :** des découpes par zone, avec l'extérieur grisé, dans `data/reference/sessions/A_zones/` : 45 découpes pour les 23 images restantes. ARC-03 est déjà fait : ses 69 cadres sont recomptés par zone (58 dans ARC-Z1, 9 dans ARC-Z3, 2 hors zone).
+- **Étiquettes d'image :** `meteo` et `lieu` sur chaque découpe ; `inexploitable` si besoin.
+
+**Dans CVAT :** projet `FlowView - référence` → nouvelle tâche `A - zones (points)`, avec les 45 découpes, **qualité 100**. On n'ajoute plus rien à la tâche « A - sans aide (24) », qui garde ARC-03.

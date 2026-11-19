@@ -16,6 +16,9 @@ Ce qui compte donc :
 
 Le sujet le dit lui-même : « compter 40 piétons au lieu de 50 suffit pour dimensionner un accueil, pas pour déclencher une alerte sécurité ». FlowView n'est **pas** un outil de sécurité : l'alerte informe un humain, elle ne commande rien (fiche [0019](decisions/0019-socle-periodique-puis-temps-reel.md), veille Q7).
 
+## 1 bis. Où l'on compte : les zones (19/11/2026, avant tout modèle)
+On compte **dans des zones dessinées par caméra** (gare, file, terrasse, départ), et non sur tout le panorama ([fiche 0028](decisions/0028-zones-de-comptage-et-points.md), `configs/zones_lesarcs.json`). Un objet est compté si son point au sol tombe dans une zone. Les seuils ci-dessous s'appliquent **au total des zones d'une image**, et le détail par zone est publié.
+
 ## 2. Classes
 Le sujet demande de compter **2 à 10 classes** selon le contexte du client. On en compte **8** (fiche [0027](decisions/0027-huit-classes-et-seuils-par-classe.md)).
 

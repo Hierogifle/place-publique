@@ -1,7 +1,7 @@
 [
   {
     "name": "skieur",
-    "type": "rectangle",
+    "type": "any",
     "color": "#1f3140",
     "attributes": [
       {
@@ -36,7 +36,7 @@
   },
   {
     "name": "snowboardeur",
-    "type": "rectangle",
+    "type": "any",
     "color": "#4b6273",
     "attributes": [
       {
@@ -71,7 +71,7 @@
   },
   {
     "name": "pieton",
-    "type": "rectangle",
+    "type": "any",
     "color": "#8a6d3b",
     "attributes": [
       {
@@ -106,7 +106,7 @@
   },
   {
     "name": "voiture",
-    "type": "rectangle",
+    "type": "any",
     "color": "#5b8c5a",
     "attributes": [
       {
@@ -122,7 +122,7 @@
   },
   {
     "name": "camion",
-    "type": "rectangle",
+    "type": "any",
     "color": "#3f6e3e",
     "attributes": [
       {
@@ -138,7 +138,7 @@
   },
   {
     "name": "bus",
-    "type": "rectangle",
+    "type": "any",
     "color": "#2c4f2b",
     "attributes": [
       {
@@ -154,7 +154,7 @@
   },
   {
     "name": "engin_neige",
-    "type": "rectangle",
+    "type": "any",
     "color": "#b07d2b",
     "attributes": [
       {
@@ -182,7 +182,7 @@
   },
   {
     "name": "animal",
-    "type": "rectangle",
+    "type": "any",
     "color": "#7a4f8a",
     "attributes": [
       {
