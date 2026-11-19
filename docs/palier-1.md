@@ -155,3 +155,6 @@ Projet « FlowView - référence » : 8 classes, attributs et 3 étiquettes d'im
 - **Outil :** `flowview.zones` (test d'appartenance à une zone, découpes à l'extérieur grisé), 15 tests au total.
 - **ARC-03 recompté par zone :** 58 dans ARC-Z1, 9 dans ARC-Z3, 2 hors zone. 45 découpes prêtes pour les 23 autres images.
 - **Pour plus tard, mode direct :** idée I-09, un chronomètre sur le cycle des livecams pour savoir quelle zone est filmée.
+
+### 2026-11-19 · Séance A : Romuald annote lui-même, sans aide
+Une pré-annotation de la séance A a été envisagée, puis abandonnée avant de tourner. **Romuald compte les 24 images lui-même, sans aide** : ARC-03 est déjà fait en cadres, et les 23 autres se font par points dans les zones (tâche « A - zones (points) », 45 découpes). Le protocole des fiches 0025 et 0028 est donc inchangé, et le biais d'ancrage sera bien mesuré. Le module `flowview.preannotate` (tuiles, classes selon le matériel, points aux pieds, 3 tests) est gardé pour la correction des 270 images, après la séance A.
